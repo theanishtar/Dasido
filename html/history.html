@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/history.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/152112956f.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="primary-navigation navbar navbar-expand-lg navbar-light" id="nav-horizontal">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul>
+                <li class="search">
+                    <div class="input-box">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="Tìm kiếm" />
+                    </div>
+                </li>
+                <li><a href="#">Quản lý &dtrif;</a>
+                    <ul class="dropdown">
+                        <li><a href="#">Bài đăng</a></li>
+                        <li><a href="#">Người dùng</a></li>
+                        <li><a href="#">Xem xét và xóa báo cáo</a></li>
+                        <li><a href="#">Thống kê</a></li>
+                    </ul>
+                </li>
+                <li class="interact"><a href="../html/profile.html">Tài khoản &dtrif;</a>
+                    <ul class="dropdown">
+                        <li><a href="../html/signup.html">Đăng ký</a></li>
+                        <li><a href="../html/login.html">Đăng nhập</a></li>
+                        <li><a href="#">Quên mật khẩu</a></li>
+                        <li><a href="../html/updateprofile.html">Cập nhật tài khoản</a></li>
+                        <li><a href="#">Đăng xuất</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <aside class="sidebar">
+        <header class="sidebar-header">
+            <h1>DASIDO</h1>
+        </header>
+        <nav>
+            <a href="../html/home.html">
+                <span>
+                    <i class="fa-solid fa-house"></i>
+                    <span>Trang chủ</span>
+                </span>
+            </a>
+
+            <a id="showDialog">
+                <span>
+                    <i id="showDialog" class="fa-solid fa-plus"></i>
+                    <span>Đăng bài</span>
+                </span>
+            </a>
+
+            <a href="">
+                <span>
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Lịch sử</span>
+                </span>
+            </a>
+
+            <a href="../html/message.html">
+                <span>
+                    <i class="fa-solid fa-location-arrow">
+                        <span>12</span>
+                    </i>
+                    <span>Tin nhắn</span>
+                </span>
+            </a>
+
+            <a id="showDialog_Notifications">
+                <span>
+                    <i class="fa-regular fa-bell">
+                        <span>12</span>
+                    </i>
+                    <span>Thông báo</span>
+                </span>
+            </a>
+
+            <a>
+                <span>
+                    <i class="fa-regular fa-heart"></i>
+                    <span>Theo dõi</span>
+                </span>
+            </a>
+
+            <a>
+                <span>
+                    <i class="fa-solid fa-gear"></i>
+                    <span>Cài đặt</span>
+                </span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- main section -->
+    <section class="main">
+        <div class="container">
+            <div class="bg-white shadow rounded-lg d-block d-sm-flex">
+                <div class="profile-tab-nav border-right">
+                    <div class="p-4">
+                        <h4 class="text-center" id="fullname">Nhật ký hoạt động</h4>
+                    </div>
+                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="interact-tab" data-toggle="pill" href="#interact" role="tab"
+                            aria-controls="interact" aria-selected="true">
+                            <i class="fa-solid fa-thumbs-up"></i>
+                            Lượt tương tác
+                        </a>
+                        <a class="nav-link" id="share-tab" data-toggle="pill" href="#share" role="tab"
+                            aria-controls="share" aria-selected="false">
+                            <i class="fa-solid fa-share"></i>
+                            Lượt chia sẻ
+                        </a>
+                        <a class="nav-link" id="product-tab" data-toggle="pill" href="#product" role="tab"
+                            aria-controls="product" aria-selected="false">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Hàng đã nhận
+                        </a>
+                    </div>
+                </div>
+                <div class="tab-content p-4 p-md-5" id="v-pills-tabContent">
+                    <div class="tab-pane fade show active" id="interact" role="tabpanel" aria-labelledby="interact-tab">
+                        <h4 class="mb-4">Lượt tương tác</h4>
+                        <div class="deleteAll">
+                            <div class="checkAll">
+                                <input type="checkbox" class="checkDeleteAll">
+                                <span>Tất cả</span>
+                            </div>
+                            <button class="btn btn-light">
+                                <i class="fa-solid fa-trash"></i>
+                                Gỡ</button>
+                        </div>
+                        <div id="lovely-things-list">
+                            <ul class="list">
+                                <li>
+                                    <input type="checkbox" class="checkDelete">
+                                    <div class="content">
+                                        <img src="../images/posts/post1.jpg" class="thumb" />
+                                        <p class="description">Bạn đã thích ảnh của <strong>@an</strong></p>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <i class="fa-solid fa-ellipsis" id="options"></i>
+                                        <div class="dropdown-content">
+                                            <p>Gỡ</p>
+                                            <p>Xem lại</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checkDelete">
+                                    <div class="content">
+                                        <img src="../images/posts/post2.jpg" class="thumb" />
+                                        <p class="description">Bạn đã thích ảnh của <strong>@an</strong></p>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <i class="fa-solid fa-ellipsis" id="options"></i>
+                                        <div class="dropdown-content">
+                                            <p>Gỡ</p>
+                                            <p>Xem lại</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checkDelete">
+                                    <div class="content">
+                                        <img src="../images/posts/post1.jpg" class="thumb" />
+                                        <p class="description">Bạn đã thích ảnh của <strong>@an</strong></p>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <i class="fa-solid fa-ellipsis" id="options"></i>
+                                        <div class="dropdown-content">
+                                            <p>Gỡ</p>
+                                            <p>Xem lại</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checkDelete">
+                                    <div class="content">
+                                        <img src="../images/posts/post1.jpg" class="thumb" />
+                                        <p class="description">Bạn đã thích ảnh của <strong>@an</strong></p>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <i class="fa-solid fa-ellipsis" id="options"></i>
+                                        <div class="dropdown-content">
+                                            <p>Gỡ</p>
+                                            <p>Xem lại</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checkDelete">
+                                    <div class="content">
+                                        <img src="../images/posts/post1.jpg" class="thumb" />
+                                        <p class="description">Bạn đã thích ảnh của <strong>@an</strong></p>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <i class="fa-solid fa-ellipsis" id="options"></i>
+                                        <div class="dropdown-content">
+                                            <p>Gỡ</p>
+                                            <p>Xem lại</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="share" role="tabpanel" aria-labelledby="share-tab">
+                        <h4 class="mb-4">Lượt chia sẻ</h4>
+                        <div id="lovely-things-list">
+                            <ul class="list">
+                                <li>
+                                    <input type="checkbox" class="checkDelete">
+                                    <div class="content">
+                                        <img src="../images/posts/post1.jpg" class="thumb" />
+                                        <p class="description">Bạn đã chia sẻ ảnh đến <strong>@an</strong></p>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <i class="fa-solid fa-ellipsis" id="options"></i>
+                                        <div class="dropdown-content">
+                                            <p>Xem lại</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checkDelete">
+                                    <div class="content">
+                                        <img src="../images/posts/post1.jpg" class="thumb" />
+                                        <p class="description">Bạn đã chia sẻ ảnh đến <strong>@an</strong></p>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <i class="fa-solid fa-ellipsis" id="options"></i>
+                                        <div class="dropdown-content">
+                                            <p>Gỡ</p>
+                                            <p>Xem lại</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checkDelete">
+                                    <div class="content">
+                                        <img src="../images/posts/post1.jpg" class="thumb" />
+                                        <p class="description">Bạn đã chia sẻ ảnh đến <strong>@an</strong></p>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <i class="fa-solid fa-ellipsis" id="options"></i>
+                                        <div class="dropdown-content">
+                                            <p>Gỡ</p>
+                                            <p>Xem lại</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checkDelete">
+                                    <div class="content">
+                                        <img src="../images/posts/post1.jpg" class="thumb" />
+                                        <p class="description">Bạn đã chia sẻ ảnh đến <strong>@an</strong></p>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <i class="fa-solid fa-ellipsis" id="options"></i>
+                                        <div class="dropdown-content">
+                                            <p>Gỡ</p>
+                                            <p>Xem lại</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checkDelete">
+                                    <div class="content">
+                                        <img src="../images/posts/post1.jpg" class="thumb" />
+                                        <p class="description">Bạn đã chia sẻ ảnh đến <strong>@an</strong></p>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <i class="fa-solid fa-ellipsis" id="options"></i>
+                                        <div class="dropdown-content">
+                                            <p>Gỡ</p>
+                                            <p>Xem lại</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="product" role="tabpanel" aria-labelledby="product-tab">
+                        <h4 class="mb-4">Hàng đã nhận</h4>
+                        <div id="lovely-things-list">
+                            <ul class="list">
+                                <li>
+                                    <input type="checkbox" class="checkDelete">
+                                    <div class="content">
+                                        <img src="../images/posts/post1.jpg" class="thumb" />
+                                        <p class="description">Bạn đã nhận hàng từ <strong>@an</strong></p>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <i class="fa-solid fa-ellipsis" id="options"></i>
+                                        <div class="dropdown-content">
+                                            <p>Xem lại</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checkDelete">
+                                    <div class="content">
+                                        <img src="../images/posts/post1.jpg" class="thumb" />
+                                        <p class="description">Bạn đã nhận hàng từ <strong>@an</strong></p>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <i class="fa-solid fa-ellipsis" id="options"></i>
+                                        <div class="dropdown-content">
+                                            <p>Gỡ</p>
+                                            <p>Xem lại</p>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <input type="checkbox" class="checkDelete">
+                                    <div class="content">
+                                        <img src="../images/posts/post1.jpg" class="thumb" />
+                                        <p class="description">Bạn đã nhận hàng từ <strong>@an</strong></p>
+                                    </div>
+                                    <div class="dropdown-options">
+                                        <i class="fa-solid fa-ellipsis" id="options"></i>
+                                        <div class="dropdown-content">
+                                            <p>Gỡ</p>
+                                            <p>Xem lại</p>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+</body>
+
+</html>
