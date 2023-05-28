@@ -47,6 +47,7 @@ body {
 .left_content .section__title p {
     color: #ffffff;
     margin-bottom: 0px;
+    font-size: 4rem !important;
 }
 
 .section__subtitle {
@@ -277,7 +278,6 @@ div.return a {
     border-radius: 2rem;
     color: #121212;;
     background: #ffffff;
-    text-transform: capitalize;
     text-rendering: optimizeLegibility;
     transition: all 0.35s ease;
 }

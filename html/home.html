@@ -22,29 +22,27 @@
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="navbar-collapse collapse" id="navbarSupportedContent" style="height: fit-content !important;">
             <ul>
                 <li class="search">
                     <div class="input-box">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Tìm kiếm" />
+                        <input class="find" type="text" placeholder="Tìm kiếm" />
                     </div>
                 </li>
-                <li><a href="#">Quản lý &dtrif;</a>
+                <!-- <li><a href="#">Quản lý &dtrif;</a>
                     <ul class="dropdown">
                         <li><a href="#">Bài đăng</a></li>
                         <li><a href="#">Người dùng</a></li>
                         <li><a href="#">Xem xét và xóa báo cáo</a></li>
                         <li><a href="#">Thống kê</a></li>
                     </ul>
-                </li>
+                </li> -->
+                <li><a href="../html/adminpage.html">Quản lý</a></li>
                 <li class="account"><a href="../html/profile.html">Tài khoản &dtrif;</a>
                     <ul class="dropdown">
-                        <li><a href="../html/signup.html">Đăng ký</a></li>
-                        <li><a href="../html/login.html">Đăng nhập</a></li>
-                        <li><a href="../html/forgotpassword.html">Quên mật khẩu</a></li>
                         <li><a href="../html/updateprofile.html">Cập nhật tài khoản</a></li>
-                        <li><a href="#">Đăng xuất</a></li>
+                        <li><a href="../index.html">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -103,7 +101,7 @@
                 </span>
             </a>
 
-            <a>
+            <a id="showButton_setting">
                 <span>
                     <i class="fa-solid fa-gear"></i>
                     <span>Cài đặt</span>
@@ -137,8 +135,8 @@
                 </div>
                 <div class="post-detail">
                     <div class="detail-intracables">
-                        <i class="fa-regular fa-bookmark"></i>
                         <i class="fa-regular fa-paper-plane"></i>
+                        <i class="fa-solid fa-share"></i>
                         <i class="fa-regular fa-comment"></i>
                     </div>
                     <span class="interest">10 Lượt quan tâm</span>
@@ -149,7 +147,7 @@
 
                     <div class="comment-box">
                         <input type="text" id="comment-input" placeholder="Bình luận">
-                        <button class="add-comment-btn"> <i class="fa-regular fa-comment"></i></button>
+                        <button class="add-comment-btn"> <i class="send">Gửi</i></button>
                     </div>
 
                     <span class="comment-count">50 bình luận</span>
@@ -177,8 +175,8 @@
                 </div>
                 <div class="post-detail">
                     <div class="detail-intracables">
-                        <i class="fa-regular fa-bookmark"></i>
                         <i class="fa-regular fa-paper-plane"></i>
+                        <i class="fa-solid fa-share"></i>
                         <i class="fa-regular fa-comment"></i>
                     </div>
                     <span class="interest">15 Lượt quan tâm</span>
@@ -445,58 +443,34 @@
         </div>
     </dialog>
 
-    <script>
-        const showButton = document.getElementById('showDialog');
-        const favDialog = document.getElementById('favDialog');
-        const close_createPost = document.getElementById('close_createPost');
-        
-        const showButton_notifications = document.getElementById('showDialog_Notifications');
-        const favDialog_notifications = document.getElementById('favDialog_notifications');
-        const close_notifications = document.getElementById('close_notifications');
-        
-
-        const showButton_follow = document.getElementById('showButton_follow');
-        const favDialog_follow = document.getElementById('favDialog_follow');
-        const close_follow = document.getElementById('close_follow');
-
-        // Show-close dialog create post
-        showButton.addEventListener('click', () => {
-            favDialog.showModal();
-        });
-        close_createPost.addEventListener('click', () => {
-            favDialog.close();
-        });
-
-        // Show-close dialog notifications
-        close_notifications.addEventListener('click', () => {
-            favDialog_notifications.close();
-        });
-        showButton_notifications.addEventListener('click', () => {
-            favDialog_notifications.showModal();
-        });
-
-        // Show-close dialog follow
-        close_follow.addEventListener('click', () => {
-            favDialog_follow.close();
-        });
-        showButton_follow.addEventListener('click', () => {
-            favDialog_follow.showModal();
-        });
-
-
-        // create post
-        const container = document.querySelector(".container"),
-            privacy = container.querySelector(".post .privacy"),
-            arrowBack = container.querySelector(".audience .arrow-back");
-
-        privacy.addEventListener("click", () => {
-            container.classList.add("active");
-        });
-
-        arrowBack.addEventListener("click", () => {
-            container.classList.remove("active");
-        });
-    </script>
+    <!-- Setting -->
+    <dialog id="favDialog_setting">
+        <div id="close_setting">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <div class="setting">
+            <p class="suggestion-text">Cài đặt</p>
+            <div class="select">
+                <select name="format" id="format">
+                   <option selected disabled>Chọn ngôn ngữ</option>
+                   <option value="vietnamese">Tiếng Việt</option>
+                   <option value="english">Tiếng Anh</option>
+                </select>
+             </div>
+             <div class="darkmode">
+                <i class="fa-solid fa-sun"></i>
+                <input type="checkbox" id="toggle-btn" />
+                <label for="toggle-btn" class="toggle-btn">
+                    <span class="toggle"></span>
+                </label>
+                <i class="fa-solid fa-cloud-moon"></i>
+             </div>
+             <div class="button-container">
+                <div class='button -dark center'>Vô hiệu hóa tài khoản</div>
+            </div>
+        </div>
+    </dialog>
+    <script src="../js/home.js"></script>
 </body>
 
 </html>

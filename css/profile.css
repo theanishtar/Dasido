@@ -823,6 +823,10 @@ a {
 #favDialog_updatePost button#updatePosst {
     border: none;
     background: white;
+    outline: none;
+}
+#favDialog_updatePost button#close2:active {
+    outline: none;
 }
 .btn-updateForm {
     display: flex;

@@ -27,24 +27,22 @@
                 <li class="search">
                     <div class="input-box">
                         <i class="fa-solid fa-magnifying-glass"></i>
-                        <input type="text" placeholder="Tìm kiếm" />
+                        <input class="find" type="text" placeholder="Tìm kiếm" />
                     </div>
                 </li>
-                <li><a href="#">Quản lý &dtrif;</a>
+                <!-- <li><a href="#">Quản lý &dtrif;</a>
                     <ul class="dropdown">
                         <li><a href="#">Bài đăng</a></li>
                         <li><a href="#">Người dùng</a></li>
                         <li><a href="#">Xem xét và xóa báo cáo</a></li>
                         <li><a href="#">Thống kê</a></li>
                     </ul>
-                </li>
+                </li> -->
+                <li><a href="../html/adminpage.html">Quản lý</a></li>
                 <li class="account"><a href="../html/profile.html">Tài khoản &dtrif;</a>
                     <ul class="dropdown">
-                        <li><a href="../html/signup.html">Đăng ký</a></li>
-                        <li><a href="../html/login.html">Đăng nhập</a></li>
-                        <li><a href="#">Quên mật khẩu</a></li>
                         <li><a href="../html/updateprofile.html">Cập nhật tài khoản</a></li>
-                        <li><a href="#">Đăng xuất</a></li>
+                        <li><a href="../index.html">Đăng xuất</a></li>
                     </ul>
                 </li>
             </ul>
@@ -192,8 +190,8 @@
                     <!-- <textarea class="post-des" name="" id="" cols="80" rows="10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, in provident aliquam suscipit, perspiciatis eligendi blanditiis reprehenderit nisi quis, sunt ea odit excepturi incidunt assumenda sapiente voluptatem dicta nam et.
                     </textarea> -->
                     <div class="detail-intracables">
-                        <i class="fa-regular fa-bookmark"></i>
                         <i class="fa-regular fa-paper-plane"></i>
+                        <i class="fa-solid fa-share"></i>
                         <i class="fa-regular fa-comment"></i>
                     </div>
                     <span class="interest">10 Lượt quan tâm</span>
@@ -240,31 +238,7 @@
             </div>
         </div>
     </dialog>
-    <script>
-        const showButton_detailPost = document.getElementById('showButton_detailPost');
-        const favDialog_detailPost = document.getElementById('favDialog_detailPost');
-        const close_detailPost = document.getElementById('close');
-        
-        const showButton_updatePost = document.getElementById('showButton_updatePost');
-        const favDialog_updatePost = document.getElementById('favDialog_updatePost');
-        const close_updatePost = document.getElementById('close2');
-        
-        // show - close dialog detailPost
-        close_detailPost.addEventListener('click', () => {
-            favDialog_detailPost.close();
-        });
-        showButton_detailPost.addEventListener('click', () => {
-            favDialog_detailPost.showModal();
-        });
-        
-         // show - close dialog update post
-        close_updatePost.addEventListener('click', () => {
-            favDialog_updatePost.close();
-        });
-        showButton_updatePost.addEventListener('click', () => {
-            favDialog_updatePost.showModal();
-        });
-    </script>
+    <script src="../js/profile.js"></script>
 </body>
 
 </html>

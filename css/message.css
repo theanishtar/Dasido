@@ -446,10 +446,10 @@ nav ul .search {
 .people-list input {
   border-radius: 20px;
   border: none;
+  outline: none;
   padding: 14px;
   color: black;
   background-color: #f1f2f6;
-  /* background: white; */
   width: 90%;
   font-size: 14px;
 }
@@ -473,14 +473,14 @@ nav ul .search {
 }
 
 .people-list ul li {
-  padding-bottom: 20px;
+  margin-bottom: 20px;
   list-style-type: none;
 }
 
 .people-list ul li:hover {
   background-color: #f1f2f6;
-  border-radius: 20px;
-  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 .people-list img {

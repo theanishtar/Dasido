@@ -11,10 +11,7 @@ body {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    padding-top: 1.5rem;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
+    padding-top: 0.5rem;
 }
 
 .right_content {
@@ -237,7 +234,6 @@ h2 {
     border-radius: 2rem;
     color: #121212;;
     background: #ffffff;
-    text-transform: capitalize;
     text-rendering: optimizeLegibility;
     transition: all 0.35s ease;
 }
@@ -278,6 +274,6 @@ h2 {
     }
 
     .reason__container {
-        padding-top: 1rem;
+        margin-top: 5rem;
     }
 }
