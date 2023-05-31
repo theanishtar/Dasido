@@ -1,15 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="login.css">
+<meta charset="utf-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/views/css/login.css">
     <script src="https://kit.fontawesome.com/152112956f.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <section class="reason">
+<section class="reason">
         <div class="section__container reason__container">
             <div class="left_content">
                 <div>
@@ -23,7 +23,7 @@
                     </p>
                     <div class="return">
                         Quay lại
-                        <a href="#">trang chủ</a>
+                        <a href="views/index.jsp">trang chủ</a>
                     </div>
                 </div>
                 
@@ -32,7 +32,7 @@
                 <div class="login-card-container">
                     <div class="login-card">
                         <div class="login-card-logo">
-                            <!-- <img src="../images/logo.png" alt="logo"> -->
+                            <!-- <img src="views/images/logo.png" alt="logo"> -->
                             LOGO
                         </div>
                         <div class="login-card-header">
@@ -42,9 +42,9 @@
                         <form class="login-card-form">
                             <div class="form-item">
                                 <span class="form-item-icon material-symbols-rounded">
-                                    <i class="fa-regular fa-envelope"></i>
+                                    <i class="fa-solid fa-user"></i>
                                 </span>
-                                <input type="text" placeholder="Tên đăng nhập" id="emailForm" 
+                                <input type="text" placeholder="Tên đăng nhập" id="usernameForm" 
                                 required>
                             </div>
                             <div class="form-item">
@@ -62,23 +62,26 @@
                                     <input type="checkbox" id="rememberMeCheckbox">
                                     <label for="rememberMeCheckbox">Duy trì đăng nhập</label>
                                 </div>
-                                <a href="#">Quên mật khẩu!</a>
+                                <a href="forgot">Quên mật khẩu!</a>
                             </div>
                             <button type="submit">Đăng nhập</button>
                         </form>
                     </div>
-                    
-                    <div class="login-card-social">
-                        <div>Hoặc</div>
-                        <div class="login-card-social-btns">
-                            Đăng nhập với 
-                            <a href="#">
-                                Google
+                    <div class="striped">
+                        <span class="striped-line"></span>
+                        <span class="striped-text">Or</span>
+                        <span class="striped-line"></span>
+                    </div>
+                    <div class="method">
+                        <div class="method-control">
+                            <a href="#" class="method-action">
+                                <i class="fa-brands fa-google"></i>
+                                <span>Đăng nhập với Google</span>
                             </a>
                         </div>
                     </div>
                     <div class="login-card-footer">
-                        Bạn chưa có tài khoản? <a href="#">Đăng ký</a>
+                        Bạn chưa có tài khoản? <a href="signup">Đăng ký</a>
                     </div>
                 </div>
             </div>

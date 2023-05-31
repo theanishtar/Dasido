@@ -47,6 +47,7 @@ body {
 .left_content .section__title p {
     color: #ffffff;
     margin-bottom: 0px;
+    font-size: 4rem !important;
 }
 
 .section__subtitle {
@@ -224,41 +225,71 @@ div.return a {
 /* ---------- */
 
 /* Login Card Social Buttons */
-.login-card-social {
+.method{
     display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    text-align: center;
-    margin-top: 1rem;
-}
-
-.login-card-social>div {
-    opacity: .8;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: calc(1rem * .8);
-}
-
-.login-card-social-btns {
-    display: flex;
-    align-items: center;
     justify-content: center;
-    gap: 1rem;
+    align-items: center;
+    margin-right: 1rem;
+}
+.striped {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}
+.striped-line {
+    flex: auto;
+    flex-basis: auto;
+    border: none;
+    outline: none;
+    height: 2px;
+    background: #dadce0;
+}
+.striped-text {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: inherit;
+    color: #121212;
+    margin: 0 1rem;
+}
+ .method-control {
     margin-bottom: 1rem;
+    
 }
-
-.login-card-social-btns a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #35339a;
+.method-control a{
     text-decoration: none;
+    border: none;
 }
-
-.login-card-social-btns a:hover {
-    transform: scale(1.1);
+.method-action {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: auto;
+    padding: 1rem 1.25rem;
+    outline: none;
+    border: 2px solid #dadce0;
+    border-radius: 2rem;
+    color: #121212;;
+    background: #ffffff;
+    text-rendering: optimizeLegibility;
+    transition: all 0.35s ease;
 }
-
+.method-action:hover {
+    background: #f1f5f9;
+}
+.fa-google {
+    font-size: 1rem;
+    line-height: inherit;
+    margin-right: 0.5rem;
+    color: #f44336;
+}
 /* ---------- */
 
 
