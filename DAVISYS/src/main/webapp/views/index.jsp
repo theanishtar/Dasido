@@ -122,7 +122,7 @@
                 <p>
                     <span>Địa chỉ:</span> FPT POLYTECHNIC CẦN THƠ
                 </p>
-                <p><span>Email:</span> dasido@gmail.com</p>
+                <p><span>Email:</span> dasido.2hand.davisy@gmail.com</p>
                 <p><span>Điện thoại:</span> +0123456789</p>
             </div>
         </div>

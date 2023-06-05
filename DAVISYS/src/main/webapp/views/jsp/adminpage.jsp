@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+	<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="fr"%>
+<%@taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,8 +39,18 @@
 							type="text" placeholder="Tìm kiếm" />
 					</div>
 				</li>
-				<li><a href="adminpage">Quản lý</a></li>
-				<li class="account"><a href="profile">Tài khoản &dtrif;</a>
+				<c:if test="${sessionScope.user.user_Role==true}">
+					<li><a href="adminpage">Quản lý</a></li>
+				</c:if>
+
+
+				<li class="account"><a href="profile"> <c:if
+							test="${user==null}">
+            Tài khoản &dtrif;
+            </c:if> <c:if test="${user!=null}">
+           ${user.username}&dtrif;
+            </c:if>
+				</a>
 					<ul class="dropdown">
 						<li><a href="updateprofile">Cập nhật tài khoản</a></li>
 						<li><a href="index">Đăng xuất</a></li>

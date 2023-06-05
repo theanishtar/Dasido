@@ -488,6 +488,16 @@ nav ul .search {
   cursor: pointer;
 }
 
+.people-list ul a:hover {
+  background-color: #f1f2f6;
+  border-radius: 10px;
+  cursor: pointer;
+  /* text-decoration: none; */
+}
+.people-list ul a{
+  color: #000;
+}
+
 .people-list img {
   float: left;
   width: 56px;
@@ -651,7 +661,7 @@ nav ul .search {
 
 .chat .chat-message input {
   position: relative;
-  width: 100%;
+  width: 90%;
   border: none;
   padding: 10px 20px;
   font: 14px/22px "Lato", Arial, sans-serif;
@@ -674,8 +684,8 @@ nav ul .search {
 
 .chat-message .fa-paper-plane {
   position: relative;
-  left: 31rem;
-  bottom: 2.8rem;
+  /* left: 31rem;
+  bottom: 2.8rem; */
 }
 
 
@@ -738,8 +748,8 @@ margin-bottom: 3rem
   }
   .chat-message .fa-paper-plane {
     position: relative;
-    left: 13rem;
-    bottom: 2.8rem;
+    /* left: 13rem;
+    bottom: 2.8rem; */
   }
   .clearfix img.avatar-fr{
     width: 15%;

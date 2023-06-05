@@ -57,7 +57,7 @@ html {
     transition: 0.4s;
     transform: translateX(0);
     cursor: grab;
-    font-size: 3rem;
+    font-size: 3.5rem;
     line-height: 4rem;
     font-weight: 800;
     color: var(--text-dark);

@@ -14,7 +14,15 @@
             <div class="left_content">
                 <div>
                     <div class="section__title">
-                        <p>DASIDO</p>
+                        <!-- <p>DASIDO</p> -->
+                        <div class="animated-word">
+                            <div class="letter">D</div>
+                            <div class="letter">A</div>
+                            <div class="letter">S</div>
+                            <div class="letter">I</div>
+                            <div class="letter">D</div>
+                            <div class="letter">O</div>
+                        </div>
                         Diễn đàn tặng đồ cũ 
                     </div>
                     <p class="section__subtitle">
@@ -23,7 +31,7 @@
                     </p>
                     <div class="return">
                         Quay lại
-                        <a href="views/index.jsp">trang chủ</a>
+                        <a href="index">trang chủ</a>
                     </div>
                 </div>
                 
@@ -38,28 +46,29 @@
                         <div class="login-card-header">
                             <h1>Đăng nhập</h1>
                             <div>Vui lòng đăng nhập để sử dụng diễn đàn</div>
+                            <span class="error">${message}</span>
                         </div>
-                        <form class="login-card-form">
+                        <form class="login-card-form" action="/log" method="post">
                             <div class="form-item">
                                 <span class="form-item-icon material-symbols-rounded">
                                     <i class="fa-solid fa-user"></i>
                                 </span>
-                                <input type="text" placeholder="Tên đăng nhập" id="usernameForm" 
+                                <input type="text" placeholder="Tên đăng nhập" value="${user}" name="usernamelg" id="usernameForm" 
                                 required>
                             </div>
                             <div class="form-item">
                                 <span class="form-item-icon material-symbols-rounded">
                                     <i class="fa-solid fa-lock"></i>
                                 </span>
-                                <input type="password" placeholder="Mật khẩu" id="passwordForm"
+                                <input type="password" value="${pass}" placeholder="Mật khẩu" name="passwordlg" id="passwordForm"
                                  required>
                                  <span class="form-item-icon-eye hide-show-pass">
-                                    <i class="fa-regular fa-eye"></i>
+                                    <i onclick="showHidePass()" class="fa-regular fa-eye" id="eye"></i>
                                 </span>
                             </div>
                             <div class="form-item-other">
                                 <div class="checkbox">
-                                    <input type="checkbox" id="rememberMeCheckbox">
+                                    <input type="checkbox" name="remember" value="true" id="rememberMeCheckbox">
                                     <label for="rememberMeCheckbox">Duy trì đăng nhập</label>
                                 </div>
                                 <a href="forgot">Quên mật khẩu!</a>
@@ -87,5 +96,6 @@
             </div>
         </div>
     </section>
+    <script src="views/js/show_hidePass.js"></script>
 </body>
 </html>

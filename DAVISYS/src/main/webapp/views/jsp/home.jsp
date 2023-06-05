@@ -1,11 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="fr"%>
+<%@taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="views/css/home.css">
+<link rel="stylesheet" href="views/css/loadimages.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script
@@ -17,6 +21,7 @@
 
 <script src="https://kit.fontawesome.com/152112956f.js"
 	crossorigin="anonymous"></script>
+<script src="views/js/jquery.min.js"></script>
 </head>
 <body>
 	<nav class="primary-navigation navbar navbar-expand-lg navbar-light"
@@ -37,16 +42,18 @@
 							type="text" placeholder="Tìm kiếm" />
 					</div>
 				</li>
-				<!-- <li><a href="#">Quản lý &dtrif;</a>
-                    <ul class="dropdown">
-                        <li><a href="#">Bài đăng</a></li>
-                        <li><a href="#">Người dùng</a></li>
-                        <li><a href="#">Xem xét và xóa báo cáo</a></li>
-                        <li><a href="#">Thống kê</a></li>
-                    </ul>
-                </li> -->
-				<li><a href="adminpage">Quản lý</a></li>
-				<li class="account"><a href="profile">Tài khoản &dtrif;</a>
+				<c:if test="${sessionScope.user.user_Role==true}">
+					<li><a href="adminpage">Quản lý</a></li>
+				</c:if>
+
+
+				<li class="account"><a href="profile"> <c:if
+							test="${sessionScope.user==null}">
+            Tài khoản &dtrif;
+            </c:if> <c:if test="${sessionScope.user!=null}">
+           ${sessionScope.user.fullname}&dtrif;
+            </c:if>
+				</a>
 					<ul class="dropdown">
 						<li><a href="updateprofile">Cập nhật tài khoản</a></li>
 						<li><a href="index">Đăng xuất</a></li>
@@ -92,95 +99,52 @@
 	<section class="main">
 		<!-- post section -->
 		<div class="post-container">
-			<div class="post">
-				<div class="info">
-					<div class="post-header">
-						<a href="profile"> <img src="views/images/user/user.jpg"
-							class="user-icon" alt="">
-							<p class="username">@dannk</p>
-						</a>
-					</div>
-					<div class="dropdown-options">
-						<i class="fa-solid fa-ellipsis" id="options"></i>
-						<div class="dropdown-content">
-							<p>Báo cáo bài viết</p>
-							<p>views.</p>
+			<c:forEach items="${posts}" var="posts">
+				<div class="post">
+					<div class="info">
+						<div class="post-header">
+							<a href="profile"> <img src="${ posts.user.avatar }"
+								class="user-icon" alt="">
+								<p class="username">@${ posts.user.username }</p> <span>${ posts.date_Post }</span>
+							</a>
+
+						</div>
+						<div class="dropdown-options">
+							<i class="fa-solid fa-ellipsis" id="options"></i>
+							<div class="dropdown-content">
+								<p>Báo cáo bài viết</p>
+								<p>views.</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="post-feed">
-					<div class="post-img-container">
-						<img src="views/images/posts/post1.jpg" alt="">
-					</div>
-				</div>
-				<div class="post-detail">
-					<div class="detail-intracables">
-						<i class="fa-regular fa-paper-plane"></i> <i
-							class="fa-solid fa-share" id="showButton_share"></i> <i
-							class="fa-regular fa-comment"></i>
-					</div>
-					<span class="interest">10 Lượt quan tâm</span>
-					<p class="username">@dannk</p>
-					<p class="post-des">Lorem ipsum dolor sit amet consectetur
-						adipisicing elit. Dolores ipsa incidunt obcaecati esse illo
-						voluptates libero debitis nisi. Id tempora vel illum vitae
-						temporibus commodi non cupiditate atque voluptas. Ipsam.</p>
-
-					<div class="comment-box">
-						<input type="text" id="comment-input" placeholder="Bình luận">
-						<button class="add-comment-btn">
-							<i class="send">Gửi</i>
-						</button>
-					</div>
-
-					<span class="comment-count">50 bình luận</span>
-				</div>
-			</div>
-			<hr>
-			<div class="post">
-				<div class="info">
-					<div class="post-header">
-						<a href="profile"> <img src="views/images/user/user.jpg"
-							class="user-icon" alt="">
-							<p class="username">@dannk</p>
-						</a>
-					</div>
-					<div class="dropdown-options">
-						<i class="fa-solid fa-ellipsis" id="options"></i>
-						<div class="dropdown-content">
-							<p>Báo cáo bài viết</p>
-							<p>views.</p>
+					<div class="post-feed">
+						<div class="post-img-container">
+							<img src="${ posts.link_Image }" alt="">
 						</div>
 					</div>
-				</div>
-				<div class="post-feed">
-					<div class="post-img-container">
-						<img src="views/images/posts/post2.jpg" alt="">
-					</div>
-				</div>
-				<div class="post-detail">
-					<div class="detail-intracables">
-						<i class="fa-regular fa-paper-plane"></i> <i
-							class="fa-solid fa-share" id="showButton_share"></i> <i
-							class="fa-regular fa-comment"></i>
-					</div>
-					<span class="interest">15 Lượt quan tâm</span>
-					<p class="username">@dannk</p>
-					<p class="post-des">Lorem ipsum dolor sit amet consectetur
-						adipisicing elit. Dolores ipsa incidunt obcaecati esse illo
-						voluptates libero debitis nisi. Id tempora vel illum vitae
-						temporibus commodi non cupiditate atque voluptas. Ipsam.</p>
+					<div class="post-detail">
+						<div class="detail-intracables">
+							<i class="fa-regular fa-paper-plane"></i> <i
+								class="showButton_share fa-solid fa-share"></i> <i
+								class="showCmt fa-regular fa-comment"></i>
+						</div>
+						<span class="interest">#${ posts.hashTag }</span>
+						<span class="interest">Trạng thái: chưa có người nhận</span>
+						<p class="username">Vị trí: ${ posts.address_Product }</p>
+						<p class="post-des">${ posts.post }</p>
 
-					<div class="comment-box">
-						<input type="text" id="comment-input" placeholder="Bình luận">
-						<button class="add-comment-btn">
-							<i class="fa-regular fa-comment"></i>
-						</button>
-					</div>
+						<div class="comment-box">
+							<input type="text" id="comment-input" placeholder="Bình luận">
+							<button class="add-comment-btn">
+								<i class="send">Gửi</i>
+							</button>
+						</div>
 
-					<span class="comment-count">20 bình luận</span>
+						<span class="comment-count">50 bình luận</span>
+					</div>
 				</div>
-			</div>
+				<hr>
+			</c:forEach>
 		</div>
 
 		<!-- right section -->
@@ -230,26 +194,13 @@
 				</div>
 				<h1 class="suggestion-heading">Đề xuất cho bạn</h1>
 				<div class="suggestion-container">
-					<div class="user-card">
-						<img src="views/images/user/user5.jpg" class="user-dp" alt="">
-						<p class="username">@dangth</p>
-						<button class="follow-btn">follow</button>
-					</div>
-					<div class="user-card">
-						<img src="views/images/user/user2.jpg" class="user-dp" alt="">
-						<p class="username">@vilb</p>
-						<button class="follow-btn">follow</button>
-					</div>
-					<div class="user-card">
-						<img src="views/images/user/user3.jpg" class="user-dp" alt="">
-						<p class="username">@sydh</p>
-						<button class="follow-btn">follow</button>
-					</div>
-					<div class="user-card">
-						<img src="views/images/user/user4.jpg" class="user-dp" alt="">
-						<p class="username">@vinhpq</p>
-						<button class="follow-btn">follow</button>
-					</div>
+					<c:forEach items="${listFriends}" var="lsf" begin='0' end='3'>
+						<div class="user-card">
+							<img src="${ lsf.avatar }" class="user-dp" alt="">
+							<p class="username">@${ lsf.username }</p>
+							<a href="/addFollow/${lsf.ID}" class="follow-btn">follow</a>
+						</div>
+					</c:forEach>
 				</div>
 			</div>
 		</div>
@@ -266,25 +217,31 @@
 				<section class="post">
 					<header> Đăng bài </header>
 
-					<form action="#">
+					<form action="/uploadImg" method="post"
+						enctype="multipart/form-data">
 						<div class="content">
-							<img src="views/images/user/user.jpg" alt="logo">
+							<img src="${sessionScope.user.avatar}" alt="logo">
 							<div class="details">
-								<p>dannk</p>
-								<div class="privacy">
-									<i class="fas fa-user-friends"></i> <span> Bạn bè </span> <i
-										class="fas fa-caret-down"></i>
+								<p>${sessionScope.user.fullname}</p>
+								<div class="privacy" id="ststus_post">
+									
 								</div>
 							</div>
 						</div>
-						<textarea placeholder="Nội dung?" spellcheck="false" required></textarea>
+						<div class="content-post">
+						<input type="text" placeholder="Tên sản phẩm?" name="product" required>
+							<textarea placeholder="Nội dung?" spellcheck="false" name="content" required></textarea>
+							<div id="images-to-upload"></div>
+						</div>
+
 						<div class="options">
 							<p>Thêm vào bài viết của bạn</p>
 							<ul class="list">
-								<li><img src="views/images/icons/gallery.svg" alt="gallery"></li>
-								<li><img src="views/images/icons/tag.svg" alt="gallery"></li>
-								<li><img src="views/images/icons/emoji.svg" alt="gallery"></li>
-								<li><img src="views/images/icons/mic.svg" alt="gallery"></li>
+								<li><label> <img
+										src="views/images/icons/gallery.svg" alt="gallery"> <input
+										id="ip_images" type="file" accept="image/*" name="image_file"
+										multiple="true">
+								</label></li>
 							</ul>
 						</div>
 						<button>Post</button>
@@ -310,8 +267,8 @@
 									<p>Công khai</p>
 									<span>Tất cả mọi người đều có thể xem</span>
 								</div>
-							</div>
-							<div class="radio"></div>
+							</div> <input type="radio"  class="radio show_status" value="true" name="radio"
+							checked="checked">
 						</li>
 						<li>
 							<div class="column">
@@ -322,8 +279,7 @@
 									<p>Riêng tư</p>
 									<span>Chỉ bạn có thê thấy</span>
 								</div>
-							</div>
-							<div class="radio"></div>
+							</div> <input type="radio"  class="radio show_status" value="false" name="radio">
 						</li>
 					</ul>
 				</section>
@@ -389,56 +345,19 @@
 	<div class="follow">
 		<p class="suggestion-text">Danh sách theo dõi</p>
 		<div class="list-following">
-			<div class="profile-card-follow">
-				<div class="profile-pic">
-					<img src="views/images/user/user1.jpg" alt="">
+			<c:forEach items="${follower}" var="fls">
+				<div class="profile-card-follow">
+					<div class="profile-pic">
+						<img src="${ fls.avatar }" alt="">
+					</div>
+					<div>
+						<p class="username">${ fls.fullname }</p>
+						<p class="sub-text">${ fls.username }</p>
+					</div>
+					<!-- <button class="action-btn">Hủy</button> -->
+					<a href="/deleteFollow/${fls.ID}" class="action-btn">Hủy</a>
 				</div>
-				<div>
-					<p class="username">Nguyễn Văn An</p>
-					<p class="sub-text">an</p>
-				</div>
-				<button class="action-btn">Hủy</button>
-			</div>
-			<div class="profile-card-follow">
-				<div class="profile-pic">
-					<img src="views/images/user/user2.jpg" alt="">
-				</div>
-				<div>
-					<p class="username">Lê Bích Vi</p>
-					<p class="sub-text">vilb</p>
-				</div>
-				<button class="action-btn">Hủy</button>
-			</div>
-			<div class="profile-card-follow">
-				<div class="profile-pic">
-					<img src="views/images/user/user3.jpg" alt="">
-				</div>
-				<div>
-					<p class="username">Đoàn Hiệp Sỹ</p>
-					<p class="sub-text">sydh</p>
-				</div>
-				<button class="action-btn">Hủy</button>
-			</div>
-			<div class="profile-card-follow">
-				<div class="profile-pic">
-					<img src="views/images/user/user4.jpg" alt="">
-				</div>
-				<div>
-					<p class="username">Vinhpq</p>
-					<p class="sub-text">vinhqp</p>
-				</div>
-				<button class="action-btn">Hủy</button>
-			</div>
-			<div class="profile-card-follow">
-				<div class="profile-pic">
-					<img src="views/images/user/user5.jpg" alt="">
-				</div>
-				<div>
-					<p class="username">Trần Hữu Đang</p>
-					<p class="sub-text">dangth</p>
-				</div>
-				<button class="action-btn">Hủy</button>
-			</div>
+			</c:forEach>
 		</div>
 	</div>
 	</dialog>
@@ -459,10 +378,6 @@
 		</div>
 		<div class="darkmode">
 			<i class="fa-solid fa-cloud-moon"></i>
-			<!-- <input type="checkbox" id="toggle-btn" />
-                <label for="toggle-btn" class="toggle-btn">
-                    <span class="toggle"></span>
-                </label> -->
 			<div class="toggle-switch">
 				<label class="switch-label"> <input type="checkbox"
 					class="checkbox"> <span class="slider"></span>
@@ -504,6 +419,90 @@
 		</button>
 	</div>
 	</dialog>
+
+	<dialog id="favDialog_comment">
+	<div id="close_cmt" type="button">
+		<i class="fa-solid fa-xmark"></i>
+	</div>
+	<div class="cmt-container">
+		<div class="post">
+			<div class="post-detail">
+				<div class="full-boxer">
+					<div class="comment__container opened" id="first-comment">
+						<div class="comment__card">
+							<div class="box-top">
+								<div class="Profile">
+									<div class="profile-image">
+										<img src="views/images/user/user.jpg">
+									</div>
+									<div class="Name">
+										<strong>Nguyễn Khánh Đan</strong> <span>@dannk</span>
+									</div>
+								</div>
+							</div>
+							<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+								Voluptatum eaque itaque sit tempora officiis, quisquam atque?
+								Impedit dignissimos error laudantium!</p>
+							<div class="comment__card-footer">
+								<div class="show-replies">Trả lời 2</div>
+							</div>
+						</div>
+						<div class="comment__container" dataset="first-comment"
+							id="first-reply">
+							<div class="comment__card">
+								<div class="box-top">
+									<div class="Profile">
+										<div class="profile-image">
+											<img src="views/images/user/user.jpg">
+										</div>
+										<div class="Name">
+											<strong>Nguyễn Khánh Đan</strong> <span>@dannk</span>
+										</div>
+									</div>
+								</div>
+								<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+									Voluptatum eaque itaque sit tempora officiis, quisquam atque?
+									Impedit dignissimos error laudantium!</p>
+							</div>
+						</div>
+						<div class="comment__container" dataset="first-comment">
+							<div class="comment__card">
+								<div class="box-top">
+									<div class="Profile">
+										<div class="profile-image">
+											<img src="views/images/user/user.jpg">
+										</div>
+										<div class="Name">
+											<strong>Nguyễn Khánh Đan</strong> <span>@dannk</span>
+										</div>
+									</div>
+								</div>
+								<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+									Voluptatum eaque itaque sit tempora officiis, quisquam atque?
+									Impedit dignissimos error laudantium!</p>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="detail-intracables" style="margin-top: 1rem;">
+					<i class="fa-regular fa-paper-plane"></i> <i
+						class="fa-solid fa-share"></i> <i class="fa-regular fa-comment"></i>
+				</div>
+				<span class="interest">10 Lượt quan tâm</span>
+				<div class="comment-box">
+					<input type="text" id="comment-input" placeholder="Bình luận">
+					<button class="add-comment-btn">
+						<i class="fa-regular fa-comment"></i>
+					</button>
+				</div>
+
+				<span class="comment-count">50 bình luận</span>
+			</div>
+		</div>
+	</div>
+	</dialog>
 	<script src="views/js/home.js"></script>
+	<script src="views/js/loadimages.js"></script>
 </body>
 </html>

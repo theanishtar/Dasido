@@ -25,9 +25,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 40px 0;
+    margin: 40px 0 0;
   }
-  
+  span{
+  	font-size: 18px;
+    opacity: .8;
+    color: red;
+  }
   .code{
     caret-color: black;
     background-color: rgba(255, 255, 255, 0.6);
@@ -81,6 +85,7 @@
     color: #fff;
     background-color: #9861c2;
     border-color: #9861c2;
+    margin-top: 30px;
   }
 
   .info a{

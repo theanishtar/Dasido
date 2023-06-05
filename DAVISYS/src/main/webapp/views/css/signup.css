@@ -114,7 +114,12 @@ h2 {
     overflow: hidden;
     margin-bottom: 20px;
 }
-
+.form-group span{
+	font-size: 13px;
+    opacity: .8;
+    color: red;
+    margin-left: 1rem;
+}
 .form-input {
     background: rgba(255, 255, 255, .3);
     width: 100%;

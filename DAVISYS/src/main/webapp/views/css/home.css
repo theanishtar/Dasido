@@ -455,7 +455,13 @@ nav ul .search {
     background: #ffffff;
     margin-bottom: 30px;
 }
-
+.post-header a span{
+  text-decoration: none;
+  color: #a0a0a0;
+}
+.post-header a span:hover{
+  cursor: not-allowed;
+}
 .post-header a{
     display: flex;
     align-items: center;
@@ -518,6 +524,7 @@ nav ul .search {
 }
 .post .username {
     font-weight: 600;
+    margin: 1.5rem 0;
 }
 
 .post-des {
@@ -765,7 +772,12 @@ nav ul .search {
     margin: 20px 0;
     text-transform: capitalize;
 }
-
+.user-card a{
+	font-size: 13.5px;
+}
+.user-card a:hover{
+  text-decoration: none;
+}
 .follow-btn{
     display: block;
     margin: auto;
@@ -908,10 +920,21 @@ nav ul .search {
     text-align: center;
     border-bottom: 1px solid #bfbfbf;
   }
-
+.post .content-post{
+	height: 170px;
+  	overflow: auto;
+  	overflow: -moz-scrollbars-none;
+  	-ms-overflow-style: none;
+}
+  
+ .post .content-post::-webkit-scrollbar {
+  	 width: 0 !important;
+  	display: none; 
+  }
   .post form{
     margin: 20px 25px;
   }
+  
   .post form .content,
   .audience .list li .column{
     display: flex;
@@ -932,18 +955,18 @@ nav ul .search {
     font-size: 17px;
     font-weight: 500;
   }
-  .content .details .privacy{
+  .content .details .privacy {
     height: 25px;
     cursor: pointer;
-    padding: 0 10px;
+    padding: 2px 10px;
     font-size: 11px;
     margin-top: 3px;
     border-radius: 5px;
     align-items: center;
-    max-width: 98px;
+    max-width: 106px;
     background: #E4E6EB;
     justify-content: space-between;
-  }
+}
   .details .privacy span{
     font-size: 13px;
     margin-top: 1px;
@@ -953,7 +976,7 @@ nav ul .search {
     font-size: 13px;
     margin-left: 1px;
   }
-  form :where(textarea, button){
+  form :where(textarea, button, input){
     width: 100%;
     outline: none;
     border: none;
@@ -961,13 +984,23 @@ nav ul .search {
   form textarea{
     resize: none;
     font-size: 18px;
-    margin-top: 30px;
-    min-height: 100px;
+    margin-top: 0px;
+    min-height: 50px;
   }
-  form textarea::placeholder{
+  form input{
+    resize: none;
+    font-size: 18px;
+    min-height: 30px;
+    border: none !important;
+    margin-top: 15px;
+    margin-bottom: 0.5rem;
+  }
+  form textarea::placeholder,
+	form input::placeholder{
     color: #858585;
   }
-  form textarea:focus::placeholder{
+  form textarea:focus::placeholder,
+  form input:focus::placeholder{
     color: #b3b3b3;
   }
   form :where(.theme-emoji, .options){
@@ -1022,20 +1055,21 @@ nav ul .search {
     font-size: 18px;
     font-weight: 500;
     cursor: pointer;
-    color: #BCC0C4;
+    /* color: #BCC0C4; */
     cursor: no-drop;
     border-radius: 7px;
-    background: #e2e5e9;
+    /* background: #e2e5e9; */
+    background: #4599FF;
     transition: all 0.3s ease;
   }
-  form textarea:valid ~ button{
+/*   form textarea:valid ~ button{
     color: #fff;
     cursor: pointer;
     background: #4599FF;
   }
   form textarea:valid ~ button:hover{
     background: #1a81ff;
-  }
+  } */
   .container .audience{
     opacity: 0;
     transition: opacity 0.12s ease;
@@ -1362,7 +1396,12 @@ strong:hover{
     font-weight: 500;
     margin-top: 5px;
 }
-
+.profile-card-follow a:hover{
+  text-decoration: none;
+}
+.profile-card-follow a{
+  padding: 1.5rem 1.2rem;
+}
 .action-btn{
     opacity: 1;
     font-weight: 700;
@@ -1466,38 +1505,6 @@ strong:hover{
     justify-content: center;
     margin-top: 1.5rem;
   }
-  
-  /* label.toggle-btn {
-    width: 100px;
-    height: 50px;
-    border-radius: 50px;
-    position: relative;
-    cursor: pointer;
-    box-shadow: inset 0 0 2px 2px rgba(0, 0, 0, 0.3);
-    margin: 0 2rem;
-  }
-  
-  span.toggle {
-    display: block;
-    width: 40px;
-    height: 40px;
-    background-color: #ffbf00;
-    border-radius: 50px;
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.205);
-  }
-  
-  input#toggle-btn{
-    display: none;
-  }
-  
-  input:checked ~ label span {
-    background-color: #000000;
-    transform: translateX(50px);
-  } */
 
   .toggle-switch {
     position: relative;
@@ -1718,7 +1725,248 @@ strong:hover{
       transform: translateY(-0.1em);
     }
   }
+    /* =======comment =========*/
+
+  #favDialog_comment{
+    border: none;
+    border-radius: 15px;
+    margin: 1rem 26rem;
+  }
+  #favDialog_comment div#close_cmt{
+    border: none;
+  }
+  #favDialog_comment div i#close_cmt{
+    position: absolute;
+    right: 10px;
+    top: 7px;
+    cursor: pointer;
+    border: none;
+  }
+
+  .cmt-container .post {
+    width: 100%;
+    background: #ffffff;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    padding: 1.2rem;
+    gap: 10px;
+}
+
+.post-header .user-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.post-header .username {
+    font-size: .9rem;
+    font-weight: 600;
+}
+
+.cmt-container.post-detail {
+    padding: 1.2rem;
+    padding-top: 0rem !important;
+}
+
+.detail-intracables {
+    display: flex;
+    gap: 20px;
+}
+
+.detail-intracables i {
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.interest {
+    color: #a0a0a0;
+    display: flex;
+    margin: 10px 0;
+}
+
+.post .username {
+    font-weight: 600;
+}
+
+.post-des::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
+}
+
+.comment-box {
+    width: 100%;
+    height: 42px;
+    display: flex;
+    border-bottom: 1px solid #999;
+}
+
+#comment-input {
+    width: 100%;
+    height: 40px;
+    background: white;
+    border: none;
+    padding: 10px;
+    line-height: 40px;
+    z-index: 2;
+    font-size: 1rem;
+    outline: none;
+
+}
+
+#comment-input::placeholder {
+    color: #bbb;
+}
+
+.add-comment-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 40px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: #fff;
+    color: black;
+}
+
+.add-comment-btn img {
+    width: 30px;
+    height: 30px;
+}
+
+.comment-count {
+    font-weight: 600;
+    color: #a0a0a0;
+    font-size: .8rem;
+    display: flex;
+    margin-top: 10px;
+    opacity: 0.7;
+}
+
+.post-overlays {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+}
+
+.like-icon {
+    width: 200px;
+    opacity: 0;
+    transition: .5s;
+}
+
+.like-icon.show {
+    opacity: 1;
+    animation: popup 2s forwards 1;
+}
+
+  /* cmt */
+  .comment__container {
+    display: none;
+    position: relative;
+  }
+
+  .comment__container.opened {
+    display: block;
+  }
+ 
+  .comment__container:not(:first-child) {
+    margin-left: 3rem;
+    margin-top: 2rem;
+  }
   
+  .comment__card {
+    padding: 0px 20px;
+    min-width: 100%;
+  }
+  .full-boxer {
+    height: 390px;
+    overflow: auto;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+  }
+  
+  .full-boxer::-webkit-scrollbar { 
+    width: 0 !important;
+    display: none; 
+  }
+  .comment__card p {
+    margin-bottom: 1rem;
+  }
+  
+  .comment__card-footer {
+    display: flex;
+    font-size: 0.85rem;
+    opacity: 0.6;
+    gap: 30px;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .show-replies {
+    cursor: pointer;
+  }
+
+  .box-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.Profile{
+    display: flex;
+    align-items: center;
+}
+
+.profile-image{
+    width: 40px;
+    height: 40px;
+    overflow: hidden;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.Name{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+
+.Name strong{
+    color: black;
+    font-size: 14px;
+}
+
+.Name span{
+    color: gray;
+    margin-top: 2px;
+    font-size: 12px;
+}
+
+@media (max-width : 550px){
+  #favDialog_comment{
+    margin: 1rem;
+  }
+  .full-boxer{
+    height: 380px;
+  }
+}
   
 /* =====scroll========= */
 ::-webkit-scrollbar-track

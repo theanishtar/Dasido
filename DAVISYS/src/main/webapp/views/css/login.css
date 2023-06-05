@@ -43,12 +43,36 @@ body {
     color: #7ed6df;
     margin-bottom: 0px;
 }
+.animated-word {
+    display: flex;
+}
 
-.left_content .section__title p {
+.letter {
+    transition: 0.4s;
+    transform: translateX(0);
+    cursor: grab;
+    color: #ffffff !important;
+    margin-bottom: 0px;
+    font-size: 4rem !important;
+    line-height: 4rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.letter:hover {
+    transform: translateY(-1rem);
+    background: -webkit-linear-gradient(120deg, hsl(19, 90%, 52%),
+            hsl(56, 100%, 50%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* .left_content .section__title p {
     color: #ffffff;
     margin-bottom: 0px;
     font-size: 4rem !important;
-}
+} */
 
 .section__subtitle {
     font-size: 1rem;
@@ -127,7 +151,11 @@ div.return a {
     font-weight: 600;
     margin-bottom: .5rem;
 }
-
+.login-card-header span{
+    font-size: 13px;
+    opacity: .8;
+    color: red;
+}
 .login-card-header h1+div {
     font-size: calc(1rem * .8);
     opacity: .8;
