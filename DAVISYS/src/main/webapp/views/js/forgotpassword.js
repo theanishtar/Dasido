@@ -1,4 +1,4 @@
-const url = 'http://localhost:8080', container = document.querySelector(".container"),
+const container = document.querySelector(".container"),
 	input_submit = container.querySelector(".main .input-control .input-submit"),
 	back = container.querySelector(".wrapper_validator .info");
 wrapper = container.querySelector(".main .wrapper"),
@@ -51,7 +51,7 @@ function btn_submit(){
 	}else{
 		$.get(url + "/updatepass/" + confirmpass, function(response) {
 			if (response != "") {
-					window.location.href="log";
+					window.location.href="login";
 			}
 			
 		})

@@ -33,7 +33,7 @@
                         Đăng nhập ngay để nhận hàng ngàn món đồ secondhand miễn phí !!!
                     </p>
                     <div class="action__btns">
-                        <a class="btn" href="log">Đăng nhập</a>
+                        <a class="btn" href="login">Đăng nhập</a>
                     </div>
                 </div>
             </div>

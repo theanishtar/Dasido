@@ -22,85 +22,6 @@
 	crossorigin="anonymous"></script>
 </head>
 <body>
-	<nav class="primary-navigation navbar navbar-expand-lg navbar-light"
-		id="nav-horizontal">
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="navbar-collapse collapse" id="navbarSupportedContent"
-			style="height: fit-content !important;">
-			<ul>
-				<li class="search">
-					<div class="input-box">
-						<i class="fa-solid fa-magnifying-glass"></i> <input class="find"
-							type="text" placeholder="Tìm kiếm" />
-					</div>
-				</li>
-				<!-- <li><a href="#">Quản lý &dtrif;</a>
-                    <ul class="dropdown">
-                        <li><a href="#">Bài đăng</a></li>
-                        <li><a href="#">Người dùng</a></li>
-                        <li><a href="#">Xem xét và xóa báo cáo</a></li>
-                        <li><a href="#">Thống kê</a></li>
-                    </ul>
-                </li> -->
-				<c:if test="${sessionScope.user.user_Role==true}">
-					<li><a href="adminpage">Quản lý</a></li>
-				</c:if>
-
-
-				<li class="account"><a href="profile"> <c:if
-							test="${sessionScope.user==null}">
-            Tài khoản &dtrif;
-            </c:if> <c:if test="${sessionScope.user!=null}">
-           ${sessionScope.user.username}&dtrif;
-            </c:if>
-				</a>
-					<ul class="dropdown">
-						<li><a href="updateprofile">Cập nhật tài khoản</a></li>
-						<li><a href="index">Đăng xuất</a></li>
-					</ul></li>
-			</ul>
-		</div>
-	</nav>
-
-
-	<aside class="sidebar">
-		<header class="sidebar-header">
-			<h1>DASIDO</h1>
-		</header>
-		<nav>
-			<a href="homm"> <span> <i class="fa-solid fa-house"></i> <span>Trang
-						chủ</span>
-			</span>
-			</a> <a id="showDialog"> <span> <i id="showDialog"
-					class="fa-solid fa-plus"></i> <span>Đăng bài</span>
-			</span>
-			</a> <a href="history"> <span> <i
-					class="fa-solid fa-clock-rotate-left"></i> <span>Lịch sử</span>
-			</span>
-			</a> <a href="message"> <span> <i
-					class="fa-solid fa-location-arrow"> <span>12</span>
-				</i> <span>Tin nhắn</span>
-			</span>
-			</a> <a id="showDialog_Notifications"> <span> <i
-					class="fa-regular fa-bell"> <span>12</span>
-				</i> <span>Thông báo</span>
-			</span>
-			</a> <a id="showButton_follow"> <span> <i
-					class="fa-regular fa-heart"></i> <span>Theo dõi</span>
-			</span>
-			</a> <a id="showButton_setting"> <span> <i
-					class="fa-solid fa-gear"></i> <span>Cài đặt</span>
-			</span>
-			</a>
-		</nav>
-	</aside>
-
 	<!-- main section -->
 	<section class="main">
 		<div class="container_history">
@@ -487,7 +408,7 @@
 		</div>
 	</section>
 	<!-- Create post -->
-	<dialog id="favDialog">
+<!-- 	<dialog id="favDialog">
 	<div id="close_createPost">
 		<i class="fa-solid fa-xmark"></i>
 	</div>
@@ -561,10 +482,11 @@
 			</div>
 		</div>
 	</div>
-	</dialog>
+	</dialog> -->
 
 	<!-- Notifications -->
-	<dialog id="favDialog_notifications">
+	
+	<!-- <dialog id="favDialog_notifications">
 	<div id="close_notifications">
 		<i class="fa-solid fa-xmark"></i>
 	</div>
@@ -610,10 +532,10 @@
 			</div>
 		</main>
 	</div>
-	</dialog>
+	</dialog> -->
 
 	<!-- Follow -->
-	<dialog id="favDialog_follow">
+	<!-- <dialog id="favDialog_follow">
 	<div id="close_follow">
 		<i class="fa-solid fa-xmark"></i>
 	</div>
@@ -672,10 +594,10 @@
 			</div>
 		</div>
 	</div>
-	</dialog>
+	</dialog> -->
 
 	<!-- Setting -->
-	<dialog id="favDialog_setting">
+	<!-- <dialog id="favDialog_setting">
 	<div id="close_setting">
 		<i class="fa-solid fa-xmark"></i>
 	</div>
@@ -698,7 +620,7 @@
 			<div class='button -dark center'>Vô hiệu hóa tài khoản</div>
 		</div>
 	</div>
-	</dialog>
+	</dialog> -->
 	<script src="views/js/home.js"></script>
 </body>
 </html>

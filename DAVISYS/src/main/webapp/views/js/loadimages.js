@@ -1,4 +1,3 @@
-const url = 'http://localhost:8080';
 const fileInput = document.getElementById('ip_images');
 const imagesContainer = document.getElementById('images-to-upload');
 const db = window.sessionStorage;

@@ -1,5 +1,7 @@
 package com.davisy.chat.model;
 
+import java.util.Date;
+
 import com.davisy.entity.User;
 import com.davisy.entity.UserGoogleCloud;
 
@@ -16,6 +18,9 @@ public class UserModel {
 	private String fullName;
 	private String email;
 	private String image;
+	private int messageUnRead;
+	private String lastMessage;
+	private Date online;
 
 	public enum MessageType {
 		JOIN, LEAVE

@@ -8,8 +8,8 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="views/css/profile.css">
-<link rel="stylesheet"
+
+<!-- <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script
 	src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
@@ -19,486 +19,131 @@
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <script src="https://kit.fontawesome.com/152112956f.js"
-	crossorigin="anonymous"></script>
+	crossorigin="anonymous"></script> -->
+
+<link rel="stylesheet" href="/views/css/profile.css">
+<script src="/views/js/jquery.min.js"></script> 
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+
 </head>
 <body>
-	<nav class="primary-navigation navbar navbar-expand-lg navbar-light"
-		id="nav-horizontal">
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarSupportedContent"
-			aria-controls="navbarSupportedContent" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul>
-				<li class="search">
-					<div class="input-box">
-						<i class="fa-solid fa-magnifying-glass"></i> <input class="find"
-							type="text" placeholder="Tìm kiếm" />
+	<div class="video-detail">
+		<div class="video-content">
+			<div class="video-p-wrapper anim prof" style="--delay: .1s">
+				<img
+					src="https://angurvad-5559e.web.app/img/in-post/2020-10-07/header.jpg"
+					alt="" class="background-prof">
+				<div class="bc-p"></div>
+				<div class="prof-item">
+					<div
+						class="author-img__wrapper video-author video-p video-author-prof">
+						<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+							stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+							class="feather feather-check">
+										<path d="M20 6L9 17l-5-5" />
+									</svg>
+						<img class="author-img author-img_prof" src="/${ usersProfile.avatar }" />
 					</div>
-				</li>
-				<c:if test="${sessionScope.user.user_Role==true}">
-					<li><a href="adminpage">Quản lý</a></li>
-				</c:if>
 
-
-				<c:if test="${sessionScope.user.user_Role==true}">
-					<li><a href="adminpage">Quản lý</a></li>
-				</c:if>
-
-
-				<li class="account"><a href="profile"> <c:if
-							test="${user==null}">
-            Tài khoản &dtrif;
-            </c:if> <c:if test="${user!=null}">
-           ${user.username}&dtrif;
-            </c:if>
-				</a>
-					<ul class="dropdown">
-						<li><a href="updateprofile">Cập nhật tài khoản</a></li>
-						<li><a href="index">Đăng xuất</a></li>
-					</ul></li>
-			</ul>
-		</div>
-	</nav>
-
-
-	<aside class="sidebar">
-		<header class="sidebar-header">
-			<h1>DASIDO</h1>
-		</header>
-		<nav>
-			<a href="homm"> <span> <i class="fa-solid fa-house"></i> <span>Trang
-						chủ</span>
-			</span>
-			</a> <a id="showDialog"> <span> <i id="showDialog"
-					class="fa-solid fa-plus"></i> <span>Đăng bài</span>
-			</span>
-			</a> <a href="history"> <span> <i
-					class="fa-solid fa-clock-rotate-left"></i> <span>Lịch sử</span>
-			</span>
-			</a> <a href="message"> <span> <i
-					class="fa-solid fa-location-arrow"> <span>12</span>
-				</i> <span>Tin nhắn</span>
-			</span>
-			</a> <a id="showDialog_Notifications"> <span> <i
-					class="fa-regular fa-bell"> <span>12</span>
-				</i> <span>Thông báo</span>
-			</span>
-			</a> <a id="showButton_follow"> <span> <i
-					class="fa-regular fa-heart"></i> <span>Theo dõi</span>
-			</span>
-			</a> <a id="showButton_setting"> <span> <i
-					class="fa-solid fa-gear"></i> <span>Cài đặt</span>
-			</span>
-			</a>
-		</nav>
-	</aside>
-
-	<!-- main section -->
-	<section class="main">
-		<div class="cols__container">
-			<div class="left__col">
-				<div class="img__container">
-					<img src="views/images/user/user.jpg" alt="user" /> <span></span>
+					<!-- <div class="profile-p-detail">
+									<div class="profile-p-name name">Đán Cho</div>
+									<div class="profile-p-sub">-7788 theo dõi</div>
+								</div> -->
 				</div>
-				<h2>dannk</h2>
-				<p>Nguyen Khanh Dan</p>
-				<p>dannkpc04351@fpt.edu.vn</p>
-
-				<ul class="about">
-					<a href="">
-						<li><span>64</span>Followers</li>
-					</a>
-					<a href="">
-						<li><span>3</span>Following</li>
-					</a>
-					<li><span>3</span>Posts</li>
-				</ul>
-
-				<div class="content">
-					<p>Mô tả</p>
+				<!-- <div class="button-wrapper">
+								<button class="like">
+									<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										<path
+											d="M21.435 2.582a1.933 1.933 0 00-1.93-.503L3.408 6.759a1.92 1.92 0 00-1.384 1.522c-.142.75.355 1.704 1.003 2.102l5.033 3.094a1.304 1.304 0 001.61-.194l5.763-5.799a.734.734 0 011.06 0c.29.292.29.765 0 1.067l-5.773 5.8c-.428.43-.508 1.1-.193 1.62l3.075 5.083c.36.604.98.946 1.66.946.08 0 .17 0 .251-.01.78-.1 1.4-.634 1.63-1.39l4.773-16.075c.21-.685.02-1.43-.48-1.943z" />
+									</svg>
+									Share
+								</button>
+								<button class="like red">
+									<svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" clip-rule="evenodd"
+											d="M15.85 2.5c.63 0 1.26.09 1.86.29 3.69 1.2 5.02 5.25 3.91 8.79a12.728 12.728 0 01-3.01 4.81 38.456 38.456 0 01-6.33 4.96l-.25.15-.26-.16a38.093 38.093 0 01-6.37-4.96 12.933 12.933 0 01-3.01-4.8c-1.13-3.54.2-7.59 3.93-8.81.29-.1.59-.17.89-.21h.12c.28-.04.56-.06.84-.06h.11c.63.02 1.24.13 1.83.33h.06c.04.02.07.04.09.06.22.07.43.15.63.26l.38.17c.092.05.195.125.284.19.056.04.107.077.146.1l.05.03c.085.05.175.102.25.16a6.263 6.263 0 013.85-1.3zm2.66 7.2c.41-.01.76-.34.79-.76v-.12a3.3 3.3 0 00-2.11-3.16.8.8 0 00-1.01.5c-.14.42.08.88.5 1.03.64.24 1.07.87 1.07 1.57v.03a.86.86 0 00.19.62c.14.17.35.27.57.29z" />
+									</svg>
+									Liked
+								</button>
+							</div> -->
+			</div>
+			<div class="details-prof anim">
+				<div class="nam profile-p-detail">
+					<div class="profile-p-name">${ usersProfile.fullname }</div>
+				</div>
+				<div class="fl">
+					<p>4567 Người theo dõi</p>
+					<!-- <p>4567 Đang theo dõi</p> -->
 				</div>
 			</div>
-			<div class="right__col">
-				<hr>
-				<h3>
-					<i class="fa-solid fa-table-list"></i> Bài đăng
-				</h3>
-				<div class="photos">
-					<div id="showButton_detailPost">
-						<img src="views/images/posts/post1.jpg" alt="Photo" />
-					</div>
-					<div>
-						<img src="views/images/posts/post2.jpg" alt="Photo" />
-					</div>
-					<div>
-						<img src="views/images/posts/post1.jpg" alt="Photo" />
-					</div>
-					<div>
-						<img src="views/images/posts/post1.jpg" alt="Photo" />
-					</div>
-					<div>
-						<img src="views/images/posts/post1.jpg" alt="Photo" />
-					</div>
-					<div>
-						<img src="views/images/posts/post1.jpg" alt="Photo" />
-					</div>
-					<div>
-						<img src="views/images/posts/post1.jpg" alt="Photo" />
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
 
-	<dialog id="favDialog_detailPost">
-	<button id="close" type="button" onclick="closeDialog()">
-		<i class="fa-solid fa-xmark"></i>
-	</button>
-	<div class="post-container">
-		<div class="post">
-			<div>
-				<div class="info">
-					<div class="post-header">
-						<img src="views/images/user/user.jpg" class="user-icon" alt="">
-						<p class="username">@dannk</p>
-					</div>
-					<div class="dropdown-options">
-						<i class="fa-solid fa-ellipsis" id="options"></i>
-						<div class="dropdown-content">
-							<p>Báo cáo bài viết</p>
-							<p id="showButton_updatePost">Cập nhật</p>
-							<p>Xóa</p>
-						</div>
-					</div>
-				</div>
-				<div class="post-feed">
-					<div class="post-img-container">
-						<img src="views/images/posts/post1.jpg" alt="">
-					</div>
-				</div>
-			</div>
-			<div class="post-detail">
-				<div class="post-content">
-					<p class="post-des">Lorem ipsum dolor sit amet consectetur
-					adipisicing elit. Dolores ipsa incidunt obcaecati esse illo
-					voluptates libero debitis nisi. Id tempora vel illum vitae
-					temporibus commodi non cupiditate atque voluptas. Ipsam.</p>
-				
-					<div class="name-product">
-					 	<input class="input" placeholder="Tên sản phẩm" required="" type="text">
-  						<span class="input-border"></span>
-					</div>
-					<div class="hashtag">
-					 	<input class="input" placeholder="Hashtag" required="" type="text">
-  						<span class="input-border"></span>
-					</div>
-					<div class="address">
-					 	<input class="input" placeholder="Vị trí" required="" type="text">
-  						<span class="input-border"></span>
-					</div>
-					<div class="btn-sendStatus">
-						Trạng thái bài đăng:
-					<button>
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none"
-							viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-							aria-hidden="true">
-    							<path stroke-linecap="round" stroke-linejoin="round"
-								d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"></path>
-  						</svg>
-						Đã có người nhận
-					</button>
-				</div>
-				</div>
-				
-				<div class="detail-intracables">
-					<i class="fa-regular fa-paper-plane"></i> <i
-						class="fa-solid fa-share"></i> <i class="fa-regular fa-comment"></i>
-				</div>
-				<span class="interest">10 Lượt quan tâm</span>
-				<div class="comment-box">
-					<input type="text" id="comment-input" placeholder="Bình luận">
-					<button class="add-comment-btn">
-						<i class="fa-regular fa-comment"></i>
-					</button>
-				</div>
+			<c:forEach items="${listPost}" var="posts">
+				<div class="post">
+					<div class="video-detail">
+						<div class="video-content">
+							<div class="video-p-wrapper anim" style="--delay: .1s">
+								<div class="author-img__wrapper video-author video-p">
+									<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+										stroke-width="3" stroke-linecap="round"
+										stroke-linejoin="round" class="feather feather-check">
+												<path d="M20 6L9 17l-5-5" />
+											</svg>
+									<img class="author-img" src="/${ posts.post.user.avatar }" />
+								</div>
+								<div class="video-p-detail">
+									<div class="video-p-name">@${ posts.post.user.fullname }</div>
+									<div class="video-p-sub">${ posts.post.date_Post }</div>
+								</div>
 
-				<span class="comment-count">50 bình luận</span>
-			</div>
-		</div>
-	</div>
-	</dialog>
-
-	<dialog id="favDialog_updatePost">
-	<div class="btn-updateForm">
-		<button id="close2" type="button" onclick="closeDialogUpdate()">
-			Thoát</button>
-		<p class="title-update">Cập nhật bài đăng</p>
-		<button id="updatePosst" type="button">Cập nhật</button>
-	</div>
-	<div class="post-container-update">
-		<div class="post">
-			<div class="left-post">
-				<div class="post-feed">
-					<div class="post-img-container-update">
-						<img src="views/images/posts/post1.jpg" alt="">
-					</div>
-				</div>
-			</div>
-			<div class="post-detail">
-				<div class="info-update">
-					<div class="post-header">
-						<img src="views/images/user/user.jpg" class="user-icon" alt="">
-						<p class="username">@dannk</p>
-					</div>
-				</div>
-				<textarea class="post-des-update" name="" id="" cols="45" rows="10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit, in provident aliquam suscipit, perspiciatis eligendi blanditiis reprehenderit nisi quis, sunt ea odit excepturi incidunt assumenda sapiente voluptatem dicta nam et.
-                    </textarea>
-				<div class="name-product">
-					 <input class="input" placeholder="Tên sản phẩm" required="" type="text">
-  					<span class="input-border"></span>
-				</div>
-				<div class="hashtag">
-					 <input class="input" placeholder="Hashtag" required="" type="text">
-  					<span class="input-border"></span>
-				</div>
-				<div class="address">
-					 <input class="input" placeholder="Vị trí" required="" type="text">
-  					<span class="input-border"></span>
-				</div>
-				<div class="btn-sendStatus">
-					Trạng thái bài đăng:
-					<button>
-						<svg xmlns="http://www.w3.org/2000/svg" fill="none"
-							viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-							aria-hidden="true">
-    							<path stroke-linecap="round" stroke-linejoin="round"
-								d="M17.593 3.322c1.1.128 1.907 1.077 1.907 2.185V21L12 17.25 4.5 21V5.507c0-1.108.806-2.057 1.907-2.185a48.507 48.507 0 0111.186 0z"></path>
-  						</svg>
-						Đã có người nhận
-					</button>
-				</div>
-			</div>
-		</div>
-	</div>
-	</dialog>
-	<!-- Create post -->
-	<dialog id="favDialog">
-	<div id="close_createPost">
-		<i class="fa-solid fa-xmark"></i>
-	</div>
-	<div class="main_create_post">
-		<div class="container">
-			<div class="wrapper">
-				<section class="post">
-					<header> Đăng bài </header>
-
-					<form action="#">
-						<div class="content">
-							<img src="views/images/user/user.jpg" alt="logo">
-							<div class="details">
-								<p>dannk</p>
-								<div class="privacy">
-									<i class="fas fa-user-friends"></i> <span> Bạn bè </span> <i
-										class="fas fa-caret-down"></i>
+							</div>
+							<div class="video-p-title anim" style="--delay: .2s">${ posts.post.post }
+							</div>
+							<div class="video-p-subtitle anim" style="--delay: .3s">Vị
+								trí: ${ posts.post.address_Product }</div>
+							<div class="video-p-subtitle anim" style="--delay: .4s">${ posts.post.hashTag }</div>
+							<div class="div" style="z-index: 2;">
+								<div class="list-img-post">
+									<c:forEach items="${ posts.images }" var="img">
+										<img src="/${img }" alt="">
+										<hr>
+									</c:forEach>
 								</div>
 							</div>
 						</div>
-						<textarea placeholder="Nội dung?" spellcheck="false" required></textarea>
-						<div class="options">
-							<p>Thêm vào bài viết của bạn</p>
-							<ul class="list">
-								<li><img src="views/images/icons/gallery.svg" alt="gallery"></li>
-								<li><img src="views/images/icons/tag.svg" alt="gallery"></li>
-								<li><img src="views/images/icons/emoji.svg" alt="gallery"></li>
-								<li><img src="views/images/icons/mic.svg" alt="gallery"></li>
-							</ul>
-						</div>
-						<button>Post</button>
-					</form>
-				</section>
-				<section class="audience">
-					<header>
-						<div class="arrow-back">
-							<i class="fas fa-arrow-left"></i>
-						</div>
-						<p>Đối tượng của bài viết</p>
-					</header>
-					<div class="content">
-						<p>Ai có thể xem bài đăng?</p>
 					</div>
-					<ul class="list">
-						<li>
-							<div class="column">
-								<div class="icon">
-									<i class="fas fa-globe-asia"></i>
-								</div>
-								<div class="details">
-									<p>Công khai</p>
-									<span>Tất cả mọi người đều có thể xem</span>
-								</div>
-							</div>
-							<div class="radio"></div>
-						</li>
-						<li>
-							<div class="column">
-								<div class="icon">
-									<i class="fas fa-lock"></i>
-								</div>
-								<div class="details">
-									<p>Riêng tư</p>
-									<span>Chỉ bạn có thê thấy</span>
-								</div>
-							</div>
-							<div class="radio"></div>
-						</li>
-					</ul>
-				</section>
-			</div>
-		</div>
-	</div>
-	</dialog>
-
-	<!-- Notifications -->
-	<dialog id="favDialog_notifications">
-	<div id="close_notifications">
-		<i class="fa-solid fa-xmark"></i>
-	</div>
-	<div class="container_notifications">
-		<header>
-			<div class="notif_box">
-				<h2 class="title">Thông báo</h2>
-				<span id="notifes">3</span>
-			</div>
-			<p id="mark_all">Xem tất cả</p>
-		</header>
-		<main>
-			<div class="notif_card unread">
-				<img src="views/images/user/user3.jpg" alt="avatar" />
-				<div class="description">
-					<p class="user_activity">
-						<strong>dangth</strong> đã bài tỏ quan tâm bài đăng <strong
-							class="link">Post 1</strong>
-					</p>
-					<p class="time">1 ngày trước</p>
-				</div>
-			</div>
-			<div>
-				<div class="notif_card">
-					<img src="views/images/user/user2.jpg" alt="avatar" />
-					<div class="description">
-						<p class="user_activity">
-							<strong>An</strong> đã gửi cho bạn một tin nhắn
-						</p>
-						<p class="time">5 ngày trước</p>
+					<div class="button-wrapper">
+						<button class="like">
+							<svg viewBox="0 0 24 24" fill="currentColor"
+								xmlns="http://www.w3.org/2000/svg">
+										<path
+									d="M21.435 2.582a1.933 1.933 0 00-1.93-.503L3.408 6.759a1.92 1.92 0 00-1.384 1.522c-.142.75.355 1.704 1.003 2.102l5.033 3.094a1.304 1.304 0 001.61-.194l5.763-5.799a.734.734 0 011.06 0c.29.292.29.765 0 1.067l-5.773 5.8c-.428.43-.508 1.1-.193 1.62l3.075 5.083c.36.604.98.946 1.66.946.08 0 .17 0 .251-.01.78-.1 1.4-.634 1.63-1.39l4.773-16.075c.21-.685.02-1.43-.48-1.943z" />
+									</svg>
+							Chia sẻ
+						</button>
+						<button class="like red">
+							<svg viewBox="0 0 24 24" fill="currentColor"
+								xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" clip-rule="evenodd"
+									d="M15.85 2.5c.63 0 1.26.09 1.86.29 3.69 1.2 5.02 5.25 3.91 8.79a12.728 12.728 0 01-3.01 4.81 38.456 38.456 0 01-6.33 4.96l-.25.15-.26-.16a38.093 38.093 0 01-6.37-4.96 12.933 12.933 0 01-3.01-4.8c-1.13-3.54.2-7.59 3.93-8.81.29-.1.59-.17.89-.21h.12c.28-.04.56-.06.84-.06h.11c.63.02 1.24.13 1.83.33h.06c.04.02.07.04.09.06.22.07.43.15.63.26l.38.17c.092.05.195.125.284.19.056.04.107.077.146.1l.05.03c.085.05.175.102.25.16a6.263 6.263 0 013.85-1.3zm2.66 7.2c.41-.01.76-.34.79-.76v-.12a3.3 3.3 0 00-2.11-3.16.8.8 0 00-1.01.5c-.14.42.08.88.5 1.03.64.24 1.07.87 1.07 1.57v.03a.86.86 0 00.19.62c.14.17.35.27.57.29z" />
+									</svg>
+							Quan tâm
+						</button>
+						<button class="like cmt" data-toggle="modal"
+							data-target="#favDialog_comment${ posts.post.ID }">
+							<svg viewBox="0 0 24 24" fill="currentColor"
+								xmlns="http://www.w3.org/2000/svg">
+										<path fill-rule="evenodd" clip-rule="evenodd"
+									d="M15.85 2.5c.63 0 1.26.09 1.86.29 3.69 1.2 5.02 5.25 3.91 8.79a12.728 12.728 0 01-3.01 4.81 38.456 38.456 0 01-6.33 4.96l-.25.15-.26-.16a38.093 38.093 0 01-6.37-4.96 12.933 12.933 0 01-3.01-4.8c-1.13-3.54.2-7.59 3.93-8.81.29-.1.59-.17.89-.21h.12c.28-.04.56-.06.84-.06h.11c.63.02 1.24.13 1.83.33h.06c.04.02.07.04.09.06.22.07.43.15.63.26l.38.17c.092.05.195.125.284.19.056.04.107.077.146.1l.05.03c.085.05.175.102.25.16a6.263 6.263 0 013.85-1.3zm2.66 7.2c.41-.01.76-.34.79-.76v-.12a3.3 3.3 0 00-2.11-3.16.8.8 0 00-1.01.5c-.14.42.08.88.5 1.03.64.24 1.07.87 1.07 1.57v.03a.86.86 0 00.19.62c.14.17.35.27.57.29z" />
+									</svg>
+							Bình luận
+						</button>
 					</div>
 				</div>
-			</div>
-			<div class="notif_card">
-				<img src="views/images/user/user1.jpg" alt="avatar" />
-				<div class="description">
-					<p class="user_activity">
-						<strong>Vilb</strong> đã bài tỏ quan tâm bài đăng <strong
-							class="link">Post 1</strong>
-					</p>
-					<p class="time">2 tuần trước</p>
-				</div>
-			</div>
-		</main>
-	</div>
-	</dialog>
 
-	<!-- Follow -->
-	<dialog id="favDialog_follow">
-	<div id="close_follow">
-		<i class="fa-solid fa-xmark"></i>
-	</div>
-	<div class="follow">
-		<p class="suggestion-text">Danh sách theo dõi</p>
-		<div class="list-following">
-			<div class="profile-card-follow">
-				<div class="profile-pic">
-					<img src="views/images/user/user1.jpg" alt="">
-				</div>
-				<div>
-					<p class="username">Nguyễn Văn An</p>
-					<p class="sub-text">an</p>
-				</div>
-				<button class="action-btn">Hủy</button>
-			</div>
-			<div class="profile-card-follow">
-				<div class="profile-pic">
-					<img src="views/images/user/user2.jpg" alt="">
-				</div>
-				<div>
-					<p class="username">Lê Bích Vi</p>
-					<p class="sub-text">vilb</p>
-				</div>
-				<button class="action-btn">Hủy</button>
-			</div>
-			<div class="profile-card-follow">
-				<div class="profile-pic">
-					<img src="views/images/user/user3.jpg" alt="">
-				</div>
-				<div>
-					<p class="username">Đoàn Hiệp Sỹ</p>
-					<p class="sub-text">sydh</p>
-				</div>
-				<button class="action-btn">Hủy</button>
-			</div>
-			<div class="profile-card-follow">
-				<div class="profile-pic">
-					<img src="views/images/user/user4.jpg" alt="">
-				</div>
-				<div>
-					<p class="username">Vinhpq</p>
-					<p class="sub-text">vinhqp</p>
-				</div>
-				<button class="action-btn">Hủy</button>
-			</div>
-			<div class="profile-card-follow">
-				<div class="profile-pic">
-					<img src="views/images/user/user5.jpg" alt="">
-				</div>
-				<div>
-					<p class="username">Trần Hữu Đang</p>
-					<p class="sub-text">dangth</p>
-				</div>
-				<button class="action-btn">Hủy</button>
-			</div>
-		</div>
-	</div>
-	</dialog>
+			</c:forEach>
 
-	<!-- Setting -->
-	<dialog id="favDialog_setting">
-	<div id="close_setting">
-		<i class="fa-solid fa-xmark"></i>
-	</div>
-	<div class="setting">
-		<p class="suggestion-text">Cài đặt</p>
-		<div class="select">
-			<select name="format" id="format">
-				<option selected disabled>Chọn ngôn ngữ</option>
-				<option value="vietnamese">Tiếng Việt</option>
-				<option value="english">Tiếng Anh</option>
-			</select>
-		</div>
-		<div class="darkmode">
-			<i class="fa-solid fa-sun"></i> <input type="checkbox"
-				id="toggle-btn" /> <label for="toggle-btn" class="toggle-btn">
-				<span class="toggle"></span>
-			</label> <i class="fa-solid fa-cloud-moon"></i>
-		</div>
-		<div class="button-container">
-			<div class='button -dark center'>Vô hiệu hóa tài khoản</div>
 		</div>
 	</div>
-	</dialog>
-	<script src="views/js/home.js"></script>
-	<script src="views/js/profile.js"></script>
 </body>
 </html>

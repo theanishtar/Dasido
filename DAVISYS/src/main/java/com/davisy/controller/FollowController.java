@@ -23,6 +23,7 @@ import com.davisy.dao.UserDao;
 import com.davisy.entity.Follower;
 import com.davisy.entity.Post;
 import com.davisy.entity.User;
+import com.davisy.service.SessionService;
 
 @Controller
 @Transactional
@@ -32,24 +33,30 @@ public class FollowController {
 	
 	@Autowired
 	UserDao userDAO;
+	
+	@Autowired
+	SessionService sessionService;
 
+	/*===Follow===*/
 	@GetMapping("/addFollow/{id}")
 	public String addFollow(Model model, Follower follower, @PathVariable("id") int id) {
 		Follower.Pk pk = new Follower.Pk();
+		User userSession = sessionService.get("user");
 
-		pk.setFollowerID(1);
+		pk.setFollowerID(userSession.getID());
 		pk.setUserID(id);
 		follower.setPk(pk);
 
 		followerDAO.save(follower);
 		System.out.println("Thêm thành công");
-		return "redirect:/homm";
+		return "redirect:/main";
 	}
 
 	@GetMapping("/deleteFollow/{id}")
 	public String deleteFollow(Model model, Follower follower, @PathVariable("id") int id) {
-		followerDAO.delete(followerDAO.findUserUnlf(1, id));
+		User userSession = sessionService.get("user");
+		followerDAO.delete(followerDAO.findUserUnlf(userSession.getID(), id));
 		System.out.println("Hủy thành công");
-		return "redirect:/homm";
+		return "redirect:/main";
 	}
 }

@@ -28,8 +28,8 @@ import com.davisy.entity.Post;
 import com.davisy.entity.User;
 import com.davisy.service.SessionService;
 
-import jakarta.servlet.ServletContext;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 //@RestController
 //@CrossOrigin
@@ -75,7 +75,7 @@ public class PostController {
 				System.out.println("File Dir: " + uploadRootDir);
 				int idPost = postDao.maxId().getID();
 				String newName = user.getUsername() + user.getID() + idPost + i;
-				nameImg = nameImg + pc + "/views/images/posts/" + newName;
+				nameImg = nameImg + pc + "views/images/posts/" + newName + ".png";
 				File serverFile = new File(uploadRootDir.getAbsoluteFile() + File.separator
 						+ PostController.renameFile(fileName, newName));
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
@@ -84,37 +84,10 @@ public class PostController {
 				i++;
 			}
 			String hash = " " + content + " ";
-			String hashTag = "";
-			String check = "";
-			int dem = 0;
-			if (hash.contains("#")) {
-				for (dem = 0; dem < hash.length(); dem++) {
-					if (hash.charAt(dem) == '#' && hash.substring(dem - 1, dem + 1).equals(" #")) {
-						for (int j = dem; j < hash.length(); j++) {
-							if (hash.charAt(j) == ' ') {
-								if (hash.substring(dem + 1, j).contains("#") == false) {
-									if (hashTag != "") {
-										check = ",";
-									}
-									hashTag = hashTag + check + hash.substring(dem, j);
-									hash = hash.substring(j, hash.length());
-									dem = 0;
-									break;
-								}
-
-							}
-						}
-					}
-				}
-				System.out.println(hashTag);
-			}else {
-				hashTag=null;
-			}
-
 			boolean status = Boolean.valueOf(radio);
 			post.setUser(user);
 			post.setPost(content);
-			post.setHashTag(hashTag);
+			post.setHashTag(hashTag(hash));
 			post.setProduct(product);
 			post.setDate_Post(day());
 			post.setLink_Image(nameImg);
@@ -127,7 +100,37 @@ public class PostController {
 			System.out.println("Error: " + e);
 		}
 
-		return "jsp/home";
+		return "redirect:/main";
+	}
+
+	public String hashTag(String hash) {
+		String hashTag = "";
+		String check = "";
+		int dem = 0;
+		if (hash.contains("#")) {
+			for (dem = 0; dem < hash.length(); dem++) {
+				if (hash.charAt(dem) == '#' && hash.substring(dem - 1, dem + 1).equals(" #")) {
+					for (int j = dem; j < hash.length(); j++) {
+						if (hash.charAt(j) == ' ') {
+							if (hash.substring(dem + 1, j).contains("#") == false) {
+								if (hashTag != "") {
+									check = " ";
+								}
+								hashTag = hashTag + check + hash.substring(dem, j);
+								hash = hash.substring(j, hash.length());
+								dem = 0;
+								break;
+							}
+
+						}
+					}
+				}
+			}
+			System.out.println(hashTag);
+		} else {
+			hashTag = null;
+		}
+		return hashTag;
 	}
 
 	public static String renameFile(String fileName, String id) {

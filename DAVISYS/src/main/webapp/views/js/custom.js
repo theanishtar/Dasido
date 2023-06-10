@@ -2,7 +2,8 @@ let $chatHistory;
 let $button;
 let $textarea;
 let $chatHistoryList;
-
+let userFromLoginCustom = "";
+let userToLoginCustom = "";
 function init() {
 	cacheDOM();
 	bindEvents();
@@ -14,10 +15,10 @@ function bindEvents() {
 }
 
 function cacheDOM() {
-	$chatHistory = $('.chat-history');
+	$chatHistory = $('.messages-chat');
 	$button = $('#sendBtn');
 	$textarea = $('#message-to-send');
-	$chatHistoryList = $chatHistory.find('ul');
+	/*$chatHistoryList = $chatHistory.find('ul');*/
 }
 
 function render(message, userName, img) {
@@ -31,26 +32,29 @@ function render(message, userName, img) {
 		Img: img
 	};
 
+
 	setTimeout(function() {
-		$chatHistoryList.append(templateResponse(contextResponse));
+		$chatHistory.append(templateResponse(contextResponse));
 		scrollToBottom();
 	}.bind(this), 1500);
 }
 
 function sendMessage(message) {
 	let username = $('#userName').val();
+	let avatar = $('#userAvatar').val();
 	console.log(username)
-	sendMsg(username, message);
-	scrollToBottom();
 	if (message.trim() !== '') {
+		sendMsg(username, message, avatar);
+		scrollToBottom();
 		var template = Handlebars.compile($("#message-template").html());
 		var context = {
 			messageOutput: message,
 			time: getCurrentTime(),
 			toUserName: selectedUser
 		};
+		/*	insertData(username,message);*/
 
-		$chatHistoryList.append(template(context));
+		$chatHistory.append(template(context));
 		scrollToBottom();
 		$textarea.val('');
 	}
@@ -75,5 +79,24 @@ function addMessageEnter(event) {
 	}
 }
 
+function insertData(userName, message) {
+	$.ajax({
+		url: url + "/insertChat",
+		type: "get",
+		data: {
+			fromLogin: userFromLoginCustom,
+			toUser: userToLoginCustom,
+			userName: userName,
+			message: message,
+			time: getCurrentTime()
+		},
+		success: function(data) {
+		},
+		error: function(xhr) {
+			alert("error")
+		}
+
+	})
+}
 init();
 

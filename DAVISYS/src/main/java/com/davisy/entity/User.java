@@ -5,20 +5,20 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -29,7 +29,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class User{
+public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int ID;
@@ -38,40 +38,45 @@ public class User{
 	@NotBlank(message = "Vui lòng nhập mật khẩu")
 	String password;
 	String fullname;
+	String sub;
 	@NotBlank(message = "Vui lòng nhập địa chỉ email")
 	@Email(message = "Vui lòng nhập đúng định dạng email")
 	String email;
-	
+
 	@Temporal(TemporalType.DATE)
-	@Column (name = "birthday")
+	@Column(name = "birthday")
 	Date birthday = new Date();
-	
+
+	String gender;
+
 	@ManyToOne
-	@JoinColumn(name = "genderID")
-	Gender gender;
-	
-	@OneToOne
 	@JoinColumn(name = "user_AddressID")
 	Province province;
-	
+
 	String avatar;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "ol")
+	Date ol = new Date();
 	int mark;
 	boolean user_Status;
 	boolean user_Role;
 	boolean ban;
-	
-	@OneToMany 
+
+	@OneToMany
 	List<Post> post;
-	
-	@OneToMany (mappedBy = "user")
+
+	@OneToMany(mappedBy = "user")
 	List<Comment> comment;
-	
-	@OneToMany (mappedBy = "user")
+
+	@OneToMany(mappedBy = "user")
 	List<History> history;
-	
-	@OneToMany (mappedBy = "user")
+
+	@OneToMany(mappedBy = "user")
 	List<Interested> interested;
-	
-	@OneToMany (mappedBy = "user")
+
+	@OneToMany(mappedBy = "user")
 	List<Share> share;
+
+	@OneToMany(mappedBy = "user")
+	List<Messages> messages;
 }
