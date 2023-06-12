@@ -8,7 +8,7 @@ The project is guided by Mr. [Tran Van Nhuom](https://thaynhuom.edu.vn/) and use
 | Full Name | Role | Highlight Project |
 |-----------|------|--------------------|
 |[Tran Huu Dang]() | Project Manager, Fullstack Developer | [Ebook Learning Programing](https://angurvad-5559e.web.app/)  
-|[Doan Hiep Sy]() | BackEnd Developer, UX/UI Designer | [iker Shop Manager](https://github.com/DoanSy16/biker-shop-manager)  
+|[Doan Hiep Sy]() | BackEnd Developer, UX/UI Designer | [Biker Shop Manager](https://github.com/DoanSy16/biker-shop-manager)  
 |[Nguyen Khanh Dan]() | FrontEnd Developer, BA | [FreshFood](https://github.com/NguyenKhanhDan/FreshFood)  
 |[Phung Quoc Vinh]() | BackEnd Developer, Database Developer | [Dodge Game](https://github.com/Dinhisme/DodgeGame)  
 |[Le Bich Vi]() | BackEnd Developer | [Quanlikitucxa](https://github.com/TheBank0911/Quanlikitucxa)
