@@ -29,7 +29,7 @@
 
 <link rel="stylesheet" href="/views/css/home2.css">
 
-<link rel="stylesheet" href="/views/css/message.css">
+<!-- <link rel="stylesheet" href="/views/css/message.css"> -->
 <link rel="stylesheet" href="/views/css/loadimages.css">
 <!--  <link rel="stylesheet" href="views/css/dialog.css">  -->
 
@@ -58,7 +58,7 @@
 <script src="https://kit.fontawesome.com/152112956f.js"
 	crossorigin="anonymous"></script>
 
-<script src="views/js/jquery.min.js"></script>
+<script src="/views/js/jquery.min.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/3.0.0/handlebars.min.js"></script>
 <script
@@ -78,10 +78,10 @@
 		</div>
 	</div>
 	<!-- <script src="views/js/home.js"></script> -->
-	<script src="views/js/dialog.js"></script>
-	<script src="views/js/loadimages.js"></script>
-	<script src="views/js/custom.js"></script>
-	<script src="views/js/chat.js"></script>
+	<script src="/views/js/dialog.js"></script>
+	<script src="/views/js/loadimages.js"></script>
+	<script src="/views/js/custom.js"></script>
+	<script src="/views/js/chat.js"></script>
 	<script>
 		registration('${sessionScope.user.username}');
 	</script>

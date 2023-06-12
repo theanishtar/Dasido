@@ -17,7 +17,7 @@ function connectToChat(userName) {
 				render(data.message, data.fromLogin, data.img);
 			} else {
 				newMessages.set(data.fromLogin, data.message, data.img);
-				$('#userNameAppender_' + data.fromLogin).append('<span id="newMessage_' + data.fromLogin + '" style="color: red">+1</span>');
+				$('#userNameAppender_' + data.fromLogin).append('<span class="countMesages" id="newMessage_' + data.fromLogin + '">+1</span>');
 			}
 		});
 
@@ -45,8 +45,8 @@ function connectToChat(userName) {
 						'" style="background-image: url(' + value.image + ');">' + online +
 						'</div>' +
 						'<div class="desc-contact">' +
-						'<p id="userNameAppender_' + key + '" class="name">' + value.fullName + '</p>' +
-						'<p class="message">'+value.lastMessage+'</p>' +
+						'<p id="userNameAppender_' + key + '" class="name">' + value.fullName + '<span class="countMesages badge">' + "+99" + '</span>' + '</p>' +
+						'<p class="message">' + value.lastMessage + '</p>' +
 						'</div>' + timeOff +
 						'</div></a>';
 				}

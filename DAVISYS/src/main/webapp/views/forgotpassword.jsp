@@ -5,7 +5,7 @@
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="views/css/forgotpassword.css">
+<link rel="stylesheet" href="/views/css/forgotpassword.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 <script
@@ -14,10 +14,12 @@
 	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="views/js/jquery.min.js"></script>
+<script src="/views/js/jquery.min.js"></script>
 
 <script src="https://kit.fontawesome.com/152112956f.js"
 	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 </head>
 <body>
 	<main class="main">
@@ -28,7 +30,7 @@
 					<p class="text text-normal">Hãy nhập email của bạn để nhận mã
 						đổi mật khẩu</p>
 				</div>
-				<form name="signin" class="form" method="post" action="/forgot1">
+				<form name="signin" class="form">
 					<div class="input-control">
 						<label for="email" class="input-label" hidden>Email</label> <input
 							type="email" name="emailForgot" id="email" class="input-field"
@@ -55,8 +57,8 @@
 
 			<section class="wrapper_validator">
 				<div class="container_validator">
-				
-				<h2>Mã xác nhận</h2>
+
+					<h2>Mã xác nhận</h2>
 					<p>
 						DASIDO đã gửi mã xác nhận đến email của bạn <br /> Nhập mã dưới
 						đây để xác nhận địa chỉ email của bạn
@@ -68,10 +70,10 @@
 					</div>
 
 					<div>
-						<button type="submit"  class="btn-confirm">Xác nhận</button>
+						<button type="submit" class="btn-confirm">Xác nhận</button>
 					</div>
 					<small class="info"> Quay lại </small>
-					
+
 				</div>
 			</section>
 
@@ -80,7 +82,8 @@
 					<h2>Đổi mật khẩu</h2>
 
 					<div class="code-container">
-						<input type="text" id="newpass" class="change-pass" placeholder="Mật khẩu mới">
+						<input type="text" id="newpass" class="change-pass"
+							placeholder="Mật khẩu mới">
 					</div>
 					<div class="code-container">
 						<input type="text" id="confirmpass" class="change-pass"
@@ -88,7 +91,8 @@
 					</div>
 					<span id="messageForgot3"></span>
 					<div>
-						<button type="submit" id="btn_submit" onclick="btn_submit()" class="btn-change">Xác nhận</button>
+						<button type="submit" id="btn_submit" onclick="btn_submit()"
+							class="btn-change">Xác nhận</button>
 					</div>
 					<span class="back-validator"> <a href="login"> <i
 							class="fa-solid fa-right-to-bracket"></i> Đăng nhập
@@ -99,6 +103,6 @@
 		</div>
 	</main>
 
-	<script src="views/js/forgotpassword.js"></script>
+	<script src="/views/js/forgotpassword.js"></script>
 </body>
 </html>

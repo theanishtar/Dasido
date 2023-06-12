@@ -35,6 +35,9 @@ public class AdminController {
 	@GetMapping("/admin")
 	public String adminpage(Model model) {
 		User userSession = sessionService.get("user");
+		if(userSession == null) {
+			return "error";
+		}
 		String returnString = "";
 		if(userSession.isUser_Role()== true) {
 			loadPosts(model);
@@ -50,6 +53,7 @@ public class AdminController {
 			returnString = "admin/home/index";
 		}else {
 			returnString = "aaaa";
+			return "error404";
 		}
 		return returnString;
 		
@@ -57,11 +61,28 @@ public class AdminController {
 	
 	@GetMapping("/admin/report")
 	public String adminpageReport(Model model) {
+		User userSession = sessionService.get("user");
+		if(userSession == null) {
+			return "error";
+		}
 		loadPosts(model);
 		loadUsers(model);
 		loadReportPost(model);
 		loadReportUsers(model);
 		return "admin/home/report";
+	}
+	@GetMapping("/admin/usermanage")
+	public String adminpageUserManage(Model model) {
+		User userSession = sessionService.get("user");
+		if(userSession == null) {
+			return "error";
+		}
+		/* loadPosts(model); */
+		loadUsers(model);
+		/*
+		 * loadReportPost(model); loadReportUsers(model);
+		 */
+		return "admin/home/usermanage";
 	}
 	
 	public void loadPosts(Model model) {

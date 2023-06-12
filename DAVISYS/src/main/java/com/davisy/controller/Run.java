@@ -225,18 +225,9 @@ public class Run {
 		return "jsp/message";
 	}
 
-	@GetMapping("/profile")
-	public String profile(Model model) {
-		return "jsp/profile";
-	}
-
 	
 	
 
-	@GetMapping("/updateprofile")
-	public String updateprofile(Model model) {
-		return "jsp/updateprofile";
-	}
 
 	@GetMapping("/error404")
 	public String error404(Model model) {

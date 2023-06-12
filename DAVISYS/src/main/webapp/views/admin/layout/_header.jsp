@@ -1,203 +1,79 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="fr"%>
+<%@taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
+<%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 </head>
 <body>
+<div class="header bg">
+		<div class="search-bar">
+			<input type="text" placeholder="Search">
+		</div>
+		<div class="user-settings">
+			<%-- <c:if test="${sessionScope.user==null}">
+				<img alt="" src="/views/images/user/user.jpg">
+			</c:if> --%>
+			<c:if test="${sessionScope.user!=null}">
+				<img class="user-img" src="/${sessionScope.user.avatar }" alt="">
+			</c:if>
 
-	<!-- Topbar -->
-	<nav
-		class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-		<!-- Sidebar Toggle (Topbar) -->
-		<button id="sidebarToggleTop"
-			class="btn btn-link d-md-none rounded-circle mr-3">
-			<i class="fa fa-bars"></i>
-		</button>
-
-		<!-- Topbar Search -->
-		<form
-			class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-			<div class="input-group">
-				<input type="text" class="form-control bg-light border-0 small"
-					placeholder="Tìm kiếm..." aria-label="Search"
-					aria-describedby="basic-addon2">
-				<div class="input-group-append">
-					<button class="btn btn-primary" type="button">
-						<i class="fas fa-search fa-sm"></i>
-					</button>
+			<div class="user-name">
+				<c:if test="${sessionScope.user==null}">
+            Tài khoản 
+            </c:if>
+				<c:if test="${sessionScope.user!=null}">
+           ${sessionScope.user.fullname}
+            </c:if>
+			</div>
+			<div class="dropdown">
+				<span> <svg viewBox="0 0 492 492" fill="currentColor">
+						<path
+							d="M484.13 124.99l-16.11-16.23a26.72 26.72 0 00-19.04-7.86c-7.2 0-13.96 2.79-19.03 7.86L246.1 292.6 62.06 108.55c-5.07-5.06-11.82-7.85-19.03-7.85s-13.97 2.79-19.04 7.85L7.87 124.68a26.94 26.94 0 000 38.06l219.14 219.93c5.06 5.06 11.81 8.63 19.08 8.63h.09c7.2 0 13.96-3.57 19.02-8.63l218.93-219.33A27.18 27.18 0 00492 144.1c0-7.2-2.8-14.06-7.87-19.12z">
+						 </path>
+					</svg>
+				</span>
+				<div class="dropdown-content">
+					<a href="profile">Thông tin</a> <a>Cập nhật</a> <a href="/logout">Đăng
+						xuất</a>
 				</div>
 			</div>
-		</form>
-
-		<!-- Topbar Navbar -->
-		<ul class="navbar-nav ml-auto">
-
-			<!-- Nav Item - Search Dropdown (Visible Only XS) -->
-			<li class="nav-item dropdown no-arrow d-sm-none"><a
-				class="nav-link dropdown-toggle" href="#" id="searchDropdown"
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="fas fa-search fa-fw"></i>
-			</a> <!-- Dropdown - Messages -->
-				<div
-					class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-					aria-labelledby="searchDropdown">
-					<form class="form-inline mr-auto w-100 navbar-search">
-						<div class="input-group">
-							<input type="text" class="form-control bg-light border-0 small"
-								placeholder="Tìm kiếm....." aria-label="Search"
-								aria-describedby="basic-addon2">
-							<div class="input-group-append">
-								<button class="btn btn-primary" type="button">
-									<i class="fas fa-search fa-sm"></i>
-								</button>
+			<div class="notify">
+				<div class="notification"></div>
+				<div class="dropdownNotification">
+					<span> <svg viewBox="0 0 24 24" fill="currentColor">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M18.707 8.796c0 1.256.332 1.997 1.063 2.85.553.628.73 1.435.73 2.31 0 .874-.287 1.704-.863 2.378a4.537 4.537 0 01-2.9 1.413c-1.571.134-3.143.247-4.736.247-1.595 0-3.166-.068-4.737-.247a4.532 4.532 0 01-2.9-1.413 3.616 3.616 0 01-.864-2.378c0-.875.178-1.682.73-2.31.754-.854 1.064-1.594 1.064-2.85V8.37c0-1.682.42-2.781 1.283-3.858C7.861 2.942 9.919 2 11.956 2h.09c2.08 0 4.204.987 5.466 2.625.82 1.054 1.195 2.108 1.195 3.745v.426zM9.074 20.061c0-.504.462-.734.89-.833.5-.106 3.545-.106 4.045 0 .428.099.89.33.89.833-.025.48-.306.904-.695 1.174a3.635 3.635 0 01-1.713.731 3.795 3.795 0 01-1.008 0 3.618 3.618 0 01-1.714-.732c-.39-.269-.67-.694-.695-1.173z" />
+						</svg>
+					</span>
+					<div class="dropdownNotification-content" id="box">
+						<h2>
+							Thông báo - <span>2</span>
+						</h2>
+						<div class="notifications-item">
+							<img src="https://i.imgur.com/uIgDDDd.jpg" alt="img">
+							<div class="text">
+								<h4>Samso aliao</h4>
+								<p>Samso Nagaro Like your home work</p>
 							</div>
 						</div>
-					</form>
-				</div></li>
-
-			<!-- Nav Item - Alerts -->
-			<li class="nav-item dropdown no-arrow mx-1"><a
-				class="nav-link dropdown-toggle" href="#" id="alertsDropdown"
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="fas fa-bell fa-fw"></i> <!-- Counter - Alerts -->
-					<span class="badge badge-danger badge-counter">3+</span>
-			</a> <!-- Dropdown - Alerts -->
-				<div
-					class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-					aria-labelledby="alertsDropdown">
-					<h6 class="dropdown-header">Trung tâm thông báo</h6>
-					<a class="dropdown-item d-flex align-items-center" href="#">
-						<div class="mr-3">
-							<div class="icon-circle bg-primary">
-								<i class="fas fa-file-alt text-white"></i>
+						<div class="notifications-item">
+							<img
+								src="https://img.icons8.com/flat_round/64/000000/vote-badge.png"
+								alt="img">
+							<div class="text">
+								<h4>John Silvester</h4>
+								<p>+20 vista badge earned</p>
 							</div>
 						</div>
-						<div>
-							<div class="small text-gray-500">December 12, 2019</div>
-							<span class="font-weight-bold">A new monthly report is
-								ready to download!</span>
-						</div>
-					</a> <a class="dropdown-item d-flex align-items-center" href="#">
-						<div class="mr-3">
-							<div class="icon-circle bg-success">
-								<i class="fas fa-donate text-white"></i>
-							</div>
-						</div>
-						<div>
-							<div class="small text-gray-500">December 7, 2019</div>
-							$290.29 has been deposited into your account!
-						</div>
-					</a> <a class="dropdown-item d-flex align-items-center" href="#">
-						<div class="mr-3">
-							<div class="icon-circle bg-warning">
-								<i class="fas fa-exclamation-triangle text-white"></i>
-							</div>
-						</div>
-						<div>
-							<div class="small text-gray-500">December 2, 2019</div>
-							Spending Alert: We've noticed unusually high spending for your
-							account.
-						</div>
-					</a> <a class="dropdown-item text-center small text-gray-500" href="#">Show
-						All Alerts</a>
-				</div></li>
-
-			<!-- Nav Item - Messages -->
-			<li class="nav-item dropdown no-arrow mx-1"><a
-				class="nav-link dropdown-toggle" href="#" id="messagesDropdown"
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <i class="fas fa-envelope fa-fw"></i> <!-- Counter - Messages -->
-					<span class="badge badge-danger badge-counter">7</span>
-			</a> <!-- Dropdown - Messages -->
-				<div
-					class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-					aria-labelledby="messagesDropdown">
-					<h6 class="dropdown-header">Message Center</h6>
-					<a class="dropdown-item d-flex align-items-center" href="#">
-						<div class="dropdown-list-image mr-3">
-							<img class="rounded-circle" src="img/undraw_profile_1.svg"
-								alt="...">
-							<div class="status-indicator bg-success"></div>
-						</div>
-						<div class="font-weight-bold">
-							<div class="text-truncate">Hi there! I am wondering if you
-								can help me with a problem I've been having.</div>
-							<div class="small text-gray-500">Emily Fowler Â· 58m</div>
-						</div>
-					</a> <a class="dropdown-item d-flex align-items-center" href="#">
-						<div class="dropdown-list-image mr-3">
-							<img class="rounded-circle" src="img/undraw_profile_2.svg"
-								alt="...">
-							<div class="status-indicator"></div>
-						</div>
-						<div>
-							<div class="text-truncate">I have the photos that you
-								ordered last month, how would you like them sent to you?</div>
-							<div class="small text-gray-500">Jae Chun Â· 1d</div>
-						</div>
-					</a> <a class="dropdown-item d-flex align-items-center" href="#">
-						<div class="dropdown-list-image mr-3">
-							<img class="rounded-circle" src="img/undraw_profile_3.svg"
-								alt="...">
-							<div class="status-indicator bg-warning"></div>
-						</div>
-						<div>
-							<div class="text-truncate">Last month's report looks great,
-								I am very happy with the progress so far, keep up the good work!</div>
-							<div class="small text-gray-500">Morgan Alvarez Â· 2d</div>
-						</div>
-					</a> <a class="dropdown-item d-flex align-items-center" href="#">
-						<div class="dropdown-list-image mr-3">
-							<img class="rounded-circle"
-								src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="...">
-							<div class="status-indicator bg-success"></div>
-						</div>
-						<div>
-							<div class="text-truncate">Am I a good boy? The reason I
-								ask is because someone told me that people say this to all dogs,
-								even if they aren't good...</div>
-							<div class="small text-gray-500">Chicken the Dog Â· 2w</div>
-						</div>
-					</a> <a class="dropdown-item text-center small text-gray-500" href="#">Read
-						More Messages</a>
-				</div></li>
-
-			<div class="topbar-divider d-none d-sm-block"></div>
-
-			<!-- Nav Item - User Information -->
-			<li class="nav-item dropdown no-arrow"><a
-				class="nav-link dropdown-toggle" href="#" id="userDropdown"
-				role="button" data-toggle="dropdown" aria-haspopup="true"
-				aria-expanded="false"> <span
-					class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas
-						McGee</span> <img class="img-profile rounded-circle"
-					src="img/undraw_profile.svg">
-			</a> <!-- Dropdown - User Information -->
-				<div
-					class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-					aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#"> <i
-						class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i> Profile
-					</a> <a class="dropdown-item" href="#"> <i
-						class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i> Settings
-					</a> <a class="dropdown-item" href="#"> <i
-						class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i> Activity
-						Log
-					</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#" data-toggle="modal"
-						data-target="#logoutModal"> <i
-						class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-						Logout
-					</a>
-				</div></li>
-
-		</ul>
-
-	</nav>
-	<!-- End of Topbar -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

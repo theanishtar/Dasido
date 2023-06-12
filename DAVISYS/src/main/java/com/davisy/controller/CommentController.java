@@ -45,6 +45,10 @@ public class CommentController {
 	@GetMapping("/PostComment/{idPost}")
 	public String comment(@PathVariable String idPost, @RequestParam("commentContent") String comment,
 			@RequestParam("repCommentIdUser") String replyComment) {
+		User userSession = sessionService.get("user");
+		if(userSession == null) {
+			return "error";
+		}
 		try {
 			int id = Integer.valueOf(idPost);
 			int idReply = 0;
@@ -74,6 +78,7 @@ public class CommentController {
 
 	@GetMapping("/loadReplyComment")
 	public void loadReplyComment(@RequestParam("idComment") String idComment) {
+		
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");

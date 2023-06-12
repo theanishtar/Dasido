@@ -18,7 +18,7 @@
 			<h2>KHÔNG TÌM THẤY TRANG</h2>
 			<p>Trang bạn đang tìm kiếm có thể đã bị xóa do đổi tên hoặc tạm thời không có.</p>
             <p>DASIDO rất xin lỗi về sự bất tiện này.</p>
-			<a href="homm">Trang chủ</a>
+			<a href="index">Trang chủ</a>
 		</div>
 	</div>
 </body>

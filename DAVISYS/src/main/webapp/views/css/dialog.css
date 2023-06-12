@@ -147,7 +147,7 @@
     font-size: 16px;
     margin-top: 0px;
     min-height: 50px;
-    background: var(--theme-bg);
+background: var(--theme-bg);
     color: white;
   }
   form input{
@@ -155,9 +155,9 @@
     font-size: 16px;
     min-height: 30px;
     border: none !important;
-    margin-top: 15px;
+    /* margin-top: 15px; */
     margin-bottom: 0.5rem;
-    background: var(--theme-bg);
+    background: #1F1D2B;
     color: white;
   }
   form textarea::placeholder,
@@ -294,7 +294,7 @@
     color: #333;
     font-size: 23px;
     border-radius: 50%;
-    background: #E4E6EB;
+background: #E4E6EB;
   }
   .audience .list li.active .column .icon{
     background: #cce4ff;
@@ -376,6 +376,7 @@
     right: 10px;
     top: 7px;
     cursor: pointer;
+    color: white;
   }
   /* language */
   select {
@@ -424,6 +425,9 @@
  .select:hover::after {
     color: #000000;
  }
+ .suggestion-text{
+ color: white;
+ }
  @media (max-width : 550px){
   #favDialog_setting{
     margin: 16rem 1.4rem;
@@ -441,7 +445,7 @@
   position: absolute;
   top: 65%;
   left: 50%;
-  overflow: hidden;
+overflow: hidden;
   padding: 0px 50px;
   transform: translate3d(-50%, -50%, 0);
   color: white;
@@ -469,7 +473,7 @@
   left: -50px;
   top: 15px;
   font-size: 18px;
-   color: black;
+   color: white;
 }
 
 .toggle:after {
@@ -597,7 +601,7 @@ input:checked + .toggle:before {
 }
 
 input:checked + .toggle:after {
-  color: black;
+  color: white;
 }
 
 input:checked + .toggle .toggle__handler {
@@ -625,7 +629,6 @@ input:checked + .toggle .star--3 {
   height: 2px;
   transform: translate3d(-7px, 0, 0);
 }
-
 input:checked + .toggle .star--4, input:checked + .toggle .star--5, input:checked + .toggle .star--6 {
   opacity: 1;
   transform: translate3d(0, 0, 0);
@@ -742,7 +745,7 @@ input:checked + .toggle .star--6 {
     outline: none;
     /* border: 1.5px solid #1a73e8; */
     border: none;
-        width: inherit;
+    /* width: inherit; */
    }
    
    .input:focus ~ label,.share input:valid ~ label {
@@ -765,7 +768,7 @@ input:checked + .toggle .star--6 {
     align-items: center;
     border: none;
     border-radius: 16px !important;
-    overflow: hidden;
+overflow: hidden;
     transition: all 0.2s;
     margin: 1rem 9rem !important;
     
@@ -830,7 +833,7 @@ input:checked + .toggle .star--6 {
   }
   .modal-dialog .post {
     width: 100%;
-    background-color: rgba(18, 21, 39, 0.86);
+    background-color: #1F1D2B;
     border-radius: 15px;
 }
 #favDialog_comment .cmt-container{
@@ -838,7 +841,9 @@ input:checked + .toggle .star--6 {
 }
 .modal-content,
 .cmt-container{
-	background-color: rgba(18, 21, 39, 0.86);
+	background-color: #1F1D2B;
+	box-shadow: none;
+    border: none;
 }
 .post-header {
     display: flex;
@@ -900,7 +905,7 @@ input:checked + .toggle .star--6 {
 
 #comment-input {
     margin: 0rem;
-    background-color: rgba(18, 21, 39, 0.86);
+    background-color: #1F1D2B
 
 }
 
@@ -917,7 +922,7 @@ input:checked + .toggle .star--6 {
     cursor: pointer;
     border: none;
     outline: none;
-    background-color: rgba(18, 21, 39, 0.86);
+    background-color: #1F1D2B;
     color: white;
 }
 
@@ -933,7 +938,7 @@ form.add-comment-btn img {
     display: flex;
     margin-top: 10px;
     opacity: 0.7;
-    margin-left: 1rem;
+    margin-left: 2.5rem;
 }
 
 .post-overlays {
@@ -942,7 +947,7 @@ form.add-comment-btn img {
     height: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
+align-items: center;
     pointer-events: none;
 }
 
@@ -982,7 +987,7 @@ form.add-comment-btn img {
     min-width: 100%;
   }
   .full-boxer {
-    height: 390px;
+    height: 300px;
     overflow: auto;
     overflow: -moz-scrollbars-none;
     -ms-overflow-style: none;
@@ -1015,6 +1020,7 @@ form.add-comment-btn img {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 5px;
+    margin-top: 1rem;
 }
 
 .Profile{
@@ -1053,7 +1059,9 @@ form.add-comment-btn img {
     margin-top: 2px;
     font-size: 12px;
 }
-
+#first-reply{
+	margin-left: 3rem;
+}
 @media (max-width : 550px){
   #favDialog_comment{
     margin: 1rem;
@@ -1062,3 +1070,108 @@ form.add-comment-btn img {
     height: 380px;
   }
 }
+
+
+/*========follow============*/
+#modal-dialog{
+    border: none;
+    border-radius: 15px;
+    width: 400px;
+      margin: 10rem 35rem; 
+     background-color: var(--theme-bg); 
+  }
+  #modal-dialog div i{
+    margin-left: 1rem;
+     margin-top: 1rem;
+    color: white;
+    cursor: pointer;
+  } 
+  .list-following::-webkit-scrollbar { 
+    width: 0 !important;
+    display: none; 
+  }
+
+  .list-following{
+    height: 300px;
+    overflow: auto;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+  }
+.follow{
+    padding: 0px 20px;
+}
+
+.profile-card-follow{
+    width: auto;
+    display: grid; 
+    grid-template-columns: 20% 60% 20%;
+    margin-bottom: 10px;
+}
+
+.profile-card-follow .profile-pic{
+    flex: 0 0 auto;
+    padding: 0;
+    background: none;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.profile-card-follow .profile-pic img{
+    border: none;
+    border-radius:50%;
+	-moz-border-radius:50%;
+	-webkit-border-radius:50%;
+}
+
+
+.profile-card-follow .username{
+    font-weight: 500;
+    font-size: 14px;
+    color: white;
+}
+
+.sub-text{
+    color: white;
+    font-size:12px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+.profile-card-follow a{
+	 background-color: var(--theme-bg); 
+	 text-decoration: none;
+	 color: #0DF6E3;
+}
+.profile-card-follow a:hover{
+  text-decoration: none;
+}
+.profile-card-follow a{
+  padding: 1.5rem 1.2rem;
+}
+.action-btn{
+    opacity: 1;
+    font-weight: 700;
+    font-size: 12px;
+    border: none;
+    background: white;
+    color: #1a81ff;
+    outline: none;
+}
+.action-btn:hover{
+    scale: 1.05;
+}
+.suggestion-text{
+    text-align: center;
+    font-size: 16px;
+    color: white;
+    font-weight: 700;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #bebebe;
+}
+
+@media (max-width : 550px){
+  #modal-dialog{
+    margin: 13rem 1.3rem;
+  }
+}
+/*========end follow============*/

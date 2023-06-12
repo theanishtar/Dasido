@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -60,10 +61,6 @@ public class LoginController {
 	@Autowired
 	SessionService sessionService;
 
-	@RequestMapping("/log")
-	String login() {
-		return "/login";
-	}
 
 	@PostMapping("/home")
 	String home(HttpServletRequest req, HttpServletResponse res, Model m) {
@@ -77,14 +74,13 @@ public class LoginController {
 			String payload = new String(decoder.decode(chunks[1]));
 
 			UserGoogleCloud ugc = new Gson().fromJson(payload, UserGoogleCloud.class);
-
 			if(userdao.findByEmail(ugc.getEmail())!= null){
-				m.addAttribute("message", "Email này đã được đăng ký!");
-				return "jsp/main";
+				sessionService.set("user", userdao.findByEmail(ugc.getEmail()));
+				return "redirect:/main";
 			}
 			else if(userdao.findSub(ugc.getSub()) != null) {
 				sessionService.set("user", userdao.findSub(ugc.getSub()));
-				return "jsp/main";
+				return "redirect:/main";
 			}
 			else{
 				User user = new User();
@@ -113,7 +109,6 @@ public class LoginController {
 		}
 
 	}
-
 	@GetMapping("/login")
 	public String log(Model model) {
 		String user = cookieService.getValue("usernames");
@@ -154,8 +149,7 @@ public class LoginController {
 					Follower.Pk pk = f.getPk();
 					users.add(userdao.findIdUser(pk.getUserID()));
 				}
-				model.addAttribute("follower", users);
-
+				sessionService.set("follower", users);
 				List<User> listSuggestedFriend = userdao.findAllByIdUser(userSession.getID());
 				
 				loadPost(model);
@@ -186,6 +180,10 @@ public class LoginController {
 	
 	@GetMapping("/main")
 	public String loadPost(Model model) {
+		User userSession = sessionService.get("user");
+		if(userSession == null) {
+			return "error";
+		}
 		try {
 			List<Post> posts = pdao.findAll();
 			List<PostEntity> postEntity = new ArrayList<>();
@@ -218,10 +216,15 @@ public class LoginController {
 	}
 	
 	
-	@GetMapping("/profile/{id}")
-	public String loadPostProfile(@PathVariable String id, Model model) {
+	@GetMapping("/profile/{idUser}")
+	public String loadPostProfile(@PathVariable String idUser, Model model) {
+		System.out.println("IdUser: "+idUser);
+		User userSession = sessionService.get("user");
+		if(userSession == null) {
+			return "error";
+		}
 		try {
-			int userId = Integer.valueOf(id);
+			int userId = Integer.valueOf(idUser);
 			System.out.println(userId);
 			User userProfile = userdao.findIdUser(userId);
 			System.out.println(userProfile.getFullname()+" alooo");

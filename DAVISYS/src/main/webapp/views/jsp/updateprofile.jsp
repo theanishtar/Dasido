@@ -16,26 +16,22 @@
 </head>
 <body>
 	<section>
+	
 		<form action="/updatepro" method="POST" enctype="multipart/form-data">
 			<div class="">
 				<div class="row">
+				
 					<div class="col-lg-4">
 						<div class="card mb-4">
 							<div class="card-body text-center">
 								<label> <img src="${user.avatar}" alt="avatar"
-									class="rounded-circle img-fluid" style="width: 150px;"> <input name="file"
-									type="file" style="display: none;">
+									class="rounded-circle img-fluid" style="width: 150px;"> <input
+									name="file" type="file" style="display: none;">
 								</label>
 								<h5 class="my-3">${user.fullname}</h5>
 								<p class="text-muted mb-4">13 bài viết</p>
-								<!-- <div class="d-flex justify-content-center mb-2">
-									<button type="button" class="btn btn-primary">Theo dõi</button>
-									<button type="button" class="btn btn-outline-primary ms-1">Nhắn
-										tin</button>
-								</div> -->
 							</div>
 						</div>
-
 					</div>
 					<div class="col-lg-8">
 						<div class="card mb-4">
@@ -57,7 +53,7 @@
 									</div>
 									<div class="col-sm-9">
 										<input class="text-muted mb-0" value="${user.username}"
-											name="username" readonly>
+											name="username">
 									</div>
 								</div>
 								<hr>
@@ -77,7 +73,7 @@
 									</div>
 									<div class="col-sm-9">
 										<input class="text-muted mb-0" value="${user.email}"
-											name="email" readonly required>
+											name="email" required>
 									</div>
 								</div>
 								<hr>
@@ -92,7 +88,7 @@
 								</div>
 								<hr>
 								<div class="row">
-<div class="col-sm-3">
+									<div class="col-sm-3">
 										<p class="mb-0">Giới tính</p>
 									</div>
 									<div class="col-sm-9">
@@ -106,46 +102,49 @@
 											<option value="Khác">Khác</option>
 										</select>
 									</div>
-									<hr>
-									<div class="row">
-										<div class="col-sm-3">
-											<p class="mb-0">Địa chỉ</p>
-										</div>
-										<div class="col-sm-9">
-											<select class="text-muted mb-0" name="address" id="address">
-												<c:if test="${user.province.name != null}">
-													<option value="${user.province.code}">
-														${user.province.name}</option>
-												</c:if>
+								</div>
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<p class="mb-0">Địa chỉ</p>
+									</div>
+									<div class="col-sm-9">
+										<select class="text-muted mb-0" name="address" id="address">
+											<c:if test="${user.province.name != null}">
+												<option value="${user.province.code}">
+													${user.province.name}</option>
+											</c:if>
 
 
-												<c:forEach items="${listTP}" var="add">
-													<option value="${add.code}">${add.name}</option>
-												</c:forEach>
-											</select>
-										</div>
-										<hr>
-										<div class="row">
-											<div class="col-sm-3">
-												<p class="mb-0">Điểm</p>
-											</div>
-											<div class="col-sm-9">
-												<input type="text" class="text-muted mb-0"
-													value="${user.mark}" readonly>
-											</div>
-										</div>
-										<div class="row">
-											<div class="col-sm-3 btn-updateprofile">
-													<button type="submit" class="btn btn-primary">Cập nhật</button>
-													<button class="btn btn-light">Hủy</button>
-											</div>
-										</div>
+											<c:forEach items="${listTP}" var="add">
+												<option value="${add.code}">${add.name}</option>
+											</c:forEach>
+										</select>
 									</div>
 								</div>
-
+								<hr>
+								<div class="row">
+									<div class="col-sm-3">
+										<p class="mb-0">Điểm</p>
+									</div>
+									<div class="col-sm-9">
+										<input type="text" class="text-muted mb-0"
+											value="${user.mark}" readonly>
+									</div>
+								</div>
+								<p>${messageupdate}</p>
+								<div class="row">
+									<div class="col-sm-3 btn-updateprofile">
+										<button type="submit" class="btn btn-primary">Cập
+											nhật</button>
+										<button formaction="/huy" class="btn btn-light">Hủy</button>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
 		</form>
 	</section>
 </body>

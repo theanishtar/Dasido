@@ -63,7 +63,7 @@
                                 <span class="form-item-icon material-symbols-rounded">
                                     <i class="fa-solid fa-lock"></i>
                                 </span>
-                                <input type="password" value="${passwords}" placeholder="Mật khẩu" name="passwordlg" id="passwordForm"
+                                <input type="text" value="${passwords}" placeholder="Mật khẩu" name="passwordlg" id="passwordForm"
                                  required>
                                  <span class="form-item-icon-eye hide-show-pass">
                                     <i onclick="showHidePass()" class="fa-regular fa-eye" id="eye"></i>

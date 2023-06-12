@@ -27,7 +27,7 @@
 				<img alt="" src="/views/images/user/user.jpg">
 			</c:if> --%>
 			<c:if test="${sessionScope.user!=null}">
-				<img class="user-img" src="/${sessionScope.user.avatar }" alt="">
+				<img class="user-img" src="${sessionScope.user.avatar}" alt="">
 			</c:if>
 
 			<div class="user-name">
@@ -46,8 +46,10 @@
 					</svg>
 				</span>
 				<div class="dropdown-content">
-					<a href="profile">Thông tin</a> <a>Cập nhật</a> <a href="/logout">Đăng
-						xuất</a>
+					<a href="/profile/${user.ID}">Thông tin</a> 
+					<a href="/updatepro">Cập nhật</a> 
+					<a href="/changepass">Đổi mật khẩu</a> 
+					<a href="/logout">Đăng xuất</a>
 				</div>
 			</div>
 			<div class="notify">
@@ -60,13 +62,14 @@
 					</span>
 					<div class="dropdownNotification-content" id="box">
 						<h2>
-							Thông báo - <span>2</span>
+							Thông báo <span>2</span>
 						</h2>
 						<div class="notifications-item">
 							<img src="https://i.imgur.com/uIgDDDd.jpg" alt="img">
 							<div class="text">
 								<h4>Samso aliao</h4>
 								<p>Samso Nagaro Like your home work</p>
+								<span class="new-notifications">Mới</span>
 							</div>
 						</div>
 						<div class="notifications-item">
@@ -76,6 +79,7 @@
 							<div class="text">
 								<h4>John Silvester</h4>
 								<p>+20 vista badge earned</p>
+								<span class="new-notifications">Mới</span>
 							</div>
 						</div>
 					</div>

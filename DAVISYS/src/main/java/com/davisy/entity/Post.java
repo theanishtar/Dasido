@@ -49,6 +49,7 @@ public class Post implements Serializable {
 	boolean send_StatusID;
 	boolean post_Status;
 	String product;
+	int get_report=0;
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "post")

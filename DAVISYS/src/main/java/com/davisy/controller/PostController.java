@@ -53,9 +53,13 @@ public class PostController {
 			@RequestParam("content") String content, @RequestParam("product") String product,
 			@RequestParam("radioPost") String radio) {
 		try {
+			System.out.println("dadsadsadasd: " +files.size());
 			int i = 0;
 			String pc = "";
 			User user = sessionService.get("user");
+			if(user == null) {
+				return "error";
+			}
 			String address = user.getProvince().getName();
 			Post post = new Post();
 //			String [] nameImg=new String[100];
@@ -71,11 +75,9 @@ public class PostController {
 					pc = ",";
 				}
 				String fileName = file.getOriginalFilename();
-				System.out.println("File name: " + file);
-				System.out.println("File Dir: " + uploadRootDir);
 				int idPost = postDao.maxId().getID();
 				String newName = user.getUsername() + user.getID() + idPost + i;
-				nameImg = nameImg + pc + "views/images/posts/" + newName + ".png";
+				nameImg = nameImg + pc + "/views/images/posts/" + newName + ".png";
 				File serverFile = new File(uploadRootDir.getAbsoluteFile() + File.separator
 						+ PostController.renameFile(fileName, newName));
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));

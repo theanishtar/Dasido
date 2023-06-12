@@ -42,9 +42,9 @@ arrowBack.addEventListener("click", () => {
 });
 
 // Show-close dialog setting
-const showButton_setting = document.getElementById('showButton_setting');
-const favDialog_setting = document.getElementById('favDialog_setting');
-const close_setting = document.getElementById('close_setting');
+let showButton_setting = document.getElementById('showButton_setting');
+let favDialog_setting = document.getElementById('favDialog_setting');
+let close_setting = document.getElementById('close_setting');
 
 close_setting.addEventListener('click', () => {
 	favDialog_setting.close();
@@ -54,7 +54,7 @@ showButton_setting.addEventListener('click', () => {
 });
 
 // Show-close dialog follow
-const showButton_follow = document.getElementById('showButton_follow');
+/*const showButton_follow = document.getElementById('showButton_follow');
 const favDialog_follow = document.getElementById('favDialog_follow');
 const close_follow = document.getElementById('close_follow');
 
@@ -63,4 +63,74 @@ close_follow.addEventListener('click', () => {
 });
 showButton_follow.addEventListener('click', () => {
 	favDialog_follow.showModal();
-});
+});*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*	<dialog id="favDialog_follow" class="modal" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div id="close_follow" data-dismiss="modal">
+				<i class="fa-solid fa-xmark"></i>
+			</div>
+			<div class="follow">
+				<p class="suggestion-text">Danh sách theo dõi</p>
+				<div class="list-following">
+					<c:forEach items="${follower}" var="fls">
+						<div class="profile-card-follow">
+							<div class="profile-pic">
+								<img src="${ fls.avatar }" alt="">
+							</div>
+							<div>
+								<p class="username">${ fls.fullname }</p>
+								<p class="sub-text">${ fls.username }</p>
+							</div>
+							<!-- <button class="action-btn">Hủy</button> -->
+							<a href="/deleteFollow/${fls.ID}" class="action-btn">Hủy</a>
+						</div>
+					</c:forEach>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</dialog> */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

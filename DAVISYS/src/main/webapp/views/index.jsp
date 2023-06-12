@@ -17,7 +17,17 @@
             </div>
             <div class="header__content">
                 <div>
-                    <h1>DASIDO<br />Diễn đàn tặng đồ secondhand </h1>
+                    <div>
+                        <div class="animated-word">
+                            <div class="letter">D</div>
+                            <div class="letter">A</div>
+                            <div class="letter">S</div>
+                            <div class="letter">I</div>
+                            <div class="letter">D</div>
+                            <div class="letter">O</div>
+                        </div>
+                        <h1> Diễn đàn tặng đồ secondhand </h1>
+                    </div>
                     <p class="section__subtitle">
                         <br>
                         Đăng nhập ngay để nhận hàng ngàn món đồ secondhand miễn phí !!!
