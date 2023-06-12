@@ -32,7 +32,7 @@ Spring Boot, Ajax, Socket.io, JQuery, Bootstrap v5, JSP template angine.
 
 
 
-## Table of contents (optional)
+<!-- ## Table of contents (optional)
 
 - Requirements
 - Recommended modules
@@ -40,7 +40,7 @@ Spring Boot, Ajax, Socket.io, JQuery, Bootstrap v5, JSP template angine.
 - Configuration
 - Troubleshooting
 - FAQ
-- Maintainers
+- Maintainers -->
 
 ## Install and run the project
 
@@ -49,7 +49,7 @@ Spring Boot, Ajax, Socket.io, JQuery, Bootstrap v5, JSP template angine.
 $ git clone https://github.com/Theanishtar/DASIDO
 ```
 
-- Install Spring Tools Suite 4 IDE: [at here](https://spring.io/tools)
+- Install Spring Tools Suite 4 IDE [at here](https://spring.io/tools)
 
 - Open project 
 
