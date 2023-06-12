@@ -61,6 +61,17 @@ showButton_setting.addEventListener('click', () => {
     favDialog_setting.showModal();
 });
 
+// Show-close dialog share
+const showButton_share = document.getElementById('showButton_share');
+const favDialog_share = document.getElementById('favDialog_share');
+const close_share = document.getElementById('close_share');
+
+close_share.addEventListener('click', () => {
+    favDialog_share.close();
+});
+showButton_share.addEventListener('click', () => {
+    favDialog_share.showModal();
+});
 
 
 
