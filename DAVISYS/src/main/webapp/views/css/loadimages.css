@@ -1,0 +1,8 @@
+@charset "utf-8";
+#ip_images{
+    display: none;
+}
+#images-to-upload img {
+    width: 200px;
+    margin-right: 5px;
+  }

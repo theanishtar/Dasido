@@ -1,0 +1,345 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+    font-family: 'Poppins', sans-serif;
+    /* background: linear-gradient(to right, #333399, #ff00cc); */
+    background: linear-gradient(to right, #112D60, #DD83E0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.reason__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding-top: 3rem;
+}
+
+.left_content {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.left_content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left_content>div {
+    max-width: 520px;
+    display: grid;
+    gap: 1rem;
+}
+
+.left_content .section__title {
+    font-size: 2.6rem;
+    line-height: 4rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #7ed6df;
+    margin-bottom: 0px;
+}
+.animated-word {
+    display: flex;
+}
+
+.letter {
+    transition: 0.4s;
+    transform: translateX(0);
+    cursor: grab;
+    color: #ffffff !important;
+    margin-bottom: 0px;
+    font-size: 4rem !important;
+    line-height: 4rem;
+    font-weight: 800;
+    color: var(--text-dark);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+.letter:hover {
+    transform: translateY(-1rem);
+    background: -webkit-linear-gradient(120deg, hsl(19, 90%, 52%),
+            hsl(56, 100%, 50%));
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+/* .left_content .section__title p {
+    color: #ffffff;
+    margin-bottom: 0px;
+    font-size: 4rem !important;
+} */
+
+.section__subtitle {
+    font-size: 1rem;
+    color: var(--text-dark);
+    max-width: calc(var(--max-width) / 2);
+    margin-bottom: 1rem;
+    color: #c7ecee;
+}
+
+div.return {
+    font-size: 1rem;
+    color: #c7ecee;
+
+}
+
+div.return a {
+    text-decoration: none;
+    color: #67e6dc;
+}
+
+.right_content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* Login Card */
+.login-card-container {
+    border: 1px solid rgba(132, 132, 132, 0.5);
+    border-radius: 10px;
+    background: rgba(240, 240, 240, 0.5);
+
+}
+
+.login-card {
+    padding: 2rem 4rem 0rem 4rem;
+    position: relative;
+}
+
+/* Login Card Logo */
+.login-card-logo {
+    margin-bottom: 1rem;
+}
+
+.login-card-logo img {
+    width: 60px;
+}
+
+/* ---------- */
+
+/* Login Card Standard */
+.login-card-logo,
+.login-card-header,
+.login-card-footer {
+    text-align: center;
+}
+
+.login-card a,
+.login-card-footer a {
+    text-decoration: none;
+    color: #35339a;
+}
+
+.login-card a:hover {
+    transform: scale(1.1);
+}
+
+/* Login Card Header */
+.login-card-header {
+    margin-bottom: 2rem;
+}
+
+.login-card-header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: .5rem;
+}
+.login-card-header span{
+    font-size: 13px;
+    opacity: .8;
+    color: red;
+}
+.login-card-header h1+div {
+    font-size: calc(1rem * .8);
+    opacity: .8;
+}
+
+/* Login Card Form */
+.login-card-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.login-card-form .form-item {
+    position: relative;
+}
+
+.login-card-form .form-item .form-item-icon {
+    position: absolute;
+    top: .50rem;
+    left: 1.4rem;
+    font-size: 1.3rem;
+    opacity: .4;
+}
+
+.form-item-icon-eye {
+    position: absolute;
+    top: .50rem;
+    right: 1rem;
+    font-size: 1.3rem;
+    opacity: .4;
+    cursor: pointer;
+}
+
+.login-card-form .checkbox {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.login-card-form .form-item-other {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: calc(1rem * .8);
+    margin-bottom: .5rem;
+}
+
+/* Login Card Footer */
+.login-card-footer {
+    margin-top: 0.6rem;
+    margin-bottom: 1rem;
+    font-size: calc(1rem * .8);
+}
+
+/* Login Card Form Elements */
+.login-card input[type="text"],
+.login-card input[type="password"],
+.login-card input[type="email"] {
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, .3);
+    padding: 1rem 1.5rem;
+    padding-left: calc(1rem * 3.5);
+    border-radius: 100px;
+    width: 70%;
+    transition: background .5s;
+}
+
+.login-card input:focus {
+    background: white;
+}
+
+.login-card input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    accent-color: black;
+}
+
+.login-card button {
+    background: black;
+    color: white;
+    padding: 1rem;
+    border-radius: 100px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: background .5s;
+}
+
+.login-card button:hover {
+    background-color: rgba(0, 0, 0, 0.85);
+    cursor: pointer;
+}
+
+/* ---------- */
+
+/* Login Card Social Buttons */
+.method{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+.striped {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 0;
+}
+.striped-line {
+    flex: auto;
+    flex-basis: auto;
+    border: none;
+    outline: none;
+    height: 2px;
+    background: #dadce0;
+}
+.striped-text {
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: inherit;
+    color: #121212;
+    margin: 0 1rem;
+}
+ .method-control {
+    margin-bottom: 1rem;
+    
+}
+.method-control a{
+    text-decoration: none;
+    border: none;
+}
+.method-action {
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 500;
+    line-height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    height: auto;
+    padding: 1rem 1.25rem;
+    outline: none;
+    border: 2px solid #dadce0;
+    border-radius: 2rem;
+    color: #121212;;
+    background: #ffffff;
+    text-rendering: optimizeLegibility;
+    transition: all 0.35s ease;
+}
+.method-action:hover {
+    background: #f1f5f9;
+}
+.fa-google {
+    font-size: 1rem;
+    line-height: inherit;
+    margin-right: 0.5rem;
+    color: #f44336;
+}
+/* ---------- */
+
+
+/* Responsive */
+@media (max-width: 768px) {
+    body {
+        padding: 0 15px 0 15px;
+    }
+
+    .left_content {
+        display: none;
+    }
+
+    .login-card {
+        width: 260px;
+        padding: 2rem;
+    }
+
+    .reason__container {
+        padding-top: 1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

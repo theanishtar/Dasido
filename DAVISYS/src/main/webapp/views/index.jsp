@@ -23,7 +23,7 @@
                         Đăng nhập ngay để nhận hàng ngàn món đồ secondhand miễn phí !!!
                     </p>
                     <div class="action__btns">
-                        <a class="btn" href="log">Đăng nhập</a>
+                        <a class="btn" href="login">Đăng nhập</a>
                     </div>
                 </div>
             </div>
@@ -112,7 +112,7 @@
                 <p>
                     <span>Địa chỉ:</span> FPT POLYTECHNIC CẦN THƠ
                 </p>
-                <p><span>Email:</span> dasido@gmail.com</p>
+                <p><span>Email:</span> dasido.2hand.davisy@gmail.com</p>
                 <p><span>Điện thoại:</span> +0123456789</p>
             </div>
         </div>
