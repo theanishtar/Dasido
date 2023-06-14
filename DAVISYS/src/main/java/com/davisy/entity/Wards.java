@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Ward implements Serializable{
+public class Wards implements Serializable{
 	@Id
 	String code;
 	String name;

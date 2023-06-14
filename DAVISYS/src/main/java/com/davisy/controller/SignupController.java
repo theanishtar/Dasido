@@ -153,6 +153,6 @@ public class SignupController {
 			
 
 		}
-		return "jsp/main";
+		return "redirect:/main";
 	}
 }

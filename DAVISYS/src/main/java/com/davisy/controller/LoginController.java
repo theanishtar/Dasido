@@ -2,12 +2,14 @@ package com.davisy.controller;
 
 import java.util.ArrayList;
 import java.util.Base64;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,21 +20,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.davidy.controller.UserGoogleCloud;
 import com.davisy.dao.CommentDao;
+import com.davisy.dao.DistrictsDao;
 import com.davisy.dao.FollowerDao;
 import com.davisy.dao.PostDao;
+import com.davisy.dao.ProvinceDao;
 import com.davisy.dao.UserDao;
+import com.davisy.dao.WardsDao;
 import com.davisy.entity.Comment;
 import com.davisy.entity.CommentEntity;
+import com.davisy.entity.District;
 import com.davisy.entity.Follower;
 import com.davisy.entity.Post;
 import com.davisy.entity.PostEntity;
+import com.davisy.entity.Province;
 import com.davisy.entity.User;
+import com.davisy.entity.Wards;
 import com.davisy.service.CookieService;
 import com.davisy.service.ParamService;
 import com.davisy.service.SessionService;
 import com.google.gson.Gson;
-
-
 
 @Controller
 public class LoginController {
@@ -44,10 +50,18 @@ public class LoginController {
 
 	@Autowired
 	PostDao pdao;
-	
+
 	@Autowired
 	CommentDao commentDao;
-	
+	@Autowired
+	ProvinceDao provinceDao;
+
+	@Autowired
+	DistrictsDao districtsDao;
+
+	@Autowired
+	WardsDao wardsDao;
+
 	@Autowired
 	HttpServletRequest request;
 
@@ -59,11 +73,6 @@ public class LoginController {
 
 	@Autowired
 	SessionService sessionService;
-
-	@RequestMapping("/log")
-	String login() {
-		return "/login";
-	}
 
 	@PostMapping("/home")
 	String home(HttpServletRequest req, HttpServletResponse res, Model m) {
@@ -77,16 +86,13 @@ public class LoginController {
 			String payload = new String(decoder.decode(chunks[1]));
 
 			UserGoogleCloud ugc = new Gson().fromJson(payload, UserGoogleCloud.class);
-
-			if(userdao.findByEmail(ugc.getEmail())!= null){
-				m.addAttribute("message", "Email này đã được đăng ký!");
-				return "jsp/main";
-			}
-			else if(userdao.findSub(ugc.getSub()) != null) {
+			if (userdao.findByEmail(ugc.getEmail()) != null) {
+				sessionService.set("user", userdao.findByEmail(ugc.getEmail()));
+				return "redirect:/main";
+			} else if (userdao.findSub(ugc.getSub()) != null) {
 				sessionService.set("user", userdao.findSub(ugc.getSub()));
-				return "jsp/main";
-			}
-			else{
+				return "redirect:/main";
+			} else {
 				User user = new User();
 				user.setSub(ugc.getSub());
 				user.setUsername(ugc.getSub());
@@ -102,11 +108,9 @@ public class LoginController {
 				user.setUser_Role(false);
 				userdao.saveAndFlush(user);
 				sessionService.set("user", user);
-				return "jsp/main";
+				return "redirect:/main";
 			}
 
-			
-			
 		} catch (Exception e) {
 			System.out.println(e);
 			throw e;
@@ -135,71 +139,87 @@ public class LoginController {
 		User user = userdao.findByUsername(username);
 
 		if (user == null) {
-			model.addAttribute("message", "Tên đăng nhập hoặc mật khẩu không đúng!");
+			model.addAttribute("message", "Tên đăng nhập không đúng!");
 
-		}else if (user.isBan() == true) {
-			model.addAttribute("message", "Tài khoản của bạn đã bị khóa vui lòng liên hệ với chúng tôi để được hỗ trợ!");
 		}
-		else {
+		else if (user.isBan() == true) {
+		
+			model.addAttribute("message",
+					"Tài khoản của bạn đã bị khóa vui lòng liên hệ với chúng tôi để được hỗ trợ!");
+		} else {
 			if (!user.getPassword().equals(password)) {
 				model.addAttribute("message", "Tên đăng nhập hoạc mật khẩu không đúng!");
 
 			} else {
-				sessionService.set("user", user);
-				
-				User userSession = sessionService.get("user");
-				List<Follower> fls = followerDAO.findAllFollower(userSession.getID());
-				List<User> users = new ArrayList<>();
-				for (Follower f : fls) {
-					Follower.Pk pk = f.getPk();
-					users.add(userdao.findIdUser(pk.getUserID()));
-				}
-				model.addAttribute("follower", users);
+			sessionService.set("user", user);
 
-				List<User> listSuggestedFriend = userdao.findAllByIdUser(userSession.getID());
-				
-				loadPost(model);
-				
-				List<User> listFriends = new ArrayList<>();
-				for (int i = 0; i < 4; i++) {
-					int ran = (int) Math.floor(Math.random() * listSuggestedFriend.size());
-					listFriends.add(listSuggestedFriend.get(ran));
-					listSuggestedFriend.remove(ran);
-				}
-				model.addAttribute("listFriends", listFriends);
-				
-				if (remember) {
-					cookieService.add("user", username, 10);
-					cookieService.add("pass", password, 10);
-				} else {
-					cookieService.delete("user");
-					cookieService.delete("pass");
-				}
-				System.out.println();
-				return "redirect:/main";
+			List<User> listSuggestedFriend = userdao.findAllByIdUser(user.getID());
+
+			loadPost(model);
+
+			List<User> listFriends = new ArrayList<>();
+			for (int i = 0; i < 4; i++) {
+				int ran = (int) Math.floor(Math.random() * listSuggestedFriend.size());
+				listFriends.add(listSuggestedFriend.get(ran));
+				listSuggestedFriend.remove(ran);
 			}
+			model.addAttribute("listFriends", listFriends);
+			List<Province> listProvinces = provinceDao.findAll();
+			List<District> listDistricts = new ArrayList<>();
+			List<Wards> listWards = new ArrayList<>();
+			if (null == user.getProvince()) {
+				listDistricts = districtsDao.findAll();
+				listWards = wardsDao.findAll();
+			} else {
+				listDistricts = districtsDao.findAllById(user.getProvince().getCode());
+				listWards = wardsDao.findAllById(listDistricts.get(0).getCode());
+			}
+			sessionService.set("follower", follow());
+			sessionService.set("listProvinces", listProvinces);
+			sessionService.set("listDistricts", listDistricts);
+			sessionService.set("listWards", listWards);
+
+			if (remember) {
+				cookieService.add("user", username, 10);
+				cookieService.add("pass", password, 10);
+			} else {
+				cookieService.delete("user");
+				cookieService.delete("pass");
+			}
+			System.out.println();
+			return "redirect:/main";
+			}
+			
 
 		}
 
 		return "login";
 	}
-	
+
+	public List<User> follow() {
+		User userSession = sessionService.get("user");
+		List<Follower> fls = followerDAO.findAllFollower(userSession.getID());
+		List<User> users = new ArrayList<>();
+		for (Follower f : fls) {
+			Follower.Pk pk = f.getPk();
+			users.add(userdao.findIdUser(pk.getUserID()));
+		}
+		return users;
+	}
+
 	@GetMapping("/main")
 	public String loadPost(Model model) {
+		User userSession = sessionService.get("user");
+		if (userSession == null) {
+			return "error";
+		}
 		try {
 			List<Post> posts = pdao.findAll();
-			List<PostEntity> postEntity = new ArrayList<>();
+			List<PostEntity> postEntity = loopImg(posts);
+
 			List<Comment> comments = commentDao.findAll();
 			List<CommentEntity> commentEntity = new ArrayList<>();
 			int dem = 0;
-			for (Post p : posts) {
-				List<String> images = new ArrayList<>();
-				String image = p.getLink_Image();
-				for (String img : image.split(",")) {
-					images.add(img);
-				}
-				postEntity.add(new PostEntity(p, images));
-			}
 			for (Comment cm : comments) {
 				if (cm.getCommentParent() == null) {
 					dem = commentDao.findAllByIdComment(cm.getID()).size();
@@ -207,24 +227,63 @@ public class LoginController {
 				commentEntity.add(new CommentEntity(cm, dem));
 				dem = 0;
 			}
-			model.addAttribute("posts", postEntity);
+			List<PostEntity> postEntityFollows = new ArrayList<>();
+			for (User us : follow()) {
+				for (PostEntity pe : postEntity) {
+					if (us.getID() == pe.getPost().getUser().getID()) {
+						postEntityFollows.add(pe);
+					}
+				}
+			}
+			if (null == userSession.getProvince()) {
+				System.out.println("==================================================================");
+				System.out.println(postEntity.size());
+				model.addAttribute("posts", postEntity);
+			} else {
+				List<PostEntity> postEtityAddress = loopImg(pdao.findPostAddress(userSession.getProvince().getCode()));
+				postEntity.removeAll(postEntityFollows);
+				postEntity.removeAll(postEtityAddress);
+				List<PostEntity> newPost = new ArrayList<>();
+				newPost.addAll(postEntityFollows);
+				newPost.addAll(postEtityAddress);
+				newPost.addAll(postEntity);
+				model.addAttribute("posts", newPost);
+			}
+			Date now = new Date();
+			List<Object[]> listTop2 = pdao.top2Post(now.getMonth() + 1);
+			model.addAttribute("listTop2", listTop2);
 			model.addAttribute("comments", commentEntity);
-			System.out.println("cmt: "+commentEntity.size());
 		} catch (Exception e) {
 			System.out.println("Error loadPost: " + e);
 		}
 		return "jsp/main";
-
 	}
-	
-	
-	@GetMapping("/profile/{id}")
-	public String loadPostProfile(@PathVariable String id, Model model) {
+
+	public List<PostEntity> loopImg(List<Post> posts) {
+		List<PostEntity> postEntity = new ArrayList<>();
+		for (Post p : posts) {
+			List<String> images = new ArrayList<>();
+			String image = p.getLink_Image();
+			for (String img : image.split(",")) {
+				images.add(img);
+			}
+			postEntity.add(new PostEntity(p, images));
+		}
+		return postEntity;
+	}
+
+	@GetMapping("/profile/{idUser}")
+	public String loadPostProfile(@PathVariable String idUser, Model model) {
+		System.out.println("IdUser: " + idUser);
+		User userSession = sessionService.get("user");
+		if (userSession == null) {
+			return "error";
+		}
 		try {
-			int userId = Integer.valueOf(id);
+			int userId = Integer.valueOf(idUser);
 			System.out.println(userId);
 			User userProfile = userdao.findIdUser(userId);
-			System.out.println(userProfile.getFullname()+" alooo");
+			System.out.println(userProfile.getFullname() + " alooo");
 			List<Post> posts = pdao.findByListPostById(userId);
 			List<PostEntity> postEntity = new ArrayList<>();
 			List<Comment> comments = commentDao.findAll();
@@ -232,7 +291,7 @@ public class LoginController {
 			int dem = 0;
 			for (Post p : posts) {
 				List<String> images = new ArrayList<>();
-				System.out.println("test: "+p.getPost());
+				System.out.println("test: " + p.getPost());
 				String image = p.getLink_Image();
 				for (String img : image.split(",")) {
 					images.add(img);
@@ -246,6 +305,10 @@ public class LoginController {
 				commentEntity.add(new CommentEntity(cm, dem));
 				dem = 0;
 			}
+			int countFollower = followerDAO.countFollower(userId);
+			int countFollowing = followerDAO.countFollowing(userId);
+			model.addAttribute("countFLer", countFollower);
+			model.addAttribute("countFLing", countFollowing);
 			model.addAttribute("usersProfile", userProfile);
 			model.addAttribute("listPost", postEntity);
 			model.addAttribute("commentsProfile", commentEntity);
@@ -255,9 +318,10 @@ public class LoginController {
 		return "jsp/profile";
 
 	}
+
 	@RequestMapping("/logout")
-public String logout(Model m) {
+	public String logout(Model m) {
 		sessionService.set("user", null);
-		return "index";
+		return "redirect:/index";
 	}
 }

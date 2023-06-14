@@ -51,8 +51,7 @@ CREATE TABLE INTERESTED
 (
 	ID INT IDENTITY PRIMARY KEY NOT NULL,
 	userID INT NOT NULL,
-	postID INT NOT NULL,
-	content NVARCHAR(MAX) NOT NULL
+	postID INT NOT NULL
 )
 
 GO
@@ -64,7 +63,8 @@ CREATE TABLE COMMENT
 	parent_comment_id INT NULL,
 	postID INT NOT NULL,
 	date_Comment DATE NOT NULL,
-	content NVARCHAR(MAX) NOT NULL
+	content NVARCHAR(MAX) NOT NULL,
+	 cmt_Status BIT
 )
 
 GO
@@ -107,7 +107,7 @@ GO
 
 CREATE TABLE messages (
   id INT PRIMARY KEY  IDENTITY(1,1),
-  content VARCHAR(255),
+  content NVARCHAR(255),
   send_Time VARCHAR(50),
   sender_id INT,
   chat_id INT,
@@ -15072,33 +15072,33 @@ ALTER TABLE FOLLOWER ADD CONSTRAINT FK_FOLLOWER_USERS FOREIGN KEY (userID) REFER
 GO
 INSERT INTO USERS
 VALUES
-	('null','dangth', '123', N'Trần Hữu Đang', 'dangthpc04349@fpt.edu.vn', CAST('9-7-2003' AS DATE), CAST('2-12-2023' AS DATE), 'Nam', '93', 'views/images/user/user1.jpg',NULL, 0, 1, 1, 0, 0),
-	('null','vinhpq', '123', N'Phùng Quốc Vinh', 'vinhpqpc04338@fpt.edu.vn', CAST('11-15-2003' AS DATE), CAST('1-7-2023' AS DATE), 'Nam', '92', 'views/images/user/user2.jpg',NULL, 0, 1, 0, 0, 0),
-	('null','dannk', '123', N'Nguyễn Khánh Đan', 'dannkpc04351@fpt.edu.vn', CAST('11-7-2003' AS DATE), CAST('4-5-2023' AS DATE), N'Nữ', '92', 'views/images/user/user3.jpg',NULL, 0, 1, 0, 0, 0),
-	('null','sydh', '123', N'Đoàn Hiệp Sỹ', 'sydhpc04388@fpt.edu.vn', CAST('4-7-2003' AS DATE), CAST('5-10-2023' AS DATE), 'Nam', '89', 'views/images/user/user4.jpg',NULL, 0, 1, 0, 0, 0),
-	('null','vilb', '123', N'Lê Bích Vi', 'vilbpc04354@fpt.edu.vn', CAST('6-2-2003' AS DATE), CAST('3-14-2023' AS DATE), N'Nữ', '96', 'views/images/user/user5.jpg',NULL, 0, 1, 0, 0, 0),
-	('null','nhuomtv', '123', N'Trần Văn Nhuộm', 'nhuomtv@fe.edu.vn', CAST('12-20-1984' AS DATE), CAST('6-8-2023' AS DATE), N'Nam', '93', 'https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/350128397_2252803298236793_8419859901676053169_n.jpg?stp=cp6_dst-jpg&_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Xrj11X0VY6kAX-CizPd&_nc_ht=scontent.fsgn2-6.fna&oh=00_AfD9UeRK2DxZEX9Fj6Uh6ApZtimViIaRWs6NsgkArur3xg&oe=6484237B',NULL, 0, 1, 1, 0, 0)
+	('null','dangth', '123', N'Trần Hữu Đang', 'dangthpc04349@fpt.edu.vn', CAST('9-7-2003' AS DATE), CAST('2-12-2023' AS DATE), 'Nam', '93', '/views/images/user/user1.jpg',CAST('5-18-2023' AS DATE), 0, 1, 1, 0, 0),
+	('null','vinhpq', '123', N'Phùng Quốc Vinh', 'vinhpqpc04338@fpt.edu.vn', CAST('11-15-2003' AS DATE), CAST('1-7-2023' AS DATE), 'Nam', '92', '/views/images/user/user2.jpg',CAST('5-18-2023' AS DATE), 0, 1, 0, 0, 0),
+	('null','dannk', '123', N'Nguyễn Khánh Đan', 'dannkpc04351@fpt.edu.vn', CAST('11-7-2003' AS DATE), CAST('4-5-2023' AS DATE), N'Nữ', '92', '/views/images/user/user3.jpg',CAST('5-18-2023' AS DATE), 0, 1, 0, 0, 0),
+	('null','sydh', '123', N'Đoàn Hiệp Sỹ', 'sydhpc04388@fpt.edu.vn', CAST('4-7-2003' AS DATE), CAST('5-10-2023' AS DATE), 'Nam', '89', '/views/images/user/user4.jpg',CAST('5-18-2023' AS DATE), 0, 1, 0, 0, 0),
+	('null','vilb', '123', N'Lê Bích Vi', 'vilbpc04354@fpt.edu.vn', CAST('6-2-2003' AS DATE), CAST('3-14-2023' AS DATE), N'Nữ', '96', '/views/images/user/user5.jpg',CAST('5-18-2023' AS DATE), 0, 1, 0, 0, 0),
+	('null','nhuomtv', '123', N'Trần Văn Nhuộm', 'nhuomtv@fe.edu.vn', CAST('12-20-1984' AS DATE), CAST('6-8-2023' AS DATE), N'Nam', '93', 'https://scontent.fsgn2-6.fna.fbcdn.net/v/t39.30808-6/350128397_2252803298236793_8419859901676053169_n.jpg?stp=cp6_dst-jpg&_nc_cat=111&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=Xrj11X0VY6kAX-CizPd&_nc_ht=scontent.fsgn2-6.fna&oh=00_AfD9UeRK2DxZEX9Fj6Uh6ApZtimViIaRWs6NsgkArur3xg&oe=6484237B',CAST('5-18-2023' AS DATE), 0, 1, 1, 0, 0)
 GO
 
 INSERT INTO POST
 VALUES
 	(1, N'Xin chào mọi người tôi có cây bút lâu ngày kh sài nên tôi muốn tặng lại cho ai muốn xin vui lòng liên hệ zalo: 0123456789 nhaa',
-		CAST('5-18-2023' AS DATE), N'Bút', N'Hậu Giang', 'views/images/posts/post1.jpg', 1, 1, N'Bút bi', 0),
+		CAST('6-04-2023' AS DATE), N'Bút', N'Hậu Giang', '/views/images/posts/post1.jpg', 1, 1, N'Bút bi', 0),
 	(2, N'Xin chào mọi người tôi có cuốn sách lâu ngày kh sài nên tôi muốn tặng lại cho ai muốn xin vui lòng liên hệ zalo: 0123456789 nhaa',
-		CAST('3-18-2023' AS DATE), N'Sách', N'Cần Thơ', 'views/images/posts/post2.jpg', 0, 1, N'Sách', 0),
+		CAST('3-18-2023' AS DATE), N'Sách', N'Cần Thơ', '/views/images/posts/post2.jpg', 0, 1, N'Sách', 0),
 	(3, N'Xin chào mọi người tôi có một ít quần áo lâu ngày kh sài nên tôi muốn tặng lại cho ai muốn xin vui lòng liên hệ zalo: 0123456789 nhaa',
-		CAST('4-18-2023' AS DATE), N'Quần áo', N'Cần Thơ', 'views/images/posts/post1.jpg', 0, 1, N'Quần áo', 0),
+		CAST('4-18-2023' AS DATE), N'Quần áo', N'Cần Thơ', '/views/images/posts/post1.jpg', 0, 1, N'Quần áo', 0),
 	(4, N'Xin chào mọi người tôi có đôi giày lâu ngày kh sài nên tôi muốn tặng lại cho ai muốn xin vui lòng liên hệ zalo: 0123456789 nhaa',
-		CAST('2-18-2023' AS DATE), N'Giày', N'An Giang', 'views/images/posts/post2.jpg', 0, 1, N'Giày', 0),
+		CAST('2-18-2023' AS DATE), N'Giày', N'An Giang', '/views/images/posts/post2.jpg', 0, 1, N'Giày', 0),
 	(5, N'Xin chào mọi người tôi có cái chổi lau nhà lâu ngày kh sài nên tôi muốn tặng lại cho ai muốn xin vui lòng liên hệ zalo: 0123456789 nhaa',
-		CAST('1-18-2023' AS DATE), N'Chổi lau nhà', N'Cà Mau', 'views/images/posts/post1.jpg', 0, 1, N'Chổi lau nhà', 0)
+		CAST('1-18-2023' AS DATE), N'Chổi lau nhà', N'Cà Mau', '/views/images/posts/post1.jpg', 0, 1, N'Chổi lau nhà', 0)
 GO
 INSERT INTO COMMENT
 VALUES
-	(2, NULL, 1, CAST('5-18-2023' AS DATE), N'tôi đã liên hệ bạn qua zalo rồi á'),
-	(2, NULL, 5, CAST('5-18-2023' AS DATE), N'tôi đã liên hệ bạn qua zalo rồi á'),
-	(3, NULL, 4, CAST('5-18-2023' AS DATE), N'tôi đã liên hệ bạn qua zalo rồi á'),
-	(4, NULL, 3, CAST('5-18-2023' AS DATE), N'tôi đã liên hệ bạn qua zalo rồi á')
+	(2, NULL, 1, CAST('5-18-2023' AS DATE), N'tôi đã liên hệ bạn qua zalo rồi á',0),
+	(2, NULL, 5, CAST('5-18-2023' AS DATE), N'tôi đã liên hệ bạn qua zalo rồi á',0),
+	(3, NULL, 4, CAST('5-18-2023' AS DATE), N'tôi đã liên hệ bạn qua zalo rồi á',0),
+	(4, NULL, 3, CAST('5-18-2023' AS DATE), N'tôi đã liên hệ bạn qua zalo rồi á',0)
 
 GO
 INSERT INTO SHARE
@@ -15111,8 +15111,10 @@ GO
 
 INSERT INTO INTERESTED
 VALUES
-	(2, 1, N'Cho xin bạn ơi'),
-	(2, 5, N'Mình thấy hứng thú với cái này quá mình ib zalo bạn rùi á')
+	(2, 24),
+	(2, 25)
+
+select * from post
 
 GO
 INSERT INTO HISTORY
@@ -15147,7 +15149,7 @@ a.userID = b.ID and
 */
 
 
-
+-- Top 10 bài đăng theo lượt quan tâm
 SELECT TOP 10 POST.ID, POST.LINK_IMAGE, USERS.FULLNAME, COUNT(INTERESTED.POSTID) AS INTERESTED 
 	FROM POST 
 	INNER JOIN INTERESTED 
@@ -15157,25 +15159,52 @@ SELECT TOP 10 POST.ID, POST.LINK_IMAGE, USERS.FULLNAME, COUNT(INTERESTED.POSTID)
 	GROUP BY POST.ID, POST.LINK_IMAGE, USERS.FULLNAME
 	ORDER BY COUNT(INTERESTED.POSTID) DESC
 
+-- Top 10 tài khoản có điểm cao
 SELECT TOP 10 *
 	FROM USERS 
 	ORDER BY USERS.MARK DESC
 
 
+--Tổng số bài đăng của tháng
 SELECT COUNT(POST.ID) AS POSTMONTH FROM POST WHERE MONTH(POST.DATE_POST) = '5'
-
+--Tổng số người dùng của tháng
 SELECT COUNT(USERS.ID) AS USERSMONTH FROM USERS WHERE MONTH(USERS.DAYCREATE) = '5'
-
+--% bài viết có trạng thái được tặng thành công
 SELECT ((SELECT COUNT(POST.ID) * 100 FROM POST WHERE POST.SEND_STATUSID = '1') / (SELECT COUNT(POST.ID) FROM POST)) AS PERCENTPOST
-
+--Tổng số lượng báo cáo bài viết trong ngày
 SELECT COUNT(POST.GET_REPORT) AS POSTREPORTCOUNT FROM POST WHERE DAY(POST.DATE_POST) = '18'
-
+--Tổng số bài đăng theo từng tháng
 SELECT MONTH(DATE_POST) AS MONTH, COUNT(*) FROM POST GROUP BY MONTH(DATE_POST) ORDER BY MONTH(DATE_POST) ASC
-
+--Top 3 sản phẩm bán chạy
 SELECT TOP 3 POST.PRODUCT, COUNT(*) AS AMOUNT FROM POST GROUP BY POST.PRODUCT ORDER BY AMOUNT DESC
+--Top 2 bài đăng có lượt quan tâm nhiều nhất trong tháng
+SELECT TOP 2 POST.POST, POST.date_Post, USERS.AVATAR, USERS.USERNAME, COUNT(INTERESTED.POSTID) 
+FROM POST 
+INNER JOIN INTERESTED 
+ON POST.ID = INTERESTED.POSTID
+INNER JOIN USERS
+ON POST.USERID = USERS.ID
+WHERE MONTH(POST.DATE_POST)='6'
+GROUP BY POST.POST, POST.date_Post, USERS.AVATAR, USERS.USERNAME
+ORDER BY COUNT(INTERESTED.POSTID) DESC
 
 
-
+/*
 SELECT * FROM INTERESTED
+SELECT *FROM INTERESTED
 SELECT * FROM USERS 
-SELECT * FROM POST
+SELECT a.ID,a.userID,a.parent_comment_id,a.postID,a.date_Comment,a.content,a.cmt_Status
+FROM COMMENT a INNER JOIN POST b ON a.postID = b.ID
+INNER JOIN USERS c ON b.userID = c.ID WHERE c.username='sydh' ORDER BY a.date_Comment DESC
+
+select a.ID,a.userID,a.post,a.date_Post,a.hash_Tag,a.address_Product,a.link_Image,a.link_Image,
+a.send_StatusID,a.post_Status,a.product,a.get_report
+from POST a, USERS b, provinces c where 
+a.userID = b.ID and
+b.user_AddressID = c.code and c.code =89
+
+SELECT *FROM messages
+SELECT *FROM  POST a,USERS b
+ 
+SELECT * FROM FOLLOWER WHERE followerID=1
+*/

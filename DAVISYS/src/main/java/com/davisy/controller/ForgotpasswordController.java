@@ -47,9 +47,8 @@ public class ForgotpasswordController {
 		User user = new User();
 		try {
 			user = userDao.findByEmail(email);
-		
 			if (user == null) {
-				m.addAttribute("messageForgot1", "Mã xác nhận chưa đúng!");
+//				m.addAttribute("messageForgot1", "Mã xác nhận chưa đúng!");
 				ma = null;
 			} else {
 				String username = "dasido.2hand.davisy@gmail.com";
@@ -85,7 +84,7 @@ public class ForgotpasswordController {
 				ma = maxacnhan;
 			}
 		} catch (Exception e) {
-			m.addAttribute("messageForgot1", "Mã xác nhận chưa đúng!");
+//			m.addAttribute("messageForgot1", "Mã xác nhận chưa đúng!");
 			ma = null;
 			System.out.println("error: " + e);
 		}
@@ -95,7 +94,6 @@ public class ForgotpasswordController {
 
 	@GetMapping("/getMa/{mxn}")
 	public String getMa(@PathVariable String mxn, Model m) {
-		
 		if (!maxacnhan.equals(mxn)) {
 			ma = null;
 		} else {

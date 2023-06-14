@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,6 +56,8 @@ public class MessageController {
 	ChatParticipantsDao chatParticipantsDao;
 	@Autowired
 	HttpServletResponse response;
+	@Autowired
+	HttpServletRequest request;
 
 	@Autowired
 	private SimpMessagingTemplate simpMessagingTemplate;
@@ -72,8 +75,8 @@ public class MessageController {
 	public void createChats(@PathVariable String chatName, @RequestParam("fromLogin") String fromLogin,
 			@RequestParam("toUser") String toUser) {
 		try {
-			System.out.println("fromLogin: "+fromLogin);
-			System.out.println("toUser: "+toUser);
+			request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
 			User user1 = userDao.findByUsername(fromLogin);
 			User user2 = userDao.findByUsername(toUser);
 			if (chatsDao.findChatNames(fromLogin + toUser) == null
@@ -92,6 +95,7 @@ public class MessageController {
 					chatParticipantsDao.save(chatParticipant);
 				}
 			} else {
+				
 				User user = sessionService.get("user");
 				PrintWriter out = response.getWriter();
 				List<Object[]> listMessage = messagesDao.findListMessage(checkNameChat(fromLogin, toUser));
@@ -126,15 +130,39 @@ public class MessageController {
 			@RequestParam("userName") String userName, @RequestParam("message") String message,
 			@RequestParam("time") String time) {
 		try {
-			Chats chats = chatsDao.findChatNames(checkNameChat(fromLogin, toUser));
-			User user = userDao.findByUsername(userName);
-			Messages messages = new Messages();
-			messages.setContent(message);
-			messages.setChats(chats);
-			messages.setSend_Status(false);
-			messages.setUser(user);
-			messages.setSend_Time(time);
-			messagesDao.save(messages);
+			request.setCharacterEncoding("utf-8");
+			response.setCharacterEncoding("utf-8");
+			if(chatsDao.findChatNames(checkNameChat(fromLogin, toUser))==null) {
+				User user1 = userDao.findByUsername(fromLogin);
+				User user2 = userDao.findByUsername(toUser);
+				if (chatsDao.findChatNames(fromLogin + toUser) == null
+						&& chatsDao.findChatNames(toUser + fromLogin) == null) {
+					Chats chat = new Chats();
+					chat.setName_chats(fromLogin + toUser);
+					chatsDao.save(chat);
+					List<User> users = new ArrayList<>();
+					users.add(user1);
+					users.add(user2);
+					Chats newChat = chatsDao.findChatNames(fromLogin + toUser);
+					for (User user : users) {
+						ChatParticipants chatParticipant = new ChatParticipants();
+						ChatParticipants.Primary pk = new Primary(newChat.getId(), user.getID());
+						chatParticipant.setPrimary(pk);
+						chatParticipantsDao.save(chatParticipant);
+					}
+				}
+			}else {
+				Chats chats = chatsDao.findChatNames(checkNameChat(fromLogin, toUser));
+				User user = userDao.findByUsername(userName);
+				Messages messages = new Messages();
+				messages.setContent(message);
+				messages.setChats(chats);
+				messages.setSend_Status(false);
+				messages.setUser(user);
+				messages.setSend_Time(time);
+				messagesDao.save(messages);
+			}
+			
 		} catch (Exception e) {
 			System.out.println("error: " + e);
 		}

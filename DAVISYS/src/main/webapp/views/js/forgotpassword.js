@@ -9,7 +9,26 @@ wrapper = container.querySelector(".main .wrapper"),
 
 	input_submit.addEventListener("click", () => {
 		let email = document.getElementById("email").value;
-		$.get(url + "/getCode/" + email, function(response) {
+		$.ajax({
+			url: "/getCode/" + email,
+			type: "get",
+			success: function(data) {
+				if (data != "") {
+					container.classList.add("active");
+					wrapper.style.display = 'none';
+					wrapper_changepass.style.display = 'none';
+				}
+				else {
+					$('#messageForgot1').html('');
+					$('#messageForgot1').append('Email không tồn tại!');
+				}
+			},
+			error: function(xhr) {
+				alert("error")
+			}
+
+		})
+		/*$.get("localhost:8080/getCode/" + email, function(response) {
 			if (response != "") {
 				container.classList.add("active");
 				wrapper.style.display = 'none';
@@ -19,7 +38,7 @@ wrapper = container.querySelector(".main .wrapper"),
 				$('#messageForgot1').html('');
 				$('#messageForgot1').append('Email không tồn tại!');
 			}
-		})
+		})*/
 	});
 
 back.addEventListener("click", () => {
@@ -30,7 +49,7 @@ back.addEventListener("click", () => {
 
 btn_confirm.addEventListener("click", () => {
 	let mxn = document.getElementById("mxn").value;
-	$.get(url + "/getMa/" + mxn, function(response) {
+	$.get("/getMa/" + mxn, function(response) {
 		if (response != "") {
 			container.classList.add("active");
 			wrapper_validator.style.display = 'none';
@@ -42,20 +61,20 @@ btn_confirm.addEventListener("click", () => {
 		}
 	})
 });
-function btn_submit(){
+function btn_submit() {
 	let newpass = document.getElementById("newpass").value;
-	let confirmpass= document.getElementById("confirmpass").value;
+	let confirmpass = document.getElementById("confirmpass").value;
 	$('#messageForgot3').html('');
-	if(newpass != confirmpass){
+	if (newpass != confirmpass) {
 		$('#messageForgot3').append('Mật khẩu xác nhận chưa đúng!');
-	}else{
-		$.get(url + "/updatepass/" + confirmpass, function(response) {
+	} else {
+		$.get("/updatepass/" + confirmpass, function(response) {
 			if (response != "") {
-					window.location.href="login";
+				window.location.href = "login";
 			}
-			
+
 		})
-	
+
 	}
-	
+
 }

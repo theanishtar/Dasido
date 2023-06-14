@@ -61,6 +61,7 @@ public class User {
 	boolean user_Status;
 	boolean user_Role;
 	boolean ban;
+	int get_report;
 
 	@OneToMany
 	List<Post> post;

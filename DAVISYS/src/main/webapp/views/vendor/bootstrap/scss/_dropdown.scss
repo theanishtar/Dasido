@@ -170,10 +170,11 @@
   }
 }
 
+/*=================================*/
 .dropdown-menu.show {
-  display: block;
+  display: none;
 }
-
+/*=================================*/
 // Dropdown section headers
 .dropdown-header {
   display: block;

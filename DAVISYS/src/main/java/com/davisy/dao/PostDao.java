@@ -39,4 +39,21 @@ public interface PostDao extends JpaRepository<Post, Integer> {
 	@Query(value = "SELECT TOP 3 POST.PRODUCT, COUNT(*) AS AMOUNT FROM POST GROUP BY POST.PRODUCT ORDER BY AMOUNT DESC", nativeQuery = true)
 	public List<Object[]> top3Product();
 
+	@Query(value = "select a.ID,a.userID,a.post,a.date_Post,a.hash_Tag,a.address_Product,a.link_Image,a.link_Image,\r\n"
+			+ "a.send_StatusID,a.post_Status,a.product,a.get_report\r\n"
+			+ "from POST a, USERS b, provinces c where \r\n" + "a.userID = b.ID and\r\n"
+			+ "b.user_AddressID = c.code and c.code =:idAddress", nativeQuery = true)
+	public List<Post> findPostAddress(String idAddress);
+	
+	@Query(value = "SELECT TOP 2 POST.POST, POST.date_Post, USERS.AVATAR, USERS.USERNAME, COUNT(INTERESTED.POSTID) \r\n"
+			+ "	FROM POST \r\n"
+			+ "	INNER JOIN INTERESTED \r\n"
+			+ "	ON POST.ID = INTERESTED.POSTID\r\n"
+			+ "	INNER JOIN USERS\r\n"
+			+ "	ON POST.USERID = USERS.ID\r\n"
+			+ "	WHERE MONTH(POST.DATE_POST)=:month\r\n"
+			+ "	GROUP BY POST.POST, POST.date_Post, USERS.AVATAR, USERS.USERNAME\r\n"
+			+ "	ORDER BY COUNT(INTERESTED.POSTID) DESC", nativeQuery = true)
+	public List<Object[]> top2Post(int month);
+
 }

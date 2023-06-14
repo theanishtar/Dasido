@@ -1,5 +1,9 @@
+.main-container{
+	padding-bottom: 0;
+}
 section{
 	background-color: #1f1d2b;
+	overflow: hidden;
 }
 .card-body{
 	background-color: #1f1d2b;
@@ -13,6 +17,7 @@ section{
 }
 .col-sm-9 input{
 	color: white;
+	margin-top: 0rem !important;
 }
 .text-muted{
 	background-color: #1f1d2b;

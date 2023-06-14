@@ -29,12 +29,12 @@ arrowBack.addEventListener("click", () => {
 	let status = "";
 	$('#ststus_post').html('');
 	if (radio == true) {
-		status = '<i class="fas fa-globe-asia"></i> <span> Công khai</span> <i class="fas fa-caret-down"></i>'+
-		' <input type="text" value="true" name="radioPost" style="display: none;">';
+		status = '<i class="fas fa-globe-asia"></i> <span> Công khai</span> <i class="fas fa-caret-down"></i>' +
+			' <input type="text" value="true" name="radioPost" style="display: none;">';
 
 	} else {
-		status = '<i class="fas fa-lock"></i> <span> Riêng tư</span> <i class="fas fa-caret-down"></i>'+
-		' <input type="text" value="false" name="radioPost" style="display: none;">';
+		status = '<i class="fas fa-lock"></i> <span> Riêng tư</span> <i class="fas fa-caret-down"></i>' +
+			' <input type="text" value="false" name="radioPost" style="display: none;">';
 	}
 	$('#ststus_post').html(status);
 	container.classList.remove("active");
@@ -42,9 +42,9 @@ arrowBack.addEventListener("click", () => {
 });
 
 // Show-close dialog setting
-const showButton_setting = document.getElementById('showButton_setting');
-const favDialog_setting = document.getElementById('favDialog_setting');
-const close_setting = document.getElementById('close_setting');
+let showButton_setting = document.getElementById('showButton_setting');
+let favDialog_setting = document.getElementById('favDialog_setting');
+let close_setting = document.getElementById('close_setting');
 
 close_setting.addEventListener('click', () => {
 	favDialog_setting.close();
@@ -54,13 +54,32 @@ showButton_setting.addEventListener('click', () => {
 });
 
 // Show-close dialog follow
-const showButton_follow = document.getElementById('showButton_follow');
-const favDialog_follow = document.getElementById('favDialog_follow');
-const close_follow = document.getElementById('close_follow');
+function closeDialog_setting() {
+	let x = window.location.href;
+	let href = x.substring(21, x.length);
+	window.location.href=href;
+}
 
-close_follow.addEventListener('click', () => {
-	favDialog_follow.close();
-});
-showButton_follow.addEventListener('click', () => {
-	favDialog_follow.showModal();
-});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

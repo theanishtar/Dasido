@@ -41,5 +41,5 @@ public class District implements Serializable{
 	
 	@JsonIgnore
 	@OneToMany (mappedBy = "district")
-	List<Ward> ward;
+	List<Wards> ward;
 }

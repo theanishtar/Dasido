@@ -7,12 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<footer class="sticky-footer bg-white">
-		<div class="container my-auto">
-			<div class="copyright text-center my-auto">
-				<span>Wesite được tạo ra với mục đích học tập</span>
-			</div>
-		</div>
+	<footer class="sticky-footer">
+		
 	</footer>
 </body>
 </html>

@@ -25,6 +25,7 @@ import com.davisy.entity.Post;
 import com.davisy.entity.Province;
 import com.davisy.entity.Share;
 import com.davisy.entity.User;
+import com.davisy.service.SessionService;
 
 @Controller
 @Transactional
@@ -45,7 +46,8 @@ public class ConnectDtbController {
 	InterestedDao idao;
 	@Autowired
 	ProvinceDao prdao;
-	
+	@Autowired
+	SessionService sessionService;	
 //	@RequestMapping("/jsp/home")
 //	public String index(Model model) {
 //		Follower fl = new Follower();
@@ -57,7 +59,10 @@ public class ConnectDtbController {
 	
 	@RequestMapping("/jsp/conect")
 	public String index(Model model) {
-		
+		User userSession = sessionService.get("user");
+		if(userSession == null) {
+			return "error";
+		}
 		List<User> users = udao.findAll();
 		model.addAttribute("users", users);
 	

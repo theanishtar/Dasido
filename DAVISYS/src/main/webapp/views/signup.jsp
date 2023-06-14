@@ -2,6 +2,7 @@
     pageEncoding="utf-8"%>
     <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="fr"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +11,8 @@
 <link rel="stylesheet" href="views/css/signup.css">
     <script src="https://kit.fontawesome.com/152112956f.js" crossorigin="anonymous"></script>
 <style type="text/css">
+
+
 body {
     font-family: 'Poppins', sans-serif;
     /* background: linear-gradient(to right, #333399, #ff00cc); */
@@ -263,7 +266,10 @@ border-radius: 100px;
         width: calc(100% - 40px);
         max-width: 100%;
     }
+    section.reason {
+    max-width: min-content;
 }
+
 
 @media screen and (max-width: 480px) {
     .signup-content {
@@ -298,33 +304,33 @@ border-radius: 100px;
                 <div class="container">
                     <div class="signup-content">
                         <fr:form action="/createuser" method="POST" modelAttribute="user" id="signup-form" class="signup-form">
-                        <h2 class="form-title">Đăng ký</h2>
+                        <h2 class="form-title"><s:message code="login.signup" /></h2>
                             <!-- <p class="content">Đăng ký để trao và nhận hàng ngàn món đồ Secondhand!!!</p> -->
                             <div class="form-group">
-                                <fr:input type="text" path="username" class="form-input" name="username" id="username" placeholder="Tên đăng nhập"/>
+                                <fr:input type="text" path="username" class="form-input" name="username" id="username" placeholder="annv"/>
                                 <fr:errors path="username"></fr:errors>
                                 <span>${messageuser}</span>
                             </div>
                              <div class="form-group">
-                                <fr:input type="text" path="fullname" class="form-input" name="fullname" id="fullname" placeholder="Họ và tên" />
+                                <fr:input type="text" path="fullname" class="form-input" name="fullname" id="fullname" placeholder="Nguyen Van An" />
                                 <fr:errors path="fullname"></fr:errors>                            </div>
                             <div class="form-group">
-                                <fr:input type="email" path="email" class="form-input" name="email" id="email" placeholder="Email"/>
+                                <fr:input type="email" path="email" class="form-input" name="email" id="email" placeholder="an@gmail.com"/>
                             <fr:errors path="email"></fr:errors>
                             <span>${messageemail}</span>
                             </div>
                             <div class="form-group">
-                                <fr:input type="text" path="password" class="form-input" name="password" id="password" placeholder="Mật khẩu"/>
+                                <fr:input type="text" path="password" class="form-input" name="password" id="password" placeholder="123"/>
                                <fr:errors path="password"></fr:errors>
                                 <span toggle="#password" class="zmdi zmdi-eye field-icon toggle-password"></span>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-input" name="re_password" id="re_password" placeholder="Xác nhận mật khẩu" required/>
+                                <input type="password" class="form-input" name="re_password" id="re_password" placeholder="123" required/>
                                 <span>${message}</span>
                             </div>
                        
                             <div class="form-group">
-                                <input type="submit" name="submit" id="submit" class="form-submit" value="Đăng ký"/>
+                                <input type="submit" name="submit" id="submit" class="form-submit" value="<s:message code="login.signup" />"/>
                             </div>
                         </fr:form>
                         <div class="striped">
@@ -336,12 +342,12 @@ border-radius: 100px;
                             <div class="method-control">
                                 <a href="#" class="method-action">
                                     <i class="fa-brands fa-google"></i>
-                                    <span>Đăng nhập với Google</span>
+                                    <span><s:message code="login.loginwgg" /></span>
                                 </a>
                             </div>
                         </div>
                         <p class="loginhere">
-                        Bạn đã có tài khoản? <a href="log" class="loginhere-link">Đăng nhập</a>
+                        <s:message code="login.alreadyhaveaccount" />? <a href="log" class="loginhere-link"><s:message code="forgotPW.login" /></a>
                         </p>
                     </div>
                 </div>
@@ -350,16 +356,16 @@ border-radius: 100px;
             <div class="right_content">
                 <div>
                     <div class="section__title">
-                        <p>Diễn đàn DASIDO</p>
-                        "Chia sẻ đồ cũ - Tạo niềm vui mới"
+                        <p><s:message code="index.title" /></p>
+                        <s:message code="login.slogan" />
                     </div>
                     <p class="section__subtitle">
                         <!-- "Chia sẻ đồ cũ - Tạo niềm vui mới"<br> -->
-                        Đăng ký ngay để nhận hàng ngàn món đồ Secondhand miễn phí!!!
+                        <s:message code="login.logintouse" />!!!
                     </p>
                     <div class="return">
-                        Quay lại
-                        <a href="index">trang chủ</a>
+                        <s:message code="forgotPW.turnback" />
+                        <a href="index"><s:message code="login.home" /></a>
                     </div>
                 </div>
             </div>

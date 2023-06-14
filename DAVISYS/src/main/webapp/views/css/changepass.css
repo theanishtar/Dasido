@@ -1,0 +1,49 @@
+.main-container{
+	padding-bottom: 0;
+}
+section{
+	background-color: #1f1d2b;
+	overflow: hidden;
+}
+section form{
+	margin-top: 5%;
+}
+section .card{
+	border: none;
+	width: 500px;
+}
+.card-body,
+.card-header:first-child {
+	background-color: #1f1d2b;
+}
+.card-header{
+	border-bottom: none;
+}
+.card-header:first-child  h3{
+	color: white;
+	text-align: center;
+}
+.card-body .row{
+	line-height: 30px;
+}
+.card-body .form-control{
+	border: none;
+	outline: none;
+	color: white;
+	background-color: #353340;
+	margin-top: 0rem !important;
+}
+.card-body input:hover{
+	border: none;
+	outline: none;
+}
+.card-body  label{
+	color: white;
+}
+.btn-updateprofile{
+	margin-top: 1.5rem;
+	display: flex;
+}
+.btn-updateprofile .btn-primary{
+	margin-right: 0.5rem;
+}

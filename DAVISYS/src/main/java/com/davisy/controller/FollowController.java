@@ -30,33 +30,54 @@ import com.davisy.service.SessionService;
 public class FollowController {
 	@Autowired
 	FollowerDao followerDAO;
-	
+
 	@Autowired
-	UserDao userDAO;
-	
+	UserDao userDao;
+
 	@Autowired
 	SessionService sessionService;
 
-	/*===Follow===*/
+	/* ===Follow=== */
 	@GetMapping("/addFollow/{id}")
 	public String addFollow(Model model, Follower follower, @PathVariable("id") int id) {
+
 		Follower.Pk pk = new Follower.Pk();
 		User userSession = sessionService.get("user");
 
+		if (userSession == null) {
+			return "error";
+		}
 		pk.setFollowerID(userSession.getID());
 		pk.setUserID(id);
 		follower.setPk(pk);
 
 		followerDAO.save(follower);
+		fillFollow();
 		System.out.println("Thêm thành công");
 		return "redirect:/main";
 	}
 
 	@GetMapping("/deleteFollow/{id}")
 	public String deleteFollow(Model model, Follower follower, @PathVariable("id") int id) {
-		User userSession = sessionService.get("user");
-		followerDAO.delete(followerDAO.findUserUnlf(userSession.getID(), id));
-		System.out.println("Hủy thành công");
+		try {
+			User userSession = sessionService.get("user");
+			followerDAO.delete(followerDAO.findUserUnlf(userSession.getID(), id));
+			System.out.println("Hủy thành công: " + followerDAO.findUserUnlf(userSession.getID(), id));
+			fillFollow();
+		} catch (Exception e) {
+			System.out.println("Error delete follow: " + e);
+		}
+
 		return "redirect:/main";
 	}
+	 public void fillFollow(){
+		 User userSession = sessionService.get("user");
+		 List<Follower> fls = followerDAO.findAllFollower(userSession.getID());
+			List<User> users = new ArrayList<>();
+			for (Follower f : fls) {
+				Follower.Pk pk = f.getPk();
+				users.add(userDao.findIdUser(pk.getUserID()));
+			}
+			sessionService.set("follower", users);
+	 }
 }

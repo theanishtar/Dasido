@@ -60,6 +60,11 @@ function sendMessage(message) {
 	}
 }
 
+function sendMessageInterested(fromUser,avatar,sendUser) {
+	let message="Mình quan tâm đến sản phẩm của bạn!";
+	sendMsgInterested(fromUser, message, avatar,sendUser);
+}
+
 function scrollToBottom() {
 	$chatHistory.scrollTop($chatHistory[0].scrollHeight);
 }

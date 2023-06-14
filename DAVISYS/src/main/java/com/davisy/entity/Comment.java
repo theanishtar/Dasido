@@ -52,4 +52,5 @@ public class Comment implements Serializable {
 	Date dateComment = new Date();
 
 	String content;
+	boolean cmt_Status = false;
 }

@@ -82,7 +82,10 @@ public class Run {
 		maxacnhan = codeMail;
 
 	}
-
+	@GetMapping("/")
+	public String index2(Model model) {
+		return "index";
+	}
 	@GetMapping("/index")
 	public String index(Model model) {
 		return "index";
@@ -139,10 +142,6 @@ public class Run {
 		return "forgotpassword";
 	}
 
-	@GetMapping("/history")
-	public String history(Model model) {
-		return "jsp/history";
-	}
 
 //	@GetMapping("/homm")
 //	public String home(Model model) {
@@ -225,18 +224,9 @@ public class Run {
 		return "jsp/message";
 	}
 
-	@GetMapping("/profile")
-	public String profile(Model model) {
-		return "jsp/profile";
-	}
-
 	
 	
 
-	@GetMapping("/updateprofile")
-	public String updateprofile(Model model) {
-		return "jsp/updateprofile";
-	}
 
 	@GetMapping("/error404")
 	public String error404(Model model) {

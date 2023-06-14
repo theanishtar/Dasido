@@ -3,6 +3,7 @@
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="fr"%>
 <%@taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,7 @@
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 -->
+<link rel="stylesheet" href="/views/css/message.css">
 <script src="https://kit.fontawesome.com/152112956f.js"
 	crossorigin="anonymous"></script>
 <!-- <script src="views/js/jquery.min.js"></script>
@@ -33,6 +35,20 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 </head> -->
 <body>
+<style>
+.messages-chat {
+    max-height: 370px;
+    overflow: auto;
+    overflow: -moz-scrollbars-none;
+    -ms-overflow-style: none;
+}
+
+.messages-chat::-webkit-scrollbar {
+    width: 0 !important;
+    display: none;
+}
+</style>
+
 	<div class="main-blogs">
 		<div class="row chat-main">
 			<input type="text" id="userName"
@@ -57,13 +73,15 @@
 				<div class="footer-chat">
 					<i class="icon fa fa-smile-o clickable" style="font-size: 25pt;"
 						aria-hidden="true"></i> <input type="text" class="write-message"
-						placeholder="Type your message here" name="message-to-send"
-						id="message-to-send"></input> <i id="sendBtn"
+						placeholder="<s:message code="message.type" />" name="message-to-send"
+						id="message-to-send"></input> 
+						 <i id="sendBtn"
 						class="icon send fa fa-paper-plane-o clickable" aria-hidden="true"></i>
 				</div>
 			</section>
 		</div>
 	</div>
+	<script src="views/js/dialog.js"></script>
 	<script id="message-template" type="text/x-handlebars-template">
 					<div class="message text-only">
 						<div class="response">
