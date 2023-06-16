@@ -1431,6 +1431,14 @@ font-size: 12px;
   border-radius: 0.35rem;
   
 }
+a#find-content {
+    text-decoration: none;
+    color: var(--body-font); 
+    margin-top: 1rem;
+}
+a#find-content:hover{
+	 color: white;
+}
 .post-find {
     padding-top: 0.5rem;
     padding-left: 1rem;

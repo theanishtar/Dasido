@@ -21,12 +21,14 @@
 					<div class="section__title">
 						<!-- <p>DASIDO</p> -->
 						<div class="animated-word">
-							<div class="letter">D</div>
-							<div class="letter">A</div>
-							<div class="letter">S</div>
-							<div class="letter">I</div>
-							<div class="letter">D</div>
+							<div class="letter">E</div>
+							<div class="letter">U</div>
+							<div class="letter">P</div>
+							<div class="letter">H</div>
 							<div class="letter">O</div>
+							<div class="letter">R</div>
+							<div class="letter">I</div>
+							<div class="letter">A</div>
 						</div>
 						<s:message code="index.about" />
 					</div>

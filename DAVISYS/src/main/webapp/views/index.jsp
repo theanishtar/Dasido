@@ -20,12 +20,14 @@
 				<div>
 					<div>
 						<div class="animated-word">
-							<div class="letter">D</div>
-							<div class="letter">A</div>
-							<div class="letter">S</div>
-							<div class="letter">I</div>
-							<div class="letter">D</div>
+							<div class="letter">E</div>
+							<div class="letter">U</div>
+							<div class="letter">P</div>
+							<div class="letter">H</div>
 							<div class="letter">O</div>
+							<div class="letter">R</div>
+							<div class="letter">I</div>
+							<div class="letter">A</div>
 						</div>
 						<h1><s:message code="index.about" /></h1>
 					</div>
@@ -102,7 +104,7 @@
 		<div class="section__container footer__container">
 			<div class="footer__col">
 				<h3>
-					DASIDO<span>.</span>
+					EUPHORIA<span>.</span>
 				</h3>
 				<p><s:message code="index.titlefooter" /></p>
 			</div>

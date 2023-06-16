@@ -195,10 +195,9 @@ public class MessageController {
 
 	}
 
-	@GetMapping("/insertInterested")
+	@GetMapping("/Interested")
 	public void insertInterested(@RequestParam("userName") String userName, @RequestParam("post") int idPost) {
 		try {
-			System.out.println("insertInterested: "+userName);
 			User user = userDao.findByUsername(userName);
 			Post post = postDao.findByIdPost(idPost);
 			Interested interested = new Interested();

@@ -118,22 +118,8 @@ function sendMsgInterested(from, text, img, sendUser, idPost) {
 		img: img
 	}));
 	/*insertData(from, text);*/
-	
-	
-	/*	$.ajax({
-		url: url + "/insertInterested",
-		type: "get",
-		data: {
-			userName: userName,
-			post: idPost
-		},
-		success: function(data) {
-		},
-		error: function(xhr) {
-			alert("error")
-		}
 
-	});*/
+
 	$.ajax({
 		url: url + "/insertChat",
 		type: "get",
@@ -151,7 +137,20 @@ function sendMsgInterested(from, text, img, sendUser, idPost) {
 		}
 
 	});
+	$.ajax({
+		url: url + "/Interested",
+		type: "get",
+		data: {
+			userName: sendUser,
+			post: idPost
+		},
+		success: function(data) {
+		},
+		error: function(xhr) {
+			alert("error")
+		}
 
+	});
 
 
 
