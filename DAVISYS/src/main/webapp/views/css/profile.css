@@ -7,7 +7,12 @@
 	--video-bg: #252936;
 	--delay: 0s;
 }
-
+.fl .fler{
+	cursor: not-allowed;
+}
+.fl .fling{
+	cursor: pointer;
+}
 .author-img_prof {
 	width: 140px;
 	height: 140px;
@@ -100,7 +105,8 @@
 .list-img-post {
 	margin-top: 10px;
 	display: flex;
-	max-width: 100%;
+	/* max-width: 100%; */
+	max-width: 30%;
 	overflow-x: scroll;
 }
 
@@ -140,26 +146,27 @@
 }
 
 /*=======================================================*/
- #favDialog_updatePost {
+ .favDialog_updatePost {
    border: none;
     border-radius: 15px;
     width: 55rem;
-    max-height: 600px;
+    max-height: 655px;
     background-color: var(--theme-bg);
-    margin: 3.5rem 19rem;
-    overflow: hidden;
+    margin: 2.4rem 19rem;
+    overflow: hidden !important;
 } 
 
-#favDialog_updatePost a#close2,
-#favDialog_updatePost button#updatePosst {
+.favDialog_updatePost a#close2,
+.favDialog_updatePost button#updatePosst {
     border: none;
     background-color: var(--theme-bg); 
     outline: none;
     color: #0DF6E3;
     text-decoration: none;
+    width: auto;
 }
 
-#favDialog_updatePost a#close2:active {
+.favDialog_updatePost a#close2:active {
     outline: none;
 }
 
@@ -238,13 +245,16 @@
     height: 80%;
     object-fit: cover;
     transition: .5s;
-    margin: 3rem 0;
+    margin: 1rem 0;
 }
-
+.post-img-container-update img:hover{
+	cursor: pointer;
+}
 /* btn-sendStatus */
 .btn-sendStatus{
 	background-color: var(--theme-bg); 
     color: white;
+    margin-top: -1.5rem;
 }
 .btn-sendStatus button {
   border: none;
@@ -266,6 +276,7 @@
  /*  box-shadow: 0 4px 6px -1px #488aec31, 0 2px 4px -1px #488aec17; */
   transition: all .6s ease;
   margin-top: 0.5rem;
+  width: auto;	
 }
 
 .btn-sendStatus button:focus,button:active {
@@ -325,6 +336,7 @@ input:focus ~ .input-border {
 /*=====================Modal==================*/
 .close-modal {
 	color:  var(--theme-bg); 
+	display: none;
 }
 .login-trigger {
   font-weight: bold;
@@ -382,16 +394,16 @@ input:focus ~ .input-border {
 /*  */
 @media (max-width: 500px) {
 
-    #favDialog_detailPost,
-    #favDialog_updatePost {
+    .favDialog_detailPost,
+    .favDialog_updatePost {
         overflow: auto;
         overflow: -moz-scrollbars-none;
         -ms-overflow-style: none;
         text-align: justify;
     }
 
-    #favDialog_detailPost::-webkit-scrollbar,
-    #favDialog_updatePost::-webkit-scrollbar {
+    .favDialog_detailPost::-webkit-scrollbar,
+    .favDialog_updatePost::-webkit-scrollbar {
         width: 0 !important;
         display: none;
     }
@@ -435,12 +447,11 @@ input:focus ~ .input-border {
 
 
 /*=============cmt============ */
-.div{
-	display: grid; 
-	 grid-template-columns: 50% 50%; 
-	grid-column-gap: 20px;
+/* div .modal_cmt {
+    margin-top: 8rem;
 }
-.modal-dialog{
-	margin: 0;
-}
+div#close_cmt {
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+} */
 /*  */

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,20 +27,19 @@
 		<div class="container">
 			<section class="wrapper">
 				<div class="heading">
-					<h1 class="text text-large">Bạn quên mật khẩu?</h1>
-					<p class="text text-normal">Hãy nhập email của bạn để nhận mã
-						đổi mật khẩu</p>
+					<h1 class="text text-large"><s:message code="forgotPW.forgot" />?</h1>
+					<p class="text text-normal"><s:message code="forgotPW.typeEmail" /></p>
 				</div>
 				<form name="signin" class="form">
 					<div class="input-control">
 						<label for="email" class="input-label" hidden>Email</label> <input
 							type="email" name="emailForgot" id="email" class="input-field"
-							placeholder="Nhập email" required> <span
-							id="messageForgot1"></span>
+							placeholder="<s:message code="forgotPW.email" />" required> 
 					</div>
+					<span id="messageForgot1"></span>
 					<div class="input-control">
 						<input type="button" name="submit" class="input-submit"
-							value="Nhận mã" required>
+							value="<s:message code="forgotPW.getcode" />" required>
 					</div>
 				</form>
 				<div class="striped">
@@ -49,7 +49,7 @@
 				<div class="method">
 					<div class="method-control">
 						<a href="login" class="method-action"> <i
-							class="fa-solid fa-right-to-bracket"></i> <span> Đăng nhập</span>
+							class="fa-solid fa-right-to-bracket"></i> <span> <s:message code="forgotPW.login" /></span>
 						</a>
 					</div>
 				</div>
@@ -58,44 +58,43 @@
 			<section class="wrapper_validator">
 				<div class="container_validator">
 
-					<h2>Mã xác nhận</h2>
+					<h2><s:message code="forgotPW.code" /></h2>
 					<p>
-						DASIDO đã gửi mã xác nhận đến email của bạn <br /> Nhập mã dưới
-						đây để xác nhận địa chỉ email của bạn
+						<s:message code="forgotPW.sendmail" /> <br /> <s:message code="forgotPW.typeyourcode" />
 					</p>
 
 					<div class="code-container">
 						<input type="text" class="code" id="mxn" maxlength="6"
-							placeholder="Nhập mã"> <span id="messageForgot2"></span>
+							placeholder="<s:message code="forgotPW.typecode" />"> <span id="messageForgot2"></span>
 					</div>
 
 					<div>
-						<button type="submit" class="btn-confirm">Xác nhận</button>
+						<button type="submit" class="btn-confirm"><s:message code="forgotPW.confirm" /></button>
 					</div>
-					<small class="info"> Quay lại </small>
+					<small class="info"> <s:message code="forgotPW.turnback" /> </small>
 
 				</div>
 			</section>
 
 			<section class="wrapper_changepass">
 				<div class="container_changepass">
-					<h2>Đổi mật khẩu</h2>
+					<h2><s:message code="changePW.changepw" /></h2>
 
 					<div class="code-container">
 						<input type="text" id="newpass" class="change-pass"
-							placeholder="Mật khẩu mới">
+							placeholder="<s:message code="changePW.new" />">
 					</div>
 					<div class="code-container">
 						<input type="text" id="confirmpass" class="change-pass"
-							placeholder="Xác nhận mật khẩu">
+							placeholder="<s:message code="changePW.confirm" />">
 					</div>
 					<span id="messageForgot3"></span>
 					<div>
 						<button type="submit" id="btn_submit" onclick="btn_submit()"
-							class="btn-change">Xác nhận</button>
+							class="btn-change"><s:message code="forgotPW.confirm" /></button>
 					</div>
 					<span class="back-validator"> <a href="login"> <i
-							class="fa-solid fa-right-to-bracket"></i> Đăng nhập
+							class="fa-solid fa-right-to-bracket"></i> <s:message code="forgotPW.login" />
 					</a>
 					</span>
 				</div>

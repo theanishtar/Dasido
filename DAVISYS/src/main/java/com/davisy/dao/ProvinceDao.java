@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import com.davisy.entity.Province;
 
-public interface ProvinceDao extends JpaRepository<Province, Integer>{
+public interface ProvinceDao extends JpaRepository<Province, String>{
 	@Query(value = "SELECT * FROM provinces WHERE code=:code", nativeQuery = true)
-	public Province findIdProvince(int code);
+	public Province findIdProvince(String code);
 }

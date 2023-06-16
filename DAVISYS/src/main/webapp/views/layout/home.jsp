@@ -65,6 +65,12 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+	
+<!-- Language -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<!-- Language -->
 </head>
 <body>
 	<div class="container">
@@ -77,15 +83,29 @@
 			</div>
 		</div>
 	</div>
-	<!-- <script src="views/js/home.js"></script> -->
+	<script src="views/js/home.js"></script> 
 	<script src="/views/js/dialog.js"></script>
 	<script src="/views/js/loadimages.js"></script>
 	<script src="/views/js/custom.js"></script>
 	<script src="/views/js/chat.js"></script>
+	<script src="/views/js/comment.js"></script>
+	<script src="/views/js/post.js"></script>
+	<script src="/views/js/mode.js"></script>
+	<script src="/views/js/search.js"></script>
 	<script>
 		registration('${sessionScope.user.username}');
 	</script>
-
+	<script>
+		$(".lang").click(function(event) {
+			event.preventDefault();
+			$.ajax({
+				url : $(this).attr("href"),
+				success : function() {
+					location.reload();
+				}
+			});
+		});
+	</script>
 </body>
 
 

@@ -3,16 +3,44 @@
 	console.log(456)
 	setMode();
 });*/
+function autoCheck() {
+	let mode = localStorage.getItem("modeByThean");
+	if (mode == "dark") {
+		document.getElementById("dn").checked = true;
+	} else {
+		document.getElementById("dn").checked = false;
+	}
+	change();
+}
+
 function first() {
 	var element = document.body;
 	var e = document.getElementById("dn").checked;
 	console.log("element span darkmode: " + e);
-	if (e == false) {
+	if (e == true) {
 		element.classList.add("dark-mode");
+		element.classList.remove("light-mode");
 	} else {
-		element.classList.toggle("dark-mode");
+		element.classList.add("light-mode");
+		element.classList.remove("dark-mode");
 	}
 	setMode();
+}
+
+function change() {
+	let mode = localStorage.getItem("modeByThean");
+	var element = document.body;
+	if (mode == "dark") {
+		alert(true)
+		element.classList.remove("dark-mode");
+		element.classList.add("light-mode");
+		localStorage.setItem("modeByThean", "light");
+	} else {
+		element.classList.remove("light-mode");
+		element.classList.add("dark-mode");
+		localStorage.setItem("modeByThean", "dark");
+	}
+	//setMode();
 }
 
 function changeMode() {
@@ -46,19 +74,36 @@ function setMode() {
 }
 
 function getMode() {
-	let elm = document.getElementById("favDialog_setting");
-	console.log(elm)
-	let darkMode = document.getElementsByClassName("dark-mode");
-	if(darkMode.length == 1){
+	let mode = localStorage.getItem("modeByThean");
+	if (mode == "dark") {
 		document.getElementById("dn").checked = true;
+	} else {
+		document.getElementById("dn").checked = false;
 	}
 }
 
 window.onload = function() {
 	let mode = localStorage.getItem("modeByThean");
+	var element = document.body;
+	if (!mode) {
+		localStorage.setItem("modeByThean", "dark");
+		element.classList.add("dark-mode");
+		element.classList.remove("light-mode");
+		
+		return;
+	}
+	if(mode == "dark"){
+		
+		element.classList.add("dark-mode");
+		element.classList.remove("light-mode");
+	} else {
+		element.classList.remove("dark-mode");
+		element.classList.add("light-mode");
+	}
+	/*
 	if (mode == "dark") {
 		let darkMode = document.getElementsByClassName("dark-mode");
-
+		
 		// 
 		if (darkMode.length == 0) {
 			// alert("dark mode -> light mode")
@@ -73,6 +118,8 @@ window.onload = function() {
 			changeMode();
 		}
 	}
+	*/
+
 }
 
 

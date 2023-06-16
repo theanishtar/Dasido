@@ -1,4 +1,6 @@
-# About project
+# Euphoria from Davisy
+
+## About project
 
 Our project is a forum for exchanging and giving away used items!
 

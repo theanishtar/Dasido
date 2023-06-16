@@ -1,18 +1,23 @@
 const url = 'http://localhost:8080';
 let stompClient = null;
+let stompClientComment = null;
 let selectedUser = null;
 let newMessages = new Map();
 let image = null;
+let userNamSession = null;
+let toUserComment = null;
 function connectToChat(userName) {
-	console.log("connecting to chat...")
-	console.log("Username: " + userName)
+	/*	console.log("connecting to chat...")
+		console.log("Username: " + userName)*/
 	let socket = new SockJS(url + '/chat');
+	let socketComment = new SockJS(url + '/comment');
 	stompClient = Stomp.over(socket);
+	stompClientComment = Stomp.over(socketComment);
 	stompClient.connect({}, function(frame) {
-		console.log("connected to: " + frame);
+		/*console.log("connected to: " + frame);*/
 		stompClient.subscribe("/topic/messages/" + userName, function(response) {
 			let data = JSON.parse(response.body);
-			console.log("data_fromlogin1: " + data.img);
+			/*console.log("data_fromlogin1: " + data.img);*/
 			if (selectedUser === data.fromLogin) {
 				render(data.message, data.fromLogin, data.img);
 			} else {
@@ -20,8 +25,6 @@ function connectToChat(userName) {
 				$('#userNameAppender_' + data.fromLogin).append('<span class="countMesages" id="newMessage_' + data.fromLogin + '">+1</span>');
 			}
 		});
-
-
 		stompClient.subscribe("/topic/public", function(response) {
 			let data = JSON.parse(response.body);
 			let usersTemplateHTML = "";
@@ -35,7 +38,7 @@ function connectToChat(userName) {
 					if (value.type === 'JOIN') {
 						online = '<div class="online"></div>';
 					} else if (value.messageUnRead > 0) {
-						count = value.messageUnRead;
+						count = '<span class="countMesages badge">+' + value.messageUnRead + '</span>' + '</p>';
 					}
 					else {
 						timeOff = '<div class="timer">12 sec</div>';
@@ -45,17 +48,37 @@ function connectToChat(userName) {
 						'" style="background-image: url(' + value.image + ');">' + online +
 						'</div>' +
 						'<div class="desc-contact">' +
-						'<p id="userNameAppender_' + key + '" class="name">' + value.fullName + '<span class="countMesages badge">' + "+99" + '</span>' + '</p>' +
+						'<p id="userNameAppender_' + key + '" class="name">' + value.fullName +
 						'<p class="message">' + value.lastMessage + '</p>' +
 						'</div>' + timeOff +
 						'</div></a>';
 				}
 
 			}
+			//<span class="new-notifications">Mới</span>
 			$('#usersList').html(usersTemplateHTML);
 		});
 		stompClient.send("/app/fetchAllUsers");
 
+	});
+	stompClientComment.connect({}, function(frame) {
+		stompClientComment.subscribe("/topic/loadComments", function(response) {
+			let count = 0;
+			/*let dropdownNotification = document.querySelector(".notificationCount");*/
+			for (let key of Object.keys(data)) {
+				let value = data[key];
+				if (value.userNameSession == userNamSession) {
+					if (value.cmt_Status === false) {
+						count++;
+					}
+				}
+			}
+			if (count > 0) {
+				$('#notifyMenu').append('<div class="notification"></div>');
+				$('#notificationCount').append('<span>' + count + '</span>');
+			}
+		});
+		stompClientComment.send("/app/loadNotification");
 	});
 	window.event.preventDefault();
 }
@@ -68,8 +91,57 @@ function sendMsg(from, text, img) {
 	}));
 	insertData(from, text);
 }
+function notify() {
+
+}
+
+function sendMsgInterested(from, text, img, sendUser, idPost) {
+	stompClient.send("/app/chat/" + sendUser, {}, JSON.stringify({
+		fromLogin: from,
+		message: text,
+		img: img
+	}));
+	/*insertData(from, text);*/
+
+
+	$.ajax({
+		url: url + "/insertChat",
+		type: "get",
+		data: {
+			fromLogin: from,
+			toUser: sendUser,
+			userName: from,
+			message: text,
+			time: getCurrentTime()
+		},
+		success: function(data) {
+		},
+		error: function(xhr) {
+			/*alert("error")*/
+		}
+
+	});
+	$.ajax({
+		url: url + "/Interested",
+		type: "get",
+		data: {
+			userName: sendUser,
+			post: idPost
+		},
+		success: function(data) {
+		},
+		error: function(xhr) {
+			/*alert("error")*/
+		}
+
+	});
+
+
+
+}
 
 function registration(userName) {
+	userNamSession = userName;
 	$.ajax({
 		url: url + "/registration/" + userName,
 		type: "get",
@@ -80,19 +152,26 @@ function registration(userName) {
 			connectToChat(userName);
 		},
 		error: function(xhr) {
-			alert("error")
+			/*alert("error")*/
 		}
 
 	})
-
-
-	/*$.get(url + "/registration/" + userName, function(response) {
-		connectToChat(userName);
-	}).fail(function(error) {
-		if (error.status === 400) {
-			alert("Login is already busy!");
+}
+function notification() {
+	$.ajax({
+		url: url + "/registration/" + userName,
+		type: "get",
+		data: {
+			userName: userName
+		},
+		success: function(data) {
+			connectToChat(userName);
+		},
+		error: function(xhr) {
+			/*alert("error")*/
 		}
-	})*/
+
+	})
 }
 
 function selectUser(userName) {
@@ -121,6 +200,7 @@ function selectUser(userName) {
 		container_message.classList.add("active");
 		messageNull.style.display = 'none';
 	});*/
+	//stompClientComment.send("/app/loadNotification/" + postUser);
 
 	$('#selectedUserId').html('');
 	$('#selectedUserImageId').html('');
@@ -145,7 +225,7 @@ function createChats(userLogin, userName) {
 			}
 		},
 		error: function(xhr) {
-			alert("error")
+		/*	alert("error")*/
 		}
 
 	})
