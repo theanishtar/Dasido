@@ -105,7 +105,8 @@
 .list-img-post {
 	margin-top: 10px;
 	display: flex;
-	max-width: 100%;
+	/* max-width: 100%; */
+	max-width: 30%;
 	overflow-x: scroll;
 }
 
@@ -446,12 +447,11 @@ input:focus ~ .input-border {
 
 
 /*=============cmt============ */
-.div{
-	display: grid; 
-	 grid-template-columns: 50% 50%; 
-	grid-column-gap: 20px;
+/* div .modal_cmt {
+    margin-top: 8rem;
 }
-.modal-dialog{
-	margin: 0;
-}
+div#close_cmt {
+    padding-left: 1rem;
+    padding-top: 0.5rem;
+} */
 /*  */

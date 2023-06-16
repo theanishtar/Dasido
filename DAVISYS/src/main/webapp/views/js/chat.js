@@ -5,6 +5,7 @@ let selectedUser = null;
 let newMessages = new Map();
 let image = null;
 let userNamSession = null;
+let toUserComment = null;
 function connectToChat(userName) {
 	/*	console.log("connecting to chat...")
 		console.log("Username: " + userName)*/
@@ -61,13 +62,9 @@ function connectToChat(userName) {
 
 	});
 	stompClientComment.connect({}, function(frame) {
-		stompClientComment.subscribe("/topic/comment/"+userName, function(response) {
-			alert(response)
-			
-		});
 		stompClientComment.subscribe("/topic/loadComments", function(response) {
 			let data = JSON.parse(response.body);
-			
+
 			let commentTemplateHTML = "";
 			let count = 0;
 			let dropdownNotification = document.querySelector(".dropdownNotification-content");
@@ -85,13 +82,12 @@ function connectToChat(userName) {
 						'</div>' +
 						'</div> </a> ';
 				}
-
 			}
 			if (count > 0) {
 				$('#notifyMenu').append('<div class="notification"></div>');
 			}
 			let title = '<h2>Thông báo <span>' + count + '</span></h2>';
-			dropdownNotification.innerHTML = title +'<div class="notification-content">'+commentTemplateHTML+'</div>' ;
+			dropdownNotification.innerHTML = title + '<div class="notification-content">' + commentTemplateHTML + '</div>';
 
 			/*render(data.message, data.fromLogin, data.img);
 			alert(data)
@@ -99,7 +95,6 @@ function connectToChat(userName) {
 
 		});
 		stompClientComment.send("/app/loadNotification");
-
 	});
 	window.event.preventDefault();
 }
@@ -112,15 +107,33 @@ function sendMsg(from, text, img) {
 	}));
 	insertData(from, text);
 }
+function notify() {
 
-function sendMsgInterested(from, text, img,sendUser) {
+}
+
+function sendMsgInterested(from, text, img, sendUser, idPost) {
 	stompClient.send("/app/chat/" + sendUser, {}, JSON.stringify({
 		fromLogin: from,
 		message: text,
 		img: img
 	}));
-	alert(from)
 	/*insertData(from, text);*/
+	
+	
+	/*	$.ajax({
+		url: url + "/insertInterested",
+		type: "get",
+		data: {
+			userName: userName,
+			post: idPost
+		},
+		success: function(data) {
+		},
+		error: function(xhr) {
+			alert("error")
+		}
+
+	});*/
 	$.ajax({
 		url: url + "/insertChat",
 		type: "get",
@@ -137,7 +150,11 @@ function sendMsgInterested(from, text, img,sendUser) {
 			alert("error")
 		}
 
-	})
+	});
+
+
+
+
 }
 
 function registration(userName) {

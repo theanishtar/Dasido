@@ -24,19 +24,26 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.socket.messaging.SessionConnectedEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
+import com.davisy.chat.model.CommentModel;
 import com.davisy.chat.model.MessageModel;
 import com.davisy.chat.model.UserModel;
+import com.davisy.chat.storage.CommentStorage;
 import com.davisy.chat.storage.UserStorage;
 import com.davisy.controller.LoginController;
 import com.davisy.dao.ChatParticipantsDao;
 import com.davisy.dao.ChatsDao;
+import com.davisy.dao.InterestedDao;
 import com.davisy.dao.MessagesDao;
+import com.davisy.dao.PostDao;
 import com.davisy.dao.UserDao;
 import com.davisy.entity.ChatParticipants;
 import com.davisy.entity.ChatParticipants.Primary;
 import com.davisy.entity.Chats;
+import com.davisy.entity.Comment;
+import com.davisy.entity.Interested;
 import com.davisy.entity.User;
 import com.davisy.entity.Messages;
+import com.davisy.entity.Post;
 import com.davisy.entity.UserGoogleCloud;
 import com.davisy.service.SessionService;
 
@@ -44,16 +51,22 @@ import com.davisy.service.SessionService;
 @CrossOrigin
 @Component
 public class MessageController {
+	long millis = System.currentTimeMillis();
+	java.sql.Date day = new java.sql.Date(millis);
 	@Autowired
 	SessionService sessionService;
 	@Autowired
 	UserDao userDao;
+	@Autowired
+	PostDao postDao;
 	@Autowired
 	ChatsDao chatsDao;
 	@Autowired
 	MessagesDao messagesDao;
 	@Autowired
 	ChatParticipantsDao chatParticipantsDao;
+	@Autowired
+	InterestedDao interestedDao;
 	@Autowired
 	HttpServletResponse response;
 	@Autowired
@@ -68,6 +81,15 @@ public class MessageController {
 		boolean isExists = UserStorage.getInstance().getUsers().containsKey(to);
 		if (isExists) {
 			simpMessagingTemplate.convertAndSend("/topic/messages/" + to, message);
+		}
+	}
+
+	@MessageMapping("/comment/{to}")
+	public void sendComment(@DestinationVariable String to, CommentModel comment) {
+//		System.out.println("handling send message: " + message + " to: " + to);
+		boolean isExists = CommentStorage.getInstance().getComments().containsKey(to);
+		if (isExists) {
+			simpMessagingTemplate.convertAndSend("/topic/comments/" + to, comment);
 		}
 	}
 
@@ -95,10 +117,12 @@ public class MessageController {
 					chatParticipantsDao.save(chatParticipant);
 				}
 			} else {
-				
 				User user = sessionService.get("user");
 				PrintWriter out = response.getWriter();
 				List<Object[]> listMessage = messagesDao.findListMessage(checkNameChat(fromLogin, toUser));
+
+				User userMessage = userDao.findByUsername(toUser);
+
 				for (Object[] oj : listMessage) {
 					String outLine = "";
 					if (user.getUsername().equals(String.valueOf(oj[3]))) {
@@ -107,8 +131,7 @@ public class MessageController {
 								+ "							<p class=\"text\">" + String.valueOf(oj[1]) + "</p>\r\n"
 								+ "						</div>\r\n" + "					</div>\r\n"
 								+ "					<p class=\"response-time time\">" + String.valueOf(oj[2]) + "</p>";
-					} 
-					else {
+					} else {
 						outLine = "<div class=\"message\">\r\n" + "						<div class=\"photo\"\r\n"
 								+ "							style=\"background-image: url(" + String.valueOf(oj[4])
 								+ ");\">\r\n" + "							<div class=\"online\"></div>\r\n"
@@ -117,6 +140,9 @@ public class MessageController {
 								+ "					<p class=\"time\">" + String.valueOf(oj[2]) + "</p>";
 					}
 					out.println(outLine);
+				}
+				if (messagesDao.findStatus(userMessage.getID()).size() > 0) {
+					messagesDao.updateStatus(true, userMessage.getID());
 				}
 
 			}
@@ -132,7 +158,7 @@ public class MessageController {
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
-			if(chatsDao.findChatNames(checkNameChat(fromLogin, toUser))==null) {
+			if (chatsDao.findChatNames(checkNameChat(fromLogin, toUser)) == null) {
 				User user1 = userDao.findByUsername(fromLogin);
 				User user2 = userDao.findByUsername(toUser);
 				if (chatsDao.findChatNames(fromLogin + toUser) == null
@@ -151,7 +177,7 @@ public class MessageController {
 						chatParticipantsDao.save(chatParticipant);
 					}
 				}
-			}else {
+			} else {
 				Chats chats = chatsDao.findChatNames(checkNameChat(fromLogin, toUser));
 				User user = userDao.findByUsername(userName);
 				Messages messages = new Messages();
@@ -162,11 +188,27 @@ public class MessageController {
 				messages.setSend_Time(time);
 				messagesDao.save(messages);
 			}
-			
+
 		} catch (Exception e) {
 			System.out.println("error: " + e);
 		}
 
+	}
+
+	@GetMapping("/insertInterested")
+	public void insertInterested(@RequestParam("userName") String userName, @RequestParam("post") int idPost) {
+		try {
+			System.out.println("insertInterested: "+userName);
+			User user = userDao.findByUsername(userName);
+			Post post = postDao.findByIdPost(idPost);
+			Interested interested = new Interested();
+			interested.setUser(user);
+			interested.setPost(post);
+			interestedDao.saveAndFlush(interested);
+
+		} catch (Exception e) {
+			System.out.println("Error insertInterested: " + e);
+		}
 	}
 
 	public String checkNameChat(String fromLogin, String toUser) {
@@ -189,6 +231,9 @@ public class MessageController {
 	public void logout(SessionDisconnectEvent event) {
 		try {
 			User user = UsersController.user;
+			User userOl = userDao.findByUsername(user.getUsername());
+			userOl.setOl(day());
+			userDao.saveAndFlush(userOl);
 			UserModel userModel = new UserModel();
 			userModel.setType(UserModel.MessageType.LEAVE);
 			userModel.setUserName(user.getUsername());
@@ -204,4 +249,9 @@ public class MessageController {
 			e.printStackTrace();
 		}
 	}
+
+	public java.sql.Date day() {
+		return day;
+	}
+
 }

@@ -155,87 +155,12 @@
 										<hr>
 									</c:forEach>
 								</div>
-								<div id="favDialog_comment${posts.post.ID }">
-									<div class="modal-dialog">
-										<div class="modal-content">
-											<div class="cmt-container">
-												<div class="post">
-													<div class="post-detail">
-														<div class="full-boxer">
-															<div class="comment__container opened" id="first-comment">
-																<c:forEach items="${comments}" var="comment">
-																	<c:if
-																		test="${posts.post.ID == comment.comment.post.ID}">
-																		<div class="comment__card">
-																			<c:if test="${comment.comment.commentParent ==null}">
-																				<div class="box-top">
-																					<div class="Profile">
-																						<div class="profile-image">
-																							<img src="${ comment.comment.user.avatar}"
-																								id="imgUserComment">
-																						</div>
-																						<div class="Name">
-																							<strong>${comment.comment.user.fullname}
-																							</strong> <span>${comment.comment.dateComment}</span>
-																						</div>
-																					</div>
-																				</div>
-																				<p>${comment.comment.content}</p>
-																			</c:if>
-																			<c:if test="${comment.comment.commentParent ==null}">
-																				<div class="comment__card-footer">
-																					<div
-																						onclick="repComment('${comment.comment.ID}','${comment.comment.user.fullname}','${posts.post.ID}')">
-																						<s:message code="main.reply" />
-																						${comment.countComment}
-																					</div>
-																					<c:if test="${comment.countComment >0}">
-																						<div class="show-replies"
-																							onclick="seenMore('${comment.comment.ID}')">
-																							<s:message code="main.seenmore" />
-																						</div>
-																					</c:if>
-
-																				</div>
-																			</c:if>
-																		</div>
-																		<%-- <c:forEach items="${comments}" var="comment"> --%>
-																		<c:if test="${comment.comment.commentParent ==null}">
-																			<div id="replyContentComment${comment.comment.ID}"></div>
-																		</c:if>
-																		<%-- </c:forEach> --%>
-																	</c:if>
-
-																</c:forEach>
-															</div>
-
-														</div>
-
-														<form>
-															<div class="comment-box">
-																<input type="text" id="comment-input${posts.post.ID}"
-																	name="postComment"
-																	placeholder="<s:message code="main.comment"/>">
-																<button class="add-comment-btn"
-																	onclick="comment('${posts.post.ID }')">
-																	<i class="fa-regular fa-comment"></i>
-																</button>
-															</div>
-														</form>
-														<%-- <span class="comment-count">50 <s:message
-																code="main.comment" /></span> --%>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
 							</div>
 						</div>
 					</div>
 					<div class="button-wrapper">
 						<button
-							onclick="sendMessageInterested('${sessionScope.user.username}','${posts.post.user.avatar}','${posts.post.user.username}')"
+							onclick="sendMessageInterested('${sessionScope.user.username}','${posts.post.user.avatar}','${posts.post.user.username}','${ posts.post.ID }')"
 							class="like red">
 							<svg viewBox="0 0 24 24" fill="currentColor"
 								xmlns="http://www.w3.org/2000/svg">
@@ -253,15 +178,15 @@
 									</svg>
 							<s:message code="main.share" />
 						</button>
-						<%-- <button class="like cmt" data-toggle="modal"
-					data-target="#favDialog_comment${ posts.post.ID }">
-					<svg viewBox="0 0 24 24" fill="currentColor"
-						xmlns="http://www.w3.org/2000/svg">
+						<button class="like cmt" data-toggle="modal"
+							data-target="#favDialog_comment${ posts.post.ID }">
+							<svg viewBox="0 0 24 24" fill="currentColor"
+								xmlns="http://www.w3.org/2000/svg">
 										<path fill-rule="evenodd" clip-rule="evenodd"
-							d="M15.85 2.5c.63 0 1.26.09 1.86.29 3.69 1.2 5.02 5.25 3.91 8.79a12.728 12.728 0 01-3.01 4.81 38.456 38.456 0 01-6.33 4.96l-.25.15-.26-.16a38.093 38.093 0 01-6.37-4.96 12.933 12.933 0 01-3.01-4.8c-1.13-3.54.2-7.59 3.93-8.81.29-.1.59-.17.89-.21h.12c.28-.04.56-.06.84-.06h.11c.63.02 1.24.13 1.83.33h.06c.04.02.07.04.09.06.22.07.43.15.63.26l.38.17c.092.05.195.125.284.19.056.04.107.077.146.1l.05.03c.085.05.175.102.25.16a6.263 6.263 0 013.85-1.3zm2.66 7.2c.41-.01.76-.34.79-.76v-.12a3.3 3.3 0 00-2.11-3.16.8.8 0 00-1.01.5c-.14.42.08.88.5 1.03.64.24 1.07.87 1.07 1.57v.03a.86.86 0 00.19.62c.14.17.35.27.57.29z" />
+									d="M15.85 2.5c.63 0 1.26.09 1.86.29 3.69 1.2 5.02 5.25 3.91 8.79a12.728 12.728 0 01-3.01 4.81 38.456 38.456 0 01-6.33 4.96l-.25.15-.26-.16a38.093 38.093 0 01-6.37-4.96 12.933 12.933 0 01-3.01-4.8c-1.13-3.54.2-7.59 3.93-8.81.29-.1.59-.17.89-.21h.12c.28-.04.56-.06.84-.06h.11c.63.02 1.24.13 1.83.33h.06c.04.02.07.04.09.06.22.07.43.15.63.26l.38.17c.092.05.195.125.284.19.056.04.107.077.146.1l.05.03c.085.05.175.102.25.16a6.263 6.263 0 013.85-1.3zm2.66 7.2c.41-.01.76-.34.79-.76v-.12a3.3 3.3 0 00-2.11-3.16.8.8 0 00-1.01.5c-.14.42.08.88.5 1.03.64.24 1.07.87 1.07 1.57v.03a.86.86 0 00.19.62c.14.17.35.27.57.29z" />
 									</svg>
-					Bình luận
-				</button> --%>
+							Bình luận
+						</button>
 					</div>
 				</div>
 			</c:if>
@@ -413,12 +338,11 @@
 
 
 
-	<%-- <c:forEach items="${posts}" var="posts">
-		<div id="favDialog_comment${ posts.post.ID }" class="modal fade"
-			role="dialog">
+	<c:forEach items="${posts}" var="posts">
+		<div id="favDialog_comment${posts.post.ID }" class="modal fade favDialog_comment" role="dialog">
 			<div class="modal-dialog">
 				<div class="modal-content">
-					<div id="close_cmt" data-dismiss="modal">
+				<div id="close_cmt" onclick="closeDialog_setting()">
 						<i class="fa-solid fa-xmark"></i>
 					</div>
 					<div class="cmt-container">
@@ -426,71 +350,59 @@
 							<div class="post-detail">
 								<div class="full-boxer">
 									<div class="comment__container opened" id="first-comment">
-										<div class="comment__card">
-											<div class="box-top">
-												<div class="Profile">
-													<div class="profile-image">
-														<img src="views/images/user/user.jpg">
-													</div>
-													<div class="Name">
-														<strong>${ posts.post.user.fullname }</strong> <span>${ posts.post.user.username }</span>
-													</div>
+										<c:forEach items="${comments}" var="comment">
+											<c:if test="${posts.post.ID == comment.comment.post.ID}">
+												<div class="comment__card">
+													<c:if test="${comment.comment.commentParent ==null}">
+														<div class="box-top">
+															<div class="Profile">
+																<div class="profile-image">
+																	<img src="${ comment.comment.user.avatar}"
+																		id="imgUserComment">
+																</div>
+																<div class="Name">
+																	<strong>${comment.comment.user.fullname} </strong> <span>${comment.comment.dateComment}</span>
+																</div>
+															</div>
+														</div>
+														<p>${comment.comment.content}</p>
+													</c:if>
+													<c:if test="${comment.comment.commentParent ==null}">
+														<div class="comment__card-footer">
+															<div
+																onclick="repComment('${comment.comment.ID}','${comment.comment.user.fullname}','${posts.post.ID}')">Trả
+																lời ${comment.countComment}</div>
+															<c:if test="${comment.countComment >0}">
+																<div class="show-replies"
+																	onclick="seenMore('${comment.comment.ID}')">Xem
+																	thêm</div>
+															</c:if>
+
+														</div>
+													</c:if>
 												</div>
-											</div>
-<p>${ posts.post.user.fullname }</p>
-											<div class="comment__card-footer">
-												<div class="show-replies">Trả lời 2</div>
-											</div>
-										</div>
-										<div class="comment__container" dataset="first-comment"
-											id="first-reply">
-											<div class="comment__card">
-												<div class="box-top">
-													<div class="Profile">
-														<div class="profile-image">
-															<img src="views/images/user/user.jpg">
-														</div>
-														<div class="Name">
-															<strong>Nguyễn Khánh Đan</strong> <span>@dannk</span>
-														</div>
-													</div>
-												</div>
-												<p>Lorem ipsum dolor, sit amet consectetur adipisicing
-													elit. Voluptatum eaque itaque sit tempora officiis,
-													quisquam atque? Impedit dignissimos error laudantium!</p>
-											</div>
-										</div>
-										<div class="comment__container" dataset="first-comment">
-											<div class="comment__card">
-												<div class="box-top">
-													<div class="Profile">
-														<div class="profile-image">
-															<img src="views/images/user/user.jpg">
-														</div>
-														<div class="Name">
-															<strong>Nguyễn Khánh Đan</strong> <span>@dannk</span>
-														</div>
-													</div>
-												</div>
-												<p>Lorem ipsum dolor, sit amet consectetur adipisicing
-													elit. Voluptatum eaque itaque sit tempora officiis,
-													quisquam atque? Impedit dignissimos error laudantium!</p>
-											</div>
-										</div>
+												<%-- <c:forEach items="${comments}" var="comment"> --%>
+												<c:if test="${comment.comment.commentParent ==null}">
+													<div id="replyContentComment${comment.comment.ID}"></div>
+												</c:if>
+												<%-- </c:forEach> --%>
+											</c:if>
+
+										</c:forEach>
 									</div>
+
 								</div>
 
-								<div class="detail-intracables" style="margin-top: 1rem;">
-									<i class="fa-regular fa-paper-plane"></i> <i
-										class="fa-solid fa-share"></i>
-								</div>
-								<span class="interest">10 Lượt quan tâm</span>
-								<div class="comment-box">
-									<input type="text" id="comment-input" placeholder="Bình luận">
-									<button class="add-comment-btn">
-										<i class="fa-regular fa-comment"></i>
-									</button>
-								</div>
+								<form>
+									<div class="comment-box">
+										<input type="text" id="comment-input${posts.post.ID}"
+											name="postComment" placeholder="Bình luận">
+										<button class="add-comment-btn"
+											onclick="comment('${posts.post.ID }')">
+											<i class="fa-regular fa-comment"></i>
+										</button>
+									</div>
+								</form>
 								<span class="comment-count">50 bình luận</span>
 							</div>
 						</div>
@@ -499,8 +411,8 @@
 			</div>
 		</div>
 	</c:forEach>
-	<!-- <script src="views/js/post.js"></script> 
-	<script src="views/js/comment.js"></script> --%>
+	<script src="views/js/post.js"></script>
+	<script src="views/js/comment.js"></script>
 	<script src="views/js/home.js"></script>
 </body>
 </html>

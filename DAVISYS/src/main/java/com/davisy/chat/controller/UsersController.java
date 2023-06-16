@@ -141,6 +141,7 @@ public class UsersController {
 				String id = String.valueOf(cmt.getID());
 				User user = userDao.findIdUser(cmt.getUser().getID());
 				CommentModel model = new CommentModel();
+				model.setUserNameSession(UsersController.user.getUsername());
 				model.setUserName(user.getUsername());
 				model.setFullName(user.getFullname());
 				model.setUserImg(user.getAvatar());
