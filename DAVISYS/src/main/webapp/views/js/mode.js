@@ -3,14 +3,14 @@
 	console.log(456)
 	setMode();
 });*/
-function autoCheck() {
+function autoCheck(){
 	let mode = localStorage.getItem("modeByThean");
-	if (mode == "dark") {
+	if(mode == "dark"){
 		document.getElementById("dn").checked = true;
-	} else {
+	} else{
 		document.getElementById("dn").checked = false;
 	}
-	change();
+	first();
 }
 
 function first() {
@@ -27,20 +27,18 @@ function first() {
 	setMode();
 }
 
-function change() {
-	let mode = localStorage.getItem("modeByThean");
+function change(){
+	alert(567)
+	var e = document.getElementById("dn").checked;
 	var element = document.body;
-	if (mode == "dark") {
-		alert(true)
-		element.classList.remove("dark-mode");
-		element.classList.add("light-mode");
-		localStorage.setItem("modeByThean", "light");
-	} else {
-		element.classList.remove("light-mode");
+	if (e == false) {
 		element.classList.add("dark-mode");
-		localStorage.setItem("modeByThean", "dark");
+		element.classList.remove("light-mode");
+	} else {
+		element.classList.add("light-mode");
+		element.classList.remove("dark-mode");
 	}
-	//setMode();
+	setMode();
 }
 
 function changeMode() {
@@ -74,31 +72,18 @@ function setMode() {
 }
 
 function getMode() {
-	let mode = localStorage.getItem("modeByThean");
-	if (mode == "dark") {
+	let elm = document.getElementById("favDialog_setting");
+	console.log(elm)
+	let darkMode = document.getElementsByClassName("dark-mode");
+	if(darkMode.length == 1){
 		document.getElementById("dn").checked = true;
-	} else {
-		document.getElementById("dn").checked = false;
 	}
 }
 
 window.onload = function() {
 	let mode = localStorage.getItem("modeByThean");
-	var element = document.body;
-	if (!mode) {
-		localStorage.setItem("modeByThean", "dark");
-		element.classList.add("dark-mode");
-		element.classList.remove("light-mode");
-		
-		return;
-	}
-	if(mode == "dark"){
-		
-		element.classList.add("dark-mode");
-		element.classList.remove("light-mode");
-	} else {
-		element.classList.remove("dark-mode");
-		element.classList.add("light-mode");
+	if(mode == ""){
+		localStorage.setItem("modeByThean", "dark")
 	}
 	/*
 	if (mode == "dark") {
@@ -119,7 +104,7 @@ window.onload = function() {
 		}
 	}
 	*/
-
+	autoCheck();
 }
 
 

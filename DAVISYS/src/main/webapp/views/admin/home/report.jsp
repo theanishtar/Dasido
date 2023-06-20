@@ -59,6 +59,7 @@
 											<th><s:message code="contact.content" /></th>
 											<th><s:message code="admin.userpost" /></th>
 											<th></th>
+											<th></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -69,6 +70,7 @@
 												<td data-th="<s:message code="contact.content" />">${postHR[2]}</td>
 												<td data-th="<s:message code="admin.userpost" />">${postHR[3]}</td>
 												<td><a href="/post/${postHR[0]}"><s:message code="admin.seen" /></a></td>
+												<td><a href="/lockpost/${postHR[0]}">Khóa</a></td>
 											</tr>
 										</c:forEach>	
 									</tbody>

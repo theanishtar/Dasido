@@ -721,7 +721,7 @@ input:checked + .toggle .star--6 {
     border: none;
     border-radius: 15px;
     width: 400px;
-    margin: 13rem 35rem;
+    margin: 5rem 35rem;
   }
   #favDialog_share div#close_share{
     border: none;
@@ -789,7 +789,7 @@ input:checked + .toggle .star--6 {
 overflow: hidden;
     transition: all 0.2s;
     margin: 1rem 9rem !important;
-    
+    width: auto;
   }
   
   button span {

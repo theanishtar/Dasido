@@ -29,7 +29,7 @@
 							<div class="letter">I</div>
 							<div class="letter">A</div>
 						</div>
-						<h1><s:message code="index.about" /></h1>
+						<%-- <h1><s:message code="index.about" /></h1> --%>
 					</div>
 					<p class="section__subtitle">
 						<br> <s:message code="index.logintouse" /> !!!

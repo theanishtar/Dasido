@@ -58,11 +58,7 @@
 													placeholder="<s:message code="updateprofile.password" />" value="${Users.password}"
 													class="form-control" readonly>
 											</div>
-										</div>
-									</div>
-									<div class="row">
-										<!-- <div class="col-md-6"> -->
-										<div class="form-holder">
+											<div class="form-holder">
 											<label>Email</label> <input type="text" placeholder="Email"
 												value="${Users.email}" class="form-control" readonly>
 										</div>
@@ -105,7 +101,54 @@
 											</c:if>
 
 										</div>
+										</div>
 									</div>
+									<!-- <div class="row"> -->
+										<!-- <div class="col-md-6"> -->
+										<%-- <div class="form-holder">
+											<label>Email</label> <input type="text" placeholder="Email"
+												value="${Users.email}" class="form-control" readonly>
+										</div>
+										<div class="form-holder">
+											<label><s:message code="updateprofile.birthday" /></label> <input type="date"
+												placeholder="<s:message code="updateprofile.birthday" />" value="${Users.birthday}"
+												class="form-control" readonly>
+										</div>
+										<div class="form-holder">
+											<label><s:message code="updateprofile.sex" /></label> <input type="text"
+												placeholder="<s:message code="updateprofile.sex" />" value="${Users.gender}"
+												class="form-control" readonly>
+										</div>
+										<div class="form-holder">
+											<label><s:message code="admin.mark" /></label> <input type="text" placeholder="<s:message code="admin.mark" />"
+												value="${Users .mark}" class="form-control" readonly>
+										</div>
+										<div class="form-holder">
+											<label><s:message code="admin.ban" /></label> <input type="text"
+												placeholder="<s:message code="admin.ban" />" value="${Users.ban}"
+												class="form-control" readonly>
+										</div>
+										<div class="form-holder">
+											<label><s:message code="admin.countreport" /></label> <input type="text" placeholder="<s:message code="admin.countreport" />"
+												value="${Users.get_report}" class="form-control" readonly>
+										</div>
+										<div class="row btn-form">
+											<c:if test="${ Users.ban == false}">
+												<div class="col-md-3">
+													<button type="submit" formaction="/ban"
+														class="btn btn-danger"><s:message code="admin.banaccount" /></button>
+												</div>
+											</c:if>
+
+											<c:if test="${ Users.ban == true }">
+												<div class="col-md-3">
+													<button type="submit" formaction="/onban"
+														class="btn btn-success"><s:message code="admin.openaccount" /></button>
+												</div>
+											</c:if>
+
+										</div> --%>
+									<!-- </div> -->
 								</form>
 							</div>
 						</div>

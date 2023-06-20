@@ -53,14 +53,14 @@ public interface PostDao extends JpaRepository<Post, Integer> {
 			+ "b.user_AddressID = c.code and c.code =:idAddress", nativeQuery = true)
 	public List<Post> findPostAddress(String idAddress);
 	
-	@Query(value = "SELECT TOP 2 POST.POST, POST.date_Post, USERS.AVATAR, USERS.USERNAME, COUNT(INTERESTED.POSTID) \r\n"
+	@Query(value = "SELECT TOP 2 POST.POST, POST.date_Post, USERS.AVATAR, USERS.USERNAME, POST.ID, COUNT(INTERESTED.POSTID) \r\n"
 			+ "	FROM POST \r\n"
 			+ "	INNER JOIN INTERESTED \r\n"
 			+ "	ON POST.ID = INTERESTED.POSTID\r\n"
 			+ "	INNER JOIN USERS\r\n"
 			+ "	ON POST.USERID = USERS.ID\r\n"
 			+ "	WHERE MONTH(POST.DATE_POST)=:month\r\n"
-			+ "	GROUP BY POST.POST, POST.date_Post, USERS.AVATAR, USERS.USERNAME\r\n"
+			+ "	GROUP BY POST.POST, POST.date_Post, USERS.AVATAR, USERS.USERNAME, POST.ID\r\n"
 			+ "	ORDER BY COUNT(INTERESTED.POSTID) DESC", nativeQuery = true)
 	public List<Object[]> top2Post(int month);
 

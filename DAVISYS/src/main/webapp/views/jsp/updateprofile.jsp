@@ -29,7 +29,7 @@
 								</label>
 								<h5 class="my-3">${user.fullname}</h5>
 								<p class="text-muted mb-4">
-									13
+									${totalPost}
 									<s:message code="main.post" />
 								</p>
 								<c:if

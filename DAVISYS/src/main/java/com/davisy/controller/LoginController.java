@@ -180,11 +180,11 @@ public class LoginController {
 			sessionService.set("listWards", listWards);
 
 			if (remember) {
-				cookieService.add("user", username, 10);
-				cookieService.add("pass", password, 10);
+				cookieService.add("usernames", username, 10);
+				cookieService.add("passwords", password, 10);
 			} else {
-				cookieService.delete("user");
-				cookieService.delete("pass");
+				cookieService.delete("usernames");
+				cookieService.delete("passwords");
 			}
 			System.out.println();
 			return "redirect:/main";

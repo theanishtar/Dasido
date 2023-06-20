@@ -30,7 +30,7 @@
 							<div class="letter">I</div>
 							<div class="letter">A</div>
 						</div>
-						<s:message code="index.about" />
+						<%-- <s:message code="index.about" /> --%>
 					</div>
 					<p class="section__subtitle">
 						<s:message code="login.title" /> !!!

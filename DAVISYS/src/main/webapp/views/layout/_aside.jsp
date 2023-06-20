@@ -64,7 +64,7 @@
 	<div class="sidebar">
 		<img src="/views/images/LogoDasido.png" alt="" srcset="" class="logo">
 		<a class="logo-expand" href="#"> <img alt=""
-			src="/views/images/logo_aside.png">
+			src="/views/images/logo_aside_euphoria.png">
 		</a>
 		<div class="side-wrapper">
 			<div class="side-title"></div>
@@ -188,7 +188,10 @@
 	<!-- end follow -->
 
 	<!-- Share -->
-	<div id="favDialog_share" class="modal fade" role="dialog">
+	<c:forEach items="${posts}" var="posts">
+	
+	<div id="favDialog_share${ posts.post.ID }" class="modal fade" role="dialog">
+	<form action="/share/${posts.post.ID}" method="get">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div id="close_share" onclick="closeDialog_setting()">
@@ -222,8 +225,10 @@
 				</div>
 			</div>
 		</div>
+		</form>
 	</div>
-
+	
+	</c:forEach>
 	<script src="views/js/home.js"></script>
 	<%-- <script src="views/js/dialog.js"></script> --%>
 	<script src="/views/js/comment.js"></script>

@@ -63,6 +63,10 @@ public class UpdateprofileController {
 		if (userSession == null) {
 			return "error";
 		}
+		//Số bài đăng của người dùng
+		int totalPost = userDao.totalUserPost(userSession.getID());
+		System.out.println(totalPost+" total poapsokdoaishduasbdhasbduasbuidasi");
+		model.addAttribute("totalPost", totalPost);
 		return "jsp/updateprofile";
 	}
 
@@ -80,49 +84,50 @@ public class UpdateprofileController {
 		
 		User use = userDao.findIdUser(user.getID());
 		
-		if(use.getAvatar() != user.getAvatar()) {
-			try {
-
-				String uploadRootPath = app.getRealPath("/views/images/user/");
-				String newName = user.getUsername();
-				File uploadRootDir = new File(uploadRootPath);
-				if (uploadRootDir.exists()) {
-					uploadRootDir.mkdirs();
-				}
-
-				String fileName = file.getOriginalFilename();
-				File serverFile = new File(uploadRootDir.getAbsoluteFile() + File.separator
-						+ UpdateprofileController.renameFile(fileName, newName));
-				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-				stream.write(file.getBytes());
-				stream.close();
-				use.setAvatar("/views/images/user/" + newName + ".png");
-			} catch (Exception e) {
-				System.out.println("loi " + e);
-				return "jsp/updateprofile";
-			}
-		}else {
-			use.setAvatar(use.getAvatar());
-		}
-
-				DateFormat dateFormat = new SimpleDateFormat(pattern);
+			if(!file.isEmpty()) {
 				try {
-					Date date = dateFormat.parse(birthday);
-					use.setBirthday(date);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
 
-				Province pr = provinceDao.findIdProvince(address);
-				use.setFullname(fullname);
-				use.setGender(gender);
-				use.setProvince(pr);
-				sessionService.set("user", use);
-				userDao.saveAndFlush(use);
-				model.addAttribute("messageupdate", "Cập nhật thành công!");
+					String uploadRootPath = app.getRealPath("/views/images/user/");
+					String newName = user.getUsername();
+					File uploadRootDir = new File(uploadRootPath);
+					if (uploadRootDir.exists()) {
+						uploadRootDir.mkdirs();
+					}
+
+					String fileName = file.getOriginalFilename();
+					File serverFile = new File(uploadRootDir.getAbsoluteFile() + File.separator
+							+ UpdateprofileController.renameFile(fileName, newName));
+					BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+					stream.write(file.getBytes());
+					stream.close();
+					use.setAvatar("/views/images/user/" + newName + ".png");
+				} catch (Exception e) {
+					System.out.println("loi " + e);
+					return "jsp/updateprofile";
+				}
+			}else {
+				use.setAvatar(use.getAvatar());
+			}
+
+					DateFormat dateFormat = new SimpleDateFormat(pattern);
+					try {
+						Date date = dateFormat.parse(birthday);
+						use.setBirthday(date);
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
+					
+
+					Province pr = provinceDao.findIdProvince(address);
+					use.setFullname(fullname);
+					use.setGender(gender);
+					use.setProvince(pr);
+					sessionService.set("user", use);
+					userDao.saveAndFlush(use);
+					model.addAttribute("messageupdate", "Cập nhật thành công!");
+			
 		
-		
+
 		return "redirect:/updatepro";
 	}
 

@@ -58,7 +58,7 @@
 			<s:message code="main.hi" />
 			${user.fullname.substring(user.fullname.lastIndexOf(" ")) }!
 			<s:message code="main.whatdoyouthing" />
-			
+
 			<!-- <div class="arrow">›</div> -->
 		</button>
 	</div>
@@ -66,41 +66,45 @@
 		<div class="main-blogs">
 			<div class="main-blog anim" style="--delay: .1s">
 				<c:forEach items="${listTop2}" var="top1" begin="0" end="0">
-					<div class="main-blog__title" style="">${top1[0]}</div>
-					<div class="main-blog__author">
-						<div class="author-img__wrapper">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-								stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-								class="feather feather-check">
+					<a href="/post/${top1[4]}" style="text-decoration: none">
+						<div class="main-blog__title" style="">${top1[0]}</div>
+						<div class="main-blog__author">
+							<div class="author-img__wrapper">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+									stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+									class="feather feather-check">
 									<path d="M20 6L9 17l-5-5" />
 								</svg>
-							<img class="author-img" src="${top1[2]}" />
+								<img class="author-img" src="${top1[2]}" />
+							</div>
+							<div class="author-detail">
+								<div class="author-name">${top1[3]}</div>
+								<div class="author-info">${top1[1]}</div>
+							</div>
 						</div>
-						<div class="author-detail">
-							<div class="author-name">${top1[3]}</div>
-							<div class="author-info">${top1[1]}</div>
-						</div>
-					</div>
+					</a>
 				</c:forEach>
 			</div>
 			<div class="main-blog anim" style="--delay: .2s">
 				<c:forEach items="${listTop2}" var="top2" begin="1" end="1">
-					<div class="main-blog__title"
-						style="white-space: nowrap; text-overflow: ellipsis; width: 1000px; max-width: 350px; overflow: hidden;">${top2[0]}</div>
-					<div class="main-blog__author tips">
-						<div class="author-img__wrapper">
-							<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-								stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
-								class="feather feather-check">
+					<a href="/post/${top2[4]}" style="text-decoration: none">
+						<div class="main-blog__title"
+							style="white-space: nowrap; text-overflow: ellipsis; width: 1000px; max-width: 350px; overflow: hidden;">${top2[0]}</div>
+						<div class="main-blog__author tips">
+							<div class="author-img__wrapper">
+								<svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+									stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+									class="feather feather-check">
 									<path d="M20 6L9 17l-5-5" />
 								</svg>
-							<img class="author-img" src="${top2[2]}" />
+								<img class="author-img" src="${top2[2]}" />
+							</div>
+							<div class="author-detail">
+								<div class="author-name">${top2[3]}</div>
+								<div class="author-info">${top2[1]}</div>
+							</div>
 						</div>
-						<div class="author-detail">
-							<div class="author-name">${top2[3]}</div>
-							<div class="author-info">${top2[1]}</div>
-						</div>
-					</div>
+					</a>
 				</c:forEach>
 			</div>
 		</div>
@@ -136,8 +140,9 @@
 											<i class="fa-solid fa-ellipsis"></i>
 										</div>
 										<div class="reprot-menu-content dropdown-menu ">
-											<a class="link-report" href="/report/${ posts.post.ID }"><s:message code="main.report" /></a>
-												<%-- <form action="/report/${ posts.post.ID }" method="post">
+											<a class="link-report" href="/report/${ posts.post.ID }"><s:message
+													code="main.report" /></a>
+											<%-- <form action="/report/${ posts.post.ID }" method="post">
 													<button type="submit">Báo cáo</button>
 												</form> --%>
 										</div>
@@ -181,7 +186,7 @@
 							<s:message code="main.interested" />
 						</button>
 						<button class="like" data-toggle="modal"
-							data-target="#favDialog_share">
+							data-target="#favDialog_share${ posts.post.ID}">
 							<svg viewBox="0 0 24 24" fill="currentColor"
 								xmlns="http://www.w3.org/2000/svg">
 										<path
@@ -228,8 +233,8 @@
 						</div>
 						<div class="row">
 							<div class="form-group col-md-4">
-								<label for="inputState"><s:message code="main.district" /></label> <select id="selectWards"
-									name="nameWards" class="form-control">
+								<label for="inputState"><s:message code="main.district" /></label>
+								<select id="selectWards" name="nameWards" class="form-control">
 									<c:forEach var="wards" items="${listWards}">
 										<option value="${ wards.code}">${ wards.full_name}</option>
 									</c:forEach>
@@ -237,8 +242,9 @@
 								</select>
 							</div>
 							<div class="form-group col-md-4">
-								<label for="inputState"><s:message code="main.province" /></label> <select id="selectDistrict"
-									name="nameDistrict" class="form-control" value="${myBean =0}"
+								<label for="inputState"><s:message code="main.province" /></label>
+								<select id="selectDistrict" name="nameDistrict"
+									class="form-control" value="${myBean =0}"
 									onchange="getWards(this)">
 									<c:forEach var="district" items="${listDistricts}">
 										<option value="${ district.code}">${ district.full_name}</option>
@@ -246,9 +252,9 @@
 								</select>
 							</div>
 							<div class="form-group col-md-4">
-								<label for="inputState"><s:message code="main.city" /></label> <select
-									id="selectProvinces" name="nameProvinces" class="form-control"
-									onchange="getDistricts(this)">
+								<label for="inputState"><s:message code="main.city" /></label>
+								<select id="selectProvinces" name="nameProvinces"
+									class="form-control" onchange="getDistricts(this)">
 									<c:forEach var="provinces" items="${listProvinces}">
 										<c:choose>
 											<c:when
@@ -382,10 +388,15 @@
 													<c:if test="${comment.comment.commentParent ==null}">
 														<div class="comment__card-footer">
 															<div
-																onclick="repComment('${comment.comment.ID}','${comment.comment.user.fullname}','${posts.post.ID}')"><s:message code="profile.reply" /> ${comment.countComment}</div>
+																onclick="repComment('${comment.comment.ID}','${comment.comment.user.fullname}','${posts.post.ID}')">
+																<s:message code="profile.reply" />
+																${comment.countComment}
+															</div>
 															<c:if test="${comment.countComment >0}">
 																<div class="show-replies"
-																	onclick="seenMore('${comment.comment.ID}')"><s:message code="main.seenmore" /></div>
+																	onclick="seenMore('${comment.comment.ID}')">
+																	<s:message code="main.seenmore" />
+																</div>
 															</c:if>
 
 														</div>
@@ -406,14 +417,15 @@
 								<form>
 									<div class="comment-box">
 										<input type="text" id="comment-input${posts.post.ID}"
-											name="postComment" placeholder="<s:message code="main.comment" />">
+											name="postComment"
+											placeholder="<s:message code="main.comment" />">
 										<button class="add-comment-btn"
 											onclick="comment('${posts.post.ID }')">
 											<i class="fa-regular fa-comment"></i>
 										</button>
 									</div>
 								</form>
-								<span class="comment-count">50 <s:message code="main.comment" /> </span>
+								<%-- 	<span class="comment-count">50 <s:message code="main.comment" /> </span> --%>
 							</div>
 						</div>
 					</div>

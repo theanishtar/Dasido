@@ -53,7 +53,7 @@
 	<div class="sidebar">
 		<img src="/views/images/LogoDasido.png" alt="" srcset="" class="logo">
 		<a class="logo-expand" href="/admin"> <img alt=""
-			src="/views/images/logo_aside.png">
+			src="/views/images/logo_aside_euphoria.png">
 		</a>
 		<div class="side-wrapper">
 			<div class="side-title"></div>

@@ -86,6 +86,19 @@ public class PostController {
 		return "redirect:/main";
 	}
 	
+	@RequestMapping("/lockpost/{id}")
+	public String getLockPost(@PathVariable String id, Model model) {
+		try {
+			Post updatepost = postDao.findByIdPost(Integer.valueOf(id));
+			updatepost.setPost_Status(false);
+			postDao.saveAndFlush(updatepost);
+			return "redirect:/admin/report";
+		} catch (Exception e) {
+			System.out.println(e+("getReport"));
+		}
+		return "redirect:/admin/report";
+	}
+	
 	@RequestMapping("/post/{id}")
 	public String getDetailPost(@PathVariable String id, Model model) {
 		User userSession = sessionService.get("user");
