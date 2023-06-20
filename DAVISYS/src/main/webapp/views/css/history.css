@@ -166,7 +166,7 @@ p {
 #tab-history .list li {
     padding: 10px;
     display: grid;
-    grid-template-columns: 90% 10%;
+    grid-template-columns: 5% 90% 5%;
 }
 #tab-history-share .list li,
 #tab-history-product .list li {

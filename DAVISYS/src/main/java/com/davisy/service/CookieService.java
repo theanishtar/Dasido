@@ -51,6 +51,7 @@ public class CookieService {
 	}
 
 	public void delete(String name) {
+		// TODO Auto-generated method stub
 		Cookie cookie = new Cookie(name, "");
 		cookie.setMaxAge(0);
 		cookie.setPath("/");

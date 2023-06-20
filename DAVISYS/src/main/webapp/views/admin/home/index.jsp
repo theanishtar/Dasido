@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,18 +10,12 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 </head>
 <body>
-	<style>
-.dropdown-toggle {
-	margin: 0;
-}
-</style>
-
 	<!-- Begin Page Content -->
 	<div class="container-fluid" style="margin-top: 30px">
 
 		<!-- Page Heading -->
 		<div class="d-sm-flex align-items-center justify-content-between mb-4">
-			<h1 class="h3 mb-0 text-gray-800"><s:message code="aside.sta" /></h1>
+			<h1 class="h3 mb-0 text-gray-800">Thống kê</h1>
 		</div>
 
 		<!-- Content Row -->
@@ -36,7 +29,7 @@
 							<div class="col mr-2">
 								<div
 									class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-									<s:message code="admin.postmonth" /></div>
+									Tổng bài đăng (Theo tháng)</div>
 								<div class="h5 mb-0 font-weight-bold text-gray-800">${totalPost}</div>
 							</div>
 							<div class="col-auto">
@@ -55,7 +48,7 @@
 							<div class="col mr-2">
 								<div
 									class="text-xs font-weight-bold text-success text-uppercase mb-1">
-									<s:message code="admin.usermonth" /></div>
+									Tổng số người dùng (Theo tháng)</div>
 								<div class="h5 mb-0 font-weight-bold text-gray-800">${totalUser}</div>
 							</div>
 							<div class="col-auto">
@@ -73,8 +66,8 @@
 						<div class="row no-gutters align-items-center">
 							<div class="col mr-2">
 								<div
-									class="text-xs font-weight-bold text-info text-uppercase mb-1">
-									<s:message code="admin.percent" /></div>
+									class="text-xs font-weight-bold text-info text-uppercase mb-1">Phần trăm sản phẩm đã gửi được
+								</div>
 								<div class="row no-gutters align-items-center">
 									<div class="col-auto">
 										<div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">${percentPost}%</div>
@@ -82,8 +75,8 @@
 									<div class="col">
 										<div class="progress progress-sm mr-2">
 											<div class="progress-bar bg-info" role="progressbar"
-												style="width: ${percentPost}%" aria-valuenow="50"
-												aria-valuemin="0" aria-valuemax="100"></div>
+												style="width: ${percentPost}%" aria-valuenow="50" aria-valuemin="0"
+												aria-valuemax="100"></div>
 										</div>
 									</div>
 								</div>
@@ -104,7 +97,7 @@
 							<div class="col mr-2">
 								<div
 									class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-									<s:message code="admin.reportpost" /></div>
+									Tổng số bài viết bị báo cáo hôm nay</div>
 								<div class="h5 mb-0 font-weight-bold text-gray-800">${totalPostReport}</div>
 							</div>
 							<div class="col-auto">
@@ -126,7 +119,23 @@
 					<!-- Card Header - Dropdown -->
 					<div
 						class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-						<h6 class="m-0 font-weight-bold text-primary"><s:message code="admin.chartarea" /></h6>
+						<h6 class="m-0 font-weight-bold text-primary">Tổng số bài đăng theo tháng</h6>
+						<div class="dropdown no-arrow">
+							<a class="dropdown-toggle" href="#" role="button"
+								id="dropdownMenuLink" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"> <i
+								class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+							</a>
+							<div
+								class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+								aria-labelledby="dropdownMenuLink">
+								<div class="dropdown-header">Dropdown Header:</div>
+								<a class="dropdown-item" href="#">Action</a> <a
+									class="dropdown-item" href="#">Another action</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#">Something else here</a>
+							</div>
+						</div>
 					</div>
 					<!-- Card Body -->
 					<div class="card-body">
@@ -143,8 +152,23 @@
 					<!-- Card Header - Dropdown -->
 					<div
 						class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-						<h6 class="m-0 font-weight-bold text-primary">
-						<s:message code="admin.piechart" /></h6>
+						<h6 class="m-0 font-weight-bold text-primary">Top 3 sản phẩm được tặng nhiều nhất (%)</h6>
+						<div class="dropdown no-arrow">
+							<a class="dropdown-toggle" href="#" role="button"
+								id="dropdownMenuLink" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false"> <i
+								class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+							</a>
+							<div
+								class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+								aria-labelledby="dropdownMenuLink">
+								<div class="dropdown-header">Dropdown Header:</div>
+								<a class="dropdown-item" href="#">Action</a> <a
+									class="dropdown-item" href="#">Another action</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="#">Something else here</a>
+							</div>
+						</div>
 					</div>
 					<!-- Card Body -->
 					<div class="card-body">

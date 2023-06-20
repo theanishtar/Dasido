@@ -46,7 +46,7 @@ public class CommentController {
 	public String comment(@PathVariable String idPost, @RequestParam("commentContent") String comment,
 			@RequestParam("repCommentIdUser") String replyComment) {
 		User userSession = sessionService.get("user");
-		if (userSession == null) {
+		if(userSession == null) {
 			return "error";
 		}
 		try {
@@ -78,7 +78,7 @@ public class CommentController {
 
 	@GetMapping("/loadReplyComment")
 	public void loadReplyComment(@RequestParam("idComment") String idComment) {
-
+		
 		try {
 			request.setCharacterEncoding("utf-8");
 			response.setCharacterEncoding("utf-8");
@@ -109,29 +109,6 @@ public class CommentController {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-	}
-
-	@GetMapping("/loadNotification")
-	public void loadNotification() {
-		try {
-			request.setCharacterEncoding("utf-8");
-			response.setCharacterEncoding("utf-8");
-			User user = sessionService.get("user");
-			List<Comment> listComment = commentDao.findAllCommentUserSession(user.getUsername());
-			PrintWriter out = response.getWriter();
-			for (Comment cmt : listComment) {
-				out.println("<a  href=\"#post" + cmt.getPost().getID()
-						+ "\" data-toggle=\"modal\" data-target=\"#favDialog_comment" + cmt.getPost().getID()
-						+ "\" ><div class=\"notifications-item\">\r\n" + "	<img src= \"" + cmt.getUser().getAvatar()
-						+ "\" alt = \"img\">\r\n" + "	<div class=\"text\">\r\n" + "	<h4>"
-						+ cmt.getUser().getFullname() + "<span style=\"margin-left: 15px\">" + cmt.getDateComment()
-						+ "</span></h4>\r\n" + "	<p>" + cmt.getContent() + "</p>\r\n" + "	</div>\r\n"
-						+ "	</div> </a> \r\n" + "");
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-
 	}
 
 	public java.sql.Date day() {

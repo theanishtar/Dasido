@@ -3,7 +3,6 @@
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="fr"%>
 <%@taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="s" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,19 +20,19 @@
 </style>
 	<div class="header">
 		<div class="search-bar">
-			<input type="text" placeholder="<s:message code="menu.search"/>">
+			<input type="text" placeholder="Search">
 		</div>
 		<div class="user-settings">
 			<%-- <c:if test="${sessionScope.user==null}">
 				<img alt="" src="/views/images/user/user.jpg">
 			</c:if> --%>
 			<c:if test="${sessionScope.user!=null}">
-				<img class="user-img" src="${sessionScope.user.avatar }" alt="">
+				<img class="user-img" src="/${sessionScope.user.avatar }" alt="">
 			</c:if>
 
 			<div class="user-name">
 				<c:if test="${sessionScope.user==null}">
-            <s:message code="menu.account"/> 
+            Tài khoản 
             </c:if>
 				<c:if test="${sessionScope.user!=null}">
            ${sessionScope.user.fullname}
@@ -47,10 +46,10 @@
 					</svg>
 				</span>
 				<div class="dropdown-content">
-					<a href="/profile/${user.ID}"><s:message code="menu.infor"/></a> 
-					<a href="/updatepro"><s:message code="menu.update"/></a> 
-					<a href="/changepass"><s:message code="menu.changpassword"/></a> 
-					<a href="/logout"><s:message code="menu.logout"/></a>
+					<a href="profile">Thông tin</a> 
+					<a href="updatepro">Cập nhật</a> 
+					<a href="changepassword">Đổi mật khẩu</a> 
+					<a href="/logout">Đăng xuất</a>
 				</div>
 			</div>
 			<div class="notify">
@@ -62,7 +61,27 @@
 						</svg>
 					</span>
 					<div class="dropdownNotification-content" id="box">
-				
+						<h2>
+							Thông báo <span>2</span>
+						</h2>
+						<div class="notifications-item">
+							<img src="https://i.imgur.com/uIgDDDd.jpg" alt="img">
+							<div class="text">
+								<h4>Samso aliao</h4>
+								<p>Samso Nagaro Like your home work</p>
+								<span class="new-notifications">Mới</span>
+							</div>
+						</div>
+						<div class="notifications-item">
+							<img
+								src="https://img.icons8.com/flat_round/64/000000/vote-badge.png"
+								alt="img">
+							<div class="text">
+								<h4>John Silvester</h4>
+								<p>+20 vista badge earned</p>
+								<span class="new-notifications">Mới</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

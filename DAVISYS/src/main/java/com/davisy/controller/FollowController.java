@@ -52,7 +52,6 @@ public class FollowController {
 		follower.setPk(pk);
 
 		followerDAO.save(follower);
-		fillFollow();
 		System.out.println("Thêm thành công");
 		return "redirect:/main";
 	}
@@ -63,21 +62,17 @@ public class FollowController {
 			User userSession = sessionService.get("user");
 			followerDAO.delete(followerDAO.findUserUnlf(userSession.getID(), id));
 			System.out.println("Hủy thành công: " + followerDAO.findUserUnlf(userSession.getID(), id));
-			fillFollow();
-		} catch (Exception e) {
-			System.out.println("Error delete follow: " + e);
-		}
-
-		return "redirect:/main";
-	}
-	 public void fillFollow(){
-		 User userSession = sessionService.get("user");
-		 List<Follower> fls = followerDAO.findAllFollower(userSession.getID());
+			List<Follower> fls = followerDAO.findAllFollower(userSession.getID());
 			List<User> users = new ArrayList<>();
 			for (Follower f : fls) {
 				Follower.Pk pk = f.getPk();
 				users.add(userDao.findIdUser(pk.getUserID()));
 			}
 			sessionService.set("follower", users);
-	 }
+		} catch (Exception e) {
+			System.out.println("Error delete follow: " + e);
+		}
+
+		return "redirect:/main";
+	}
 }

@@ -3,7 +3,6 @@
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="fr"%>
 <%@taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,30 +19,21 @@
 }
 </style>
 	<div class="header">
-		<div class="search-bar dropdown">
-			<input type="text" class="dropdown-toggle-notification"
-				data-toggle="dropdown" oninput="searchByName(this)"
-				placeholder="<s:message code="menu.search"/>">
-			<div class="dropdownFind dropdown-menu" id="dropdownFind">
-				<!-- <h2 id="notificationCount">Thông báo</h2> -->
-				<%-- <a href="/profile/1" id="find-content"> <img alt=""
-					src="${sessionScope.user.avatar }">
-					<div class="post-find">Bài viết a</div>
-				</a> --%>
-			</div>
+		<div class="search-bar">
+			<input type="text" placeholder="Search">
 		</div>
 		<div class="user-settings">
 			<%-- <c:if test="${sessionScope.user==null}">
 				<img alt="" src="/views/images/user/user.jpg">
 			</c:if> --%>
 			<c:if test="${sessionScope.user!=null}">
-				<img class="user-img" src="${sessionScope.user.avatar }" alt="">
+				<img class="user-img" src="${sessionScope.user.avatar}" alt="">
 			</c:if>
 
 			<div class="user-name">
 				<c:if test="${sessionScope.user==null}">
-					<s:message code="menu.account" />
-				</c:if>
+            Tài khoản 
+            </c:if>
 				<c:if test="${sessionScope.user!=null}">
            ${sessionScope.user.fullname}
             </c:if>
@@ -56,28 +46,42 @@
 					</svg>
 				</span>
 				<div class="dropdown-content">
-					<a href="/profile/${user.ID}"><s:message code="menu.infor" /></a>
-					<a href="/updatepro"><s:message code="menu.update" /></a> <a
-						href="/changepass"><s:message code="menu.changpassword" /></a> <a
-						href="/logout"><s:message code="menu.logout" /></a>
+					<a href="/profile/${user.ID}">Thông tin</a> 
+					<a href="/updatepro">Cập nhật</a> 
+					<a href="/changepass">Đổi mật khẩu</a> 
+					<a href="/logout">Đăng xuất</a>
 				</div>
 			</div>
-			<div class="notify dropdown" onclick="loadCommnent()">
+			<div class="notify">
 				<div class="notification"></div>
 				<div class="dropdownNotification">
-					<span class="dropdown-toggle-notification" data-toggle="dropdown">
-						<svg viewBox="0 0 24 24" fill="currentColor">
+					<span> <svg viewBox="0 0 24 24" fill="currentColor">
 							<path fill-rule="evenodd" clip-rule="evenodd"
 								d="M18.707 8.796c0 1.256.332 1.997 1.063 2.85.553.628.73 1.435.73 2.31 0 .874-.287 1.704-.863 2.378a4.537 4.537 0 01-2.9 1.413c-1.571.134-3.143.247-4.736.247-1.595 0-3.166-.068-4.737-.247a4.532 4.532 0 01-2.9-1.413 3.616 3.616 0 01-.864-2.378c0-.875.178-1.682.73-2.31.754-.854 1.064-1.594 1.064-2.85V8.37c0-1.682.42-2.781 1.283-3.858C7.861 2.942 9.919 2 11.956 2h.09c2.08 0 4.204.987 5.466 2.625.82 1.054 1.195 2.108 1.195 3.745v.426zM9.074 20.061c0-.504.462-.734.89-.833.5-.106 3.545-.106 4.045 0 .428.099.89.33.89.833-.025.48-.306.904-.695 1.174a3.635 3.635 0 01-1.713.731 3.795 3.795 0 01-1.008 0 3.618 3.618 0 01-1.714-.732c-.39-.269-.67-.694-.695-1.173z" />
 						</svg>
 					</span>
-					<!-- <div class="dropdownNotification-content" id="box">
-						
-					</div> -->
-					<div class="dropdownNotification-content dropdown-menu ">
-						<h2 id="notificationCount">Thông báo</h2>
-						<div class="notification-content" id="notification-content"></div>
-
+					<div class="dropdownNotification-content" id="box">
+						<h2>
+							Thông báo <span>2</span>
+						</h2>
+						<div class="notifications-item">
+							<img src="https://i.imgur.com/uIgDDDd.jpg" alt="img">
+							<div class="text">
+								<h4>Samso aliao</h4>
+								<p>Samso Nagaro Like your home work</p>
+								<span class="new-notifications">Mới</span>
+							</div>
+						</div>
+						<div class="notifications-item">
+							<img
+								src="https://img.icons8.com/flat_round/64/000000/vote-badge.png"
+								alt="img">
+							<div class="text">
+								<h4>John Silvester</h4>
+								<p>+20 vista badge earned</p>
+								<span class="new-notifications">Mới</span>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

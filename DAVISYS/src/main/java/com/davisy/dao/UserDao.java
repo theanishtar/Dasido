@@ -27,7 +27,5 @@ public interface UserDao extends JpaRepository<User, String> {
 	@Query(value = "SELECT COUNT(USERS.ID) FROM USERS WHERE MONTH(USERS.DAYCREATE) =:id", nativeQuery = true)
 	public int totalUserMonth(int id);
 	
-	@Query(value = "SELECT COUNT(POST.ID) FROM POST INNER JOIN USERS ON POST.USERID = USERS.ID WHERE POST.USERID =:id", nativeQuery = true)
-	public int totalUserPost(int id);
 	
 }

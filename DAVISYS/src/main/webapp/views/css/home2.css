@@ -50,6 +50,7 @@ body:before {
 	content: "";
 }
 
+
 .container {
 	background-color: var(--theme-bg);
 	max-width: 100%;
@@ -309,7 +310,41 @@ body:before {
 	font-size: 14px;
 	margin: 0 6px 0 12px;
 }
+.dropdown,
+.dropdownNotification {
+  position: relative;
+  display: inline-block;
+}
 
+.dropdown-content,
+.dropdownNotification-content {
+	color: white;
+  display: none;
+  position: absolute;
+  background-color: #252836;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  padding: 12px 16px;
+  z-index: 100;
+  margin-left: -7rem;
+  border-radius: 0.35rem;
+}
+.dropdown:hover,
+.dropdownNotification:hover{
+	cursor: pointer;
+}
+.dropdown:hover .dropdown-content,
+.dropdownNotification:hover .dropdownNotification-content {
+  display: block;
+  
+}
+.dropdown-content a,
+.dropdownNotification-content a {
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	color: white;
+  }
 @media screen and (max-width: 575px) {
 	.user-name {
 		display: none;
@@ -322,7 +357,6 @@ body:before {
 	padding: 0 30px 30px;
 	flex-grow: 1;
 	overflow: auto;
-	border-left: 1px solid var(--border-color);
 }
 
 .anim {
@@ -376,9 +410,7 @@ body:before {
 }
 
 .main-blog {
-	/* background-image: url("https://assets.codepen.io/3364143/skate-removebg-preview.png"); */
-	
-	background-image: url("https://github.com/dangtranhuu/images/blob/main/angurvad/banner/1075fecda88479da2095.jpg?raw=true");
+	background-image: url("https://assets.codepen.io/3364143/skate-removebg-preview.png");
 	background-size: 80%;
 	background-position-x: 150px;
 	background-color: #31abbd;
@@ -392,23 +424,16 @@ body:before {
 	position: relative;
 	transition: background 0.3s;
 	background-repeat: no-repeat;
-	
-	background-size: 100%;
-    background-position-x: 0px;
-    /* background-color: #31abbd; */
 }
 
 .main-blog+.main-blog {
 	margin-left: 20px;
 	width: 35%;
-	background-image: url(https://github.com/dangtranhuu/images/blob/main/angurvad/banner/ad1f42a714eec5b09cff.jpg?raw=true);
+	background-image: url(https://c0.anyrgb.com/images/1020/945/venice-beach-2018-outdoors-sport-men-jumping-desert-sunset-extreme-sports-one-person-action.jpg);
 	background-color: unset;
 	background-position-x: 0;
 	background-size: 139%;
 	filter: saturate(1.4);
-	background-size: 100%;
-    background-position-x: 0px;
-    background-size: 150%;
 }
 
 .main-blog+.main-blog .author-img {
@@ -732,7 +757,7 @@ video {
 }
 
 .video-p-title {
-	font-size: 16px;
+	font-size: 24px;
 	color: #fff;
 	line-height: 1.4em;
 	margin: 16px 0 20px;
@@ -1077,7 +1102,6 @@ background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg width='24' height
 	.vjs-play-control:after {
 		display: none;
 	}
-	
 }
 
 .vjs-menu-button-inline .vjs-menu {
@@ -1148,7 +1172,7 @@ font-family: var(--body-font);
 .list-img-post {
 	margin-top: 10px;
 	display: flex;
-	max-width: 30%;
+	max-width: 100%;
 	overflow-x: scroll;
 	/* max-height: 400px; */
 }
@@ -1163,7 +1187,7 @@ font-family: var(--body-font);
 	border-radius: 10px;
 }
 .list-img-post img{
-	/* width: 400px ; */
+	width: 400px ;
 	float: left;
 	
 }
@@ -1175,7 +1199,8 @@ font-family: var(--body-font);
 	padding: 0 0px;
 	margin-bottom: 30px;
 	padding-bottom: 30px;
-	/* padding-right: 300px */
+	
+	padding-right: 300px
 }
 
 .video-p-subtitle {
@@ -1275,14 +1300,14 @@ font-family: var(--body-font);
 	}
 }
 /* dropdown menu */
-.dropdown{
+.dropdown,
+.dropdownNotification {
   position: relative;
   display: inline-block;
 }
 
 .dropdown-content,
-.dropdownNotification-content,
-.reprot-menu-content {
+.dropdownNotification-content {
 	color: white;
   display: none;
   position: absolute;
@@ -1291,21 +1316,16 @@ font-family: var(--body-font);
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   padding: 12px 16px;
   z-index: 100;
+  margin-left: -7rem;
   border-radius: 0.35rem;
   
-}
-.dropdown-content{
-	margin-left: -8rem;
-}
-.dropdownNotification-content {
-	 margin-left: -20.5rem;
-  	margin-top: 1rem;
 }
 .dropdown:hover,
 .dropdownNotification:hover{
 	cursor: pointer;
 }
-.dropdown:hover .dropdown-content {
+.dropdown:hover .dropdown-content,
+.dropdownNotification:hover .dropdownNotification-content {
   display: block;
   
 }
@@ -1378,104 +1398,18 @@ font-size: 12px;
     background: red;
     border-radius: 50%;
 }
-.notification-content{
-    height: 420px;
-    overflow: auto;
-    overflow: -moz-scrollbars-none;
-    -ms-overflow-style: none;
-}
-
-.notification-content::-webkit-scrollbar {
-    width: 0 !important;
-    display: none;
-}
-/* ======dropdown find========= */
-.dropdownFind {
-	color: white;
-  display: none;
-  position: absolute;
-     background-color: var(--button-bg);
-     color: var(--body-font); 
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  z-index: 100;
-  border-radius: 0.35rem;
-  
-}
-a#find-content,
-.reprot-menu-content a {
-    text-decoration: none;
-    color: var(--body-font); 
-    margin-top: 1rem;
-}
-a#find-content:hover,
-.reprot-menu-content a:hover{
-	 color: white;
-}
-.post-find {
-    padding-top: 0.5rem;
-    padding-left: 1rem;
-}
-#find-content{
-	display: grid; 
-	grid-template-columns: 12% 88%;
-}
-
-#find-content img{
-    max-width: 100%;
-    border-radius:50%;
--moz-border-radius:50%;
--webkit-border-radius:50%;
-}
-.dropdownFind {
-    width: 450px;
-    position: absolute;
-    right: 0px; 
-}
-/* ======end dropdown find========= */
-/* report */
-.reprot-menu-content.dropdown-menu.show {
-    margin-left: -0.5rem;
-    margin-top: -1rem;
-}
 /*=============end dropdown menu=============*/
 
 /*=============cmt============ */
-/* .div{
+.div{
 	display: grid; 
 	 grid-template-columns: 50% 50%; 
 	grid-column-gap: 20px;
-}*/
+}
 .modal-dialog{
-	margin-top: 9rem;
-} 
-/*  */
-.video-p-detail-content{
-	display: flex;
+	margin: 0;
 }
-.video-p-detail-content a.btn-follow{
-	color: #0DF6E3;
-	text-decoration: none;
-	font-size: 12px;
-	margin-left: 1rem;
-}
-.btn-follow:hover{
-	cursor: pointer;
-}
-/*  */
 /*=============end cmt============ */
-/*  */
-.post-title{
-	display: flex;
-}
-.report-menu{
-	margin-left: 0.5rem;
-}
-/*  */
-
-
-
 ::-webkit-scrollbar {
 	width: 6px;
 	border-radius: 10px;
@@ -1485,13 +1419,3 @@ a#find-content:hover,
 	background-color: rgba(21, 20, 26, 0.63);
 	border-radius: 10px;
 }
-
-@media screen and (max-width: 950px) {
-	.div {
-		display: block;
-	}
-	
-}
-
-
-

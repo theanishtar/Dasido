@@ -3,7 +3,6 @@
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="fr"%>
 <%@taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,9 +16,11 @@
 </head>
 <body>
 	<section>
+	
 		<form action="/updatepro" method="POST" enctype="multipart/form-data">
 			<div class="">
 				<div class="row">
+				
 					<div class="col-lg-4">
 						<div class="card mb-4">
 							<div class="card-body text-center">
@@ -28,21 +29,7 @@
 									name="file" type="file" style="display: none;">
 								</label>
 								<h5 class="my-3">${user.fullname}</h5>
-								<p class="text-muted mb-4">
-									${totalPost}
-									<s:message code="main.post" />
-								</p>
-								<c:if
-									test="${messageupdate == 'Email đã tồn tại!'  || messageupdate == 'Tên đăng nhập đã tồn tại!'}">
-									<p style="color: red;">
-										<em>${messageupdate}</em>
-									</p>
-								</c:if>
-								<c:if test="${messageupdate == 'Cập nhật thành công!'}">
-									<p style="color: green;">
-										<em>${messageupdate}</em>
-									</p>
-								</c:if>
+								<p class="text-muted mb-4">13 bài viết</p>
 							</div>
 						</div>
 					</div>
@@ -51,9 +38,7 @@
 							<div class="card-body">
 								<div class="row">
 									<div class="col-sm-3">
-										<p class="mb-0">
-											<s:message code="contact.fullname" />
-										</p>
+										<p class="mb-0">Họ và tên</p>
 									</div>
 									<div class="col-sm-9">
 										<input class="text-muted mb-0" value="${user.fullname}"
@@ -64,21 +49,17 @@
 								<hr>
 								<div class="row">
 									<div class="col-sm-3">
-										<p class="mb-0">
-											<s:message code="updateprofile.username" />
-										</p>
+										<p class="mb-0">Tên đăng nhập</p>
 									</div>
 									<div class="col-sm-9">
 										<input class="text-muted mb-0" value="${user.username}"
-											name="username" required readonly>
+											name="username">
 									</div>
 								</div>
 								<hr>
 								<div class="row">
 									<div class="col-sm-3">
-										<p class="mb-0">
-											<s:message code="updateprofile.password" />
-										</p>
+										<p class="mb-0">Mật khẩu</p>
 									</div>
 									<div class="col-sm-9">
 										<input class="text-muted mb-0" type="password"
@@ -91,16 +72,14 @@
 										<p class="mb-0">Email</p>
 									</div>
 									<div class="col-sm-9">
-										<input class="text-muted mb-0" type="email" value="${user.email}"
-											name="email" required readonly>
+										<input class="text-muted mb-0" value="${user.email}"
+											name="email" required>
 									</div>
 								</div>
 								<hr>
 								<div class="row">
 									<div class="col-sm-3">
-										<p class="mb-0">
-											<s:message code="updateprofile.birthday" />
-										</p>
+										<p class="mb-0">Ngày sinh</p>
 									</div>
 									<div class="col-sm-9">
 										<input type="date" class="text-muted mb-0"
@@ -110,30 +89,24 @@
 								<hr>
 								<div class="row">
 									<div class="col-sm-3">
-										<p class="mb-0">
-											<s:message code="updateprofile.sex" />
-										</p>
+										<p class="mb-0">Giới tính</p>
 									</div>
 									<div class="col-sm-9">
 										<select class="text-muted mb-0" name="gender" id="gender">
 											<c:if test="${user.gender != null }">
 												<option value="${user.gender}">${user.gender}</option>
 											</c:if>
-											<option value="Nam"><s:message
-													code="updateprofile.male" /></option>
-											<option value="Nữ"><s:message
-													code="updateprofile.female" /></option>
-											<option value="Khác"><s:message
-													code="updateprofile.other" /></option>
+
+											<option value="Nam">Nam</option>
+											<option value="Nữ">Nữ</option>
+											<option value="Khác">Khác</option>
 										</select>
 									</div>
 								</div>
 								<hr>
 								<div class="row">
 									<div class="col-sm-3">
-										<p class="mb-0">
-											<s:message code="updateprofile.province" />
-										</p>
+										<p class="mb-0">Địa chỉ</p>
 									</div>
 									<div class="col-sm-9">
 										<select class="text-muted mb-0" name="address" id="address">
@@ -152,24 +125,19 @@
 								<hr>
 								<div class="row">
 									<div class="col-sm-3">
-										<p class="mb-0">
-											<s:message code="updateprofile.mark" />
-										</p>
+										<p class="mb-0">Điểm</p>
 									</div>
 									<div class="col-sm-9">
 										<input type="text" class="text-muted mb-0"
 											value="${user.mark}" readonly>
 									</div>
 								</div>
-								
+								<p>${messageupdate}</p>
 								<div class="row">
 									<div class="col-sm-3 btn-updateprofile">
-										<button type="submit" class="btn btn-primary">
-											<s:message code="profile.update" />
-										</button>
-										<button class="btn btn-light" formaction="/huy">
-											<s:message code="updateprofile.cancel" />
-										</button>
+										<button type="submit" class="btn btn-primary">Cập
+											nhật</button>
+										<button formaction="/huy" class="btn btn-light">Hủy</button>
 									</div>
 								</div>
 							</div>

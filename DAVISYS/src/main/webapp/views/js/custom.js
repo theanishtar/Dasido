@@ -60,11 +60,6 @@ function sendMessage(message) {
 	}
 }
 
-function sendMessageInterested(fromUser, avatar, sendUser,idPost) {
-	let message = "Mình quan tâm đến sản phẩm của bạn!";
-	sendMsgInterested(fromUser, message, avatar, sendUser,idPost);
-}
-
 function scrollToBottom() {
 	$chatHistory.scrollTop($chatHistory[0].scrollHeight);
 }
@@ -72,9 +67,7 @@ function scrollToBottom() {
 function getCurrentTime() {
 	return new Date().toLocaleTimeString().replace(/([\d]+:[\d]{2})(:[\d]{2})(.*)/, "$1$3");
 }
-function getDate() {
-	return new Date().toISOString().slice(0, 10);
-}
+
 function addMessage() {
 	sendMessage($textarea.val());
 }
@@ -103,7 +96,7 @@ function insertData(userName, message) {
 			alert("error")
 		}
 
-	});
+	})
 }
 init();
 

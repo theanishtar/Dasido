@@ -3,7 +3,6 @@
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="fr"%>
 <%@taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +22,7 @@
 				<!-- form card change password -->
 				<div class="card card-outline-secondary">
 					<div class="card-header">
-						<h3 class="mb-0"><s:message code="changePW.changepw" /></h3>
+						<h3 class="mb-0">Đổi mật khẩu</h3>
 						
 					</div>
 					<div class="card-body">
@@ -35,7 +34,7 @@
 							<p style="color:green;"><em>${changepass}</em> </p>
 							</c:if>
 							<div class="form-group">
-								<label for="inputPasswordOld"><s:message code="changePW.old" /> </label> 
+								<label for="inputPasswordOld">Mật khẩu cũ </label> 
 								 <span class="form-item-icon-eye hide-show-pass" style="padding-left: 1rem">
                                     <i onclick="showHidePass1()" class="fa-regular fa-eye" id="eye"></i>
                                 </span>
@@ -45,7 +44,7 @@
 								
 							</div>
 							<div class="form-group">
-								<label for="inputPasswordNew"><s:message code="changePW.new" /> </label>
+								<label for="inputPasswordNew">Mật khẩu mới </label>
 								<span class="form-item-icon-eye hide-show-pass" style="padding-left: 1rem">
                                     <i onclick="showHidePass2()" class="fa-regular fa-eye" id="eye1"></i>
                                 </span> 
@@ -56,7 +55,7 @@
 									
 							</div>
 							<div class="form-group">
-								<label for="inputPasswordConfirm"><s:message code="changePW.confirm" /> </label> 
+								<label for="inputPasswordConfirm">Xác nhận mật khẩu </label> 
 								<span class="form-item-icon-eye hide-show-pass" style="padding-left: 1rem">
                                     <i onclick="showHidePass3()"  class="fa-regular fa-eye" id="eye2"></i>
                                 </span>
@@ -67,7 +66,7 @@
 									
 							</div>
 							<div class="form-group">
-								<button type="submit" class="btn btn-success btn-lg float-right"><s:message code="changePW.change" /></button>
+								<button type="submit" class="btn btn-success btn-lg float-right">Đổi</button>
 							</div>
 						</form>
 					</div>

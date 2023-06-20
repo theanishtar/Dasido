@@ -31,9 +31,8 @@ public String userManager(@PathVariable("username") String username, Model m) {
 	}
 	User userss = dao.findByUsername(username);
 	request.setAttribute("Users",userss);
-	
-	
-	return "admin/home/formuser";
+	request.setAttribute("active2", "active");
+	return "admin/home/usermanage";
 }
 
 @RequestMapping("/ban")
@@ -47,13 +46,14 @@ public String banUser(Model m) {
 	if(user.isUser_Role() != true) {
 		user.setBan(true);
 	dao.saveAndFlush(user);
+	request.setAttribute("active2", "active");
 	}else {
 		m.addAttribute("messageban","Không được vô hiệu hóa admin!");
+		request.setAttribute("active2", "active");
 	}
 	
-	return "redirect:/admin/tableuser";
+	return "redirect:/admin/usermanage";
 }
-
 @RequestMapping("/onban")
 public String onbanUser(Model m) {
 	User userSession = sessionService.get("user");
@@ -65,10 +65,12 @@ public String onbanUser(Model m) {
 	if(user.isBan() != false) {
 		user.setBan(false);
 	dao.saveAndFlush(user);
+	request.setAttribute("active2", "active");
 	}else {
 		m.addAttribute("messageban","Tài khoản đang hoạt động!");
+		request.setAttribute("active2", "active");
 	}
 	
-	return "redirect:/admin/tableuser";
+	return "redirect:/admin/usermanage";
 }
 }

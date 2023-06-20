@@ -7,7 +7,6 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.handler.annotation.SendTo;
@@ -24,12 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.socket.messaging.SessionConnectedEvent;
 import org.springframework.web.socket.messaging.SessionDisconnectEvent;
 
-import com.davisy.chat.model.CommentModel;
 import com.davisy.chat.model.UserModel;
-import com.davisy.chat.storage.CommentStorage;
 import com.davisy.chat.storage.UserStorage;
 import com.davisy.entity.Chats;
-import com.davisy.entity.Comment;
 import com.davisy.entity.User;
 import com.davisy.entity.UserGoogleCloud;
 import com.davisy.service.SessionService;
@@ -38,7 +34,6 @@ import javax.servlet.http.HttpSession;
 
 import com.davisy.controller.LoginController;
 import com.davisy.dao.ChatsDao;
-import com.davisy.dao.CommentDao;
 import com.davisy.dao.FollowerDao;
 import com.davisy.dao.MessagesDao;
 import com.davisy.dao.UserDao;
@@ -59,20 +54,16 @@ public class UsersController {
 	ChatsDao chatsDao;
 	@Autowired
 	MessagesDao messagesDao;
-	@Autowired
-	CommentDao commentDao;
 	public static User user = new User();
 
 	@GetMapping("/registration/{userName}")
 	public ResponseEntity<Void> register(@PathVariable String userName) {
 		try {
 			user = sessionService.get("user");
-			User userOl = userDao.findIdUser(user.getID());
-			userOl.setOl(null);
-			userDao.saveAndFlush(userOl);
-			for (User us : userDao.findAll()) {
-				UserModel userModel = new UserModel();
-				if (!us.getUsername().equals(user.getUsername()) && us.getOl() != null) {
+			HashMap<String, UserModel> check = UserStorage.getInstance().getUsers();
+			if (check.size() == 0) {
+				for (User us : userDao.findAll()) {
+					UserModel userModel = new UserModel();
 					userModel.setType(UserModel.MessageType.LEAVE);
 					userModel.setOnline(us.getOl());
 					userModel.setUserName(us.getUsername());
@@ -83,17 +74,21 @@ public class UsersController {
 					userModel.setLastMessage(lastMeassage(user.getUsername(), us.getUsername()));
 					UserStorage.getInstance().setUser(us.getUsername(), userModel);
 				}
+			} else {
+				User users = sessionService.get("user");
+				UserModel userModel = check.get(users.getUsername());
+				userModel.setType(UserModel.MessageType.JOIN);
+				userModel.setUserName(users.getUsername());
+				userModel.setFullName(users.getFullname());
+				userModel.setEmail(users.getEmail());
+				userModel.setImage(users.getAvatar());
+				UserStorage.getInstance().setUser(users.getUsername(), userModel);
+
+//				UserModel userModel =check.get(user.getUsername());
+//				userModel.setType(UserModel.MessageType.JOIN);
+//				UserStorage.getInstance().setUser(user.getUsername(), userModel);
 			}
-			UserModel userModel = new UserModel();
-			userModel.setType(UserModel.MessageType.JOIN);
-			userModel.setOnline(user.getOl());
-			userModel.setUserName(user.getUsername());
-			userModel.setFullName(user.getFullname());
-			userModel.setEmail(user.getEmail());
-			userModel.setImage(user.getAvatar());
-			userModel.setMessageUnRead(messagesDao.countMessageUnread(user.getID()));
-			userModel.setLastMessage(lastMeassage(user.getUsername(), user.getUsername()));
-			UserStorage.getInstance().setUser(user.getUsername(), userModel);
+
 		} catch (Exception e) {
 			System.out.println("error: " + e);
 			return ResponseEntity.badRequest().build();
@@ -130,30 +125,6 @@ public class UsersController {
 	@SendTo("/topic/public")
 	public HashMap<String, UserModel> fetchAll() {
 		return UserStorage.getInstance().getUsers();
-	}
-
-	@MessageMapping("/loadNotification")
-	@SendTo("/topic/loadComments")
-	public HashMap<String, CommentModel> loadNotification() {
-		try {
-			List<Comment> listComment = commentDao.findAllCommentUserSession(user.getUsername());
-			for (Comment cmt : listComment) {
-				String id = String.valueOf(cmt.getID());
-				User user = userDao.findIdUser(cmt.getUser().getID());
-				CommentModel model = new CommentModel();
-				model.setUserNameSession(UsersController.user.getUsername());
-				model.setUserName(user.getUsername());
-				model.setFullName(user.getFullname());
-				model.setUserImg(user.getAvatar());
-				model.setContent(cmt.getContent());
-				model.setCommnentDate(cmt.getDateComment());
-				model.setCmt_Status(cmt.isCmt_Status());
-				CommentStorage.getInstance().setComment(id, model);
-			}
-		} catch (Exception e) {
-			System.out.println("Erorr loadNotification: " + e);
-		}
-		return CommentStorage.getInstance().getComments();
 	}
 
 	public java.sql.Date day() {

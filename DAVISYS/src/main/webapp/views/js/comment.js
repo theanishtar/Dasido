@@ -1,6 +1,11 @@
 let repCommentId = null;
 function comment(idPost) {
 	let comment = document.getElementById('comment-input' + idPost).value;
+/*	$.get("/PostComment/" + idPost,function(response){
+		alert(response)
+	}).fail(function(xhr,status,error){
+		alert("Error")
+	})*/
 	$.ajax({
 		url: "/PostComment/" + idPost,
 		type: "get",
@@ -11,15 +16,8 @@ function comment(idPost) {
 		success: function(data) {
 			//alert(data);
 			repCommentId = null;
-			stompClientComment.send("/app/comment/" + userNamSession, {}, JSON.stringify({
-				userNamSession: userNamSession
-			}));
-			let x = window.location.href;
-			let href = x.substring(21, x.length);
-			window.location.href = href;
-
 			//window.location.href = "/main";
-
+			
 
 		},
 		error: function(xhr) {
@@ -36,7 +34,7 @@ function repComment(idComment, userName, idPost) {
 	repCommentId = idComment;
 }
 function seenMore(idComment) {
-
+	
 	$.ajax({
 		url: "/loadReplyComment",
 		type: "get",
@@ -45,7 +43,7 @@ function seenMore(idComment) {
 		},
 		success: function(data) {
 			/*alert(data)*/
-			let row = document.getElementById('replyContentComment' + idComment);
+			let row = document.getElementById('replyContentComment'+idComment);
 			row.innerHTML = data;
 
 		},

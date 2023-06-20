@@ -32,4 +32,6 @@ public class Interested implements Serializable{
 	@ManyToOne
 	@JoinColumn(name = "postID")
 	Post post;
+	
+	String content;
 }

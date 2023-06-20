@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
+    pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,125 +9,126 @@
 
 </head>
 <body>
-	<header>
-		<div class="section__container header__container">
-			<div class="header__image">
-				<img src="views/images/hd-1.png" /> <img
-					src="views/images/hd-2.jpg" />
-			</div>
-			<div class="header__content">
-				<div>
-					<div>
-						<div class="animated-word">
-							<div class="letter">E</div>
-							<div class="letter">U</div>
-							<div class="letter">P</div>
-							<div class="letter">H</div>
-							<div class="letter">O</div>
-							<div class="letter">R</div>
-							<div class="letter">I</div>
-							<div class="letter">A</div>
-						</div>
-						<%-- <h1><s:message code="index.about" /></h1> --%>
-					</div>
-					<p class="section__subtitle">
-						<br> <s:message code="index.logintouse" /> !!!
-					</p>
-					<div class="action__btns">
-						<a class="btn" href="login"><s:message code="forgotPW.login" /></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
-	<section class="introduce">
-		<div class="section__container introduce__container">
-			<h2 class="section__title"><s:message code="index.title" /></h2>
-			<p class="section__subtitle">
-				<s:message code="index.content" />
-			</p>
-			<div class="destination__grid">
-				<div class="destination__card">
-					<img src="views/images/product/clothes.jpg" alt="destination" />
-					<div class="destination__details">
-						<p class="destination__subtitle"><s:message code="index.clothe" /></p>
-					</div>
-				</div>
-				<div class="destination__card">
-					<img src="views/images/product/tech.jpg" alt="destination" />
-					<div class="destination__details">
-						<p class="destination__subtitle"><s:message code="index.tech" /></p>
-					</div>
-				</div>
-				<div class="destination__card">
-					<img src="views/images/product/book.jpg" alt="destination" />
-					<div class="destination__details">
-						<p class="destination__subtitle"><s:message code="index.book" /></p>
-					</div>
-				</div>
-				<div class="destination__card">
-					<img src="views/images/product/houseware.jpg" alt="destination" />
-					<div class="destination__details">
-						<p class="destination__subtitle"><s:message code="index.house" /></p>
-					</div>
-				</div>
-			</div>
-	</section>
-	<section class="reason">
-		<div class="section__container reason__container">
-			<div class="image__reason">
-				<div class="reason__col">
-					<img src="views/images/hd-1.png" alt="reason" />
-				</div>
-				<div class="reason__col">
-					<img src="views/images/gallery-2.jpg" alt="reason" /> <img
-						src="views/images/hd-2.jpg" alt="reason" />
-				</div>
-			</div>
-			<div class="reason__content">
-				<div>
-					<h2 class="section__title"><s:message code="index.reason" />?
-					</h2>
-					<p class="section__subtitle" style="margin-bottom: 10px;"><s:message code="index.why" />:
-					<li><s:message code="index.discrease" /></li>
-					<li><s:message code="index.tietkiem" /></li>
-					<li><s:message code="index.inviroment" /></li>
-					<li><s:message code="index.recycle" /></li>
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
+ <header>
+        <div class="section__container header__container">
+            <div class="header__image">
+                <img src="views/images/hd-1.png" />
+                <img src="views/images/hd-2.jpg" />
+            </div>
+            <div class="header__content">
+                <div>
+                    <div>
+                        <div class="animated-word">
+                            <div class="letter">D</div>
+                            <div class="letter">A</div>
+                            <div class="letter">S</div>
+                            <div class="letter">I</div>
+                            <div class="letter">D</div>
+                            <div class="letter">O</div>
+                        </div>
+                        <h1> Diễn đàn tặng đồ secondhand </h1>
+                    </div>
+                    <p class="section__subtitle">
+                        <br>
+                        Đăng nhập ngay để nhận hàng ngàn món đồ secondhand miễn phí !!!
+                    </p>
+                    <div class="action__btns">
+                        <a class="btn" href="login">Đăng nhập</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <section class="introduce">
+        <div class="section__container introduce__container">
+            <h2 class="section__title">Diễn đàn DASIDO</h2>
+            <p class="section__subtitle">
+                Nơi mọi người có thể tặng và nhận những món đồ cũ đáng yêu. <br>
+                Mỗi món đồ đã từng có một câu chuyện riêng, và bằng cách chia sẻ chúng, chúng ta đang tạo ra những câu chuyện mới đầy ý nghĩa. 
+                <br> Hãy tham gia vào cộng đồng của chúng tôi và cùng nhau lan tỏa niềm vui, yêu thương và sự phát triển bền vững thông qua việc tặng đồ cũ.
+            </p>
+            <div class="destination__grid">
+                <div class="destination__card">
+                    <img src="views/images/product/clothes.jpg" alt="destination" />
+                    <div class="destination__details">
+                        <p class="destination__subtitle">Quần áo</p>
+                    </div>
+                </div>
+                <div class="destination__card">
+                    <img src="views/images/product/tech.jpg" alt="destination" />
+                    <div class="destination__details">
+                        <p class="destination__subtitle">Thiết bị công nghệ</p>
+                    </div>
+                </div>
+                <div class="destination__card">
+                    <img src="views/images/product/book.jpg" alt="destination" />
+                    <div class="destination__details">
+                        <p class="destination__subtitle">Sách</p>
+                    </div>
+                </div>
+                <div class="destination__card">
+                    <img src="views/images/product/houseware.jpg" alt="destination" />
+                    <div class="destination__details">
+                        <p class="destination__subtitle">Đồ gia dụng</p>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <section class="reason">
+        <div class="section__container reason__container">
+            <div class="image__reason">
+                <div class="reason__col">
+                    <img src="views/images/hd-1.png" alt="reason" />
+                </div>
+                <div class="reason__col">
+                    <img src="views/images/gallery-2.jpg" alt="reason" />
+                    <img src="views/images/hd-2.jpg" alt="reason" />
+                </div>
+            </div>
+            <div class="reason__content">
+                <div>
+                    <h2 class="section__title">
+                        Tại sao lại nên chọn đồ secondhand?
+                    </h2>
+                    <p class="section__subtitle" style="margin-bottom: 10px;">
+                        Sử dụng đồ secondhand đóng góp tích cực vào việc bảo vệ môi trường từ nhiều khía cạnh: 
+                            <li>Giúp giảm lượng rác thải</li>
+                            <li>Tiết kiệm tài nguyên </li>
+                            <li>Giảm khí thải carbon </li>
+                            <li>Tái sử dụng và tái chế </li>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-	<footer class="footer">
-		<div class="section__container footer__container">
-			<div class="footer__col">
-				<h3>
-					EUPHORIA<span>.</span>
-				</h3>
-				<p><s:message code="index.titlefooter" /></p>
-			</div>
-			<div class="footer__col">
-				<h4><s:message code="index.tools" /></h4>
-				<p><s:message code="index.account" /></p>
-				<p><s:message code="index.post" /></p>
-				<p><s:message code="index.history" /></p>
-				<p><s:message code="index.history" /></p>
-			</div>
-			<div class="footer__col">
-				<h4><s:message code="updateprofile.province" /></h4>
-				<p>
-					<span><s:message code="updateprofile.province" />:</span> FPT POLYTECHNIC CẦN THƠ
-				</p>
-				<p>
-					<span>Email:</span> dasido.2hand.davisy@gmail.com
-				</p>
-				<p>
-					<span><s:message code="index.phone" />:</span> +0123456789
-				</p>
-			</div>
-		</div>
-		<div class="footer__bar">DAVISY TEAM</div>
-	</footer>
+    <footer class="footer">
+        <div class="section__container footer__container">
+            <div class="footer__col">
+                <h3>DASIDO<span>.</span></h3>
+                <p>
+                    Diễn đàn tặng đồ secondhand trực tuyến
+                </p>
+            </div>
+            <div class="footer__col">
+                <h4>Chức năng</h4>
+                <p>Tài khoản</p>
+                <p>Đăng bài</p>
+                <p>Lịch sử</p>
+                <p>Hỗ trợ</p>
+            </div>
+            <div class="footer__col">
+                <h4>Địa chỉ</h4>
+                <p>
+                    <span>Địa chỉ:</span> FPT POLYTECHNIC CẦN THƠ
+                </p>
+                <p><span>Email:</span> dasido.2hand.davisy@gmail.com</p>
+                <p><span>Điện thoại:</span> +0123456789</p>
+            </div>
+        </div>
+        <div class="footer__bar">
+            DAVISY TEAM
+        </div>
+    </footer>
 </body>
 </html>

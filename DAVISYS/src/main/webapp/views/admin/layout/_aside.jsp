@@ -4,11 +4,11 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="fr"%>
 <%@taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt"%>
 <%@taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles"%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
+<title>Insert title here</title>
 <link rel="stylesheet" href="/views/css/dialog.css">
 <script src="/views/js/jquery.min.js"></script>
 <script src="/views/js/bootstrap.min.js"></script>
@@ -52,50 +52,44 @@
 </style>
 	<div class="sidebar">
 		<img src="/views/images/LogoDasido.png" alt="" srcset="" class="logo">
-		<a class="logo-expand" href="/admin"> <img alt=""
-			src="/views/images/logo_aside_euphoria.png">
+		<a class="logo-expand" href="#"> <img alt=""
+			src="/views/images/logo_aside.png">
 		</a>
 		<div class="side-wrapper">
 			<div class="side-title"></div>
 			<div class="side-menu">
 				<a class="sidebar-link discover is-active" href="/main"> <i
-					class="fa-solid fa-house"></i> <s:message code="aside.home" />
+					class="fa-solid fa-house"></i> Trang chủ
 				</a> <a class="sidebar-link trending" href="/message"> <i
-					class="fa-solid fa-paper-plane"></i> <s:message
-						code="aside.message" />
+					class="fa-solid fa-paper-plane"></i> Nhắn tin
 				</a> <a class="sidebar-link" href="#" data-toggle="modal"
-					data-target="#myModal"> <i class="fa-solid fa-heart"></i> <s:message
-						code="aside.follow" />
+					data-target="#myModal"> <i class="fa-solid fa-heart"></i> Theo
+					dõi
 				</a> <a class="sidebar-link" href="/history"> <i
-					class="fa-solid fa-clock-rotate-left"></i><s:message
-						code="aside.history" />
+					class="fa-solid fa-clock-rotate-left"></i>Nhật ký
 				</a> 
 				<!-- <a class="sidebar-link" href="/contact"> <i
 					class="fa-solid fa-envelope"></i></i>Liên hệ
 				</a>  -->
 				<a class="sidebar-link" href="#" data-toggle="modal"
-					data-target="#favDialog_setting"> <i class="fa-solid fa-gear"></i>
-					<s:message code="aside.setting" />
+					data-target="#myModalSetting"> <i
+					class="fa-solid fa-gear"></i> Cài đặt
 				</a>
 			</div>
 		</div>
 		<div class="side-wrapper">
-			<div class="side-title"><s:message code="aside.admin" /></div>
+			<div class="side-title">Quản lý</div>
 			<div class="side-menu">
 				<%-- <c:if test="${sessionScope.user.user_Role==true}"> --%>
 				<a class="sidebar-link" href="/admin"> <i
-					class="fa-solid fa-chart-simple"></i> <s:message code="aside.sta" />
+					class="fa-solid fa-chart-simple"></i> Thống kê
 				</a>
 				<%-- </c:if> --%>
-				<a class="sidebar-link" href="/admin/report"> 
-					<i class="fa-solid fa-list-ul"></i> <s:message code="main.post" />
+				<a class="sidebar-link" href="/admin/report"> <i
+					class="fa-solid fa-users"></i> Bài đăng
 				</a>
-				<hr>
-				<a class="sidebar-link" href="/admin/tableuser"> 
-					 <i class="fa-solid fa-users"></i> <s:message code="aside.listuser" />
-				</a>
-				<a class="sidebar-link" href="/admin/formuser"> 
-					<i class="fa-solid fa-user"></i> <s:message code="aside.info" />
+				<a class="sidebar-link" href="/admin/usermanage"> <i
+					class="fa-solid fa-users"></i> Người dùng
 				</a>
 			</div>
 		</div>
@@ -103,50 +97,81 @@
 
 
 	<!-- Setting -->
-	<div id="favDialog_setting" class="modal fade" role="dialog">
-		<div class="">
-			<a id="close_setting" onclick="closeDialog_setting()"> <i
-				class="fa-solid fa-xmark"></i>
-			</a>
-			<div class="setting">
-				<p class="suggestion-text"><s:message code="aside.setting" /></p>
-				<%-- <div class="select">
-					<select name="format" id="format">
-						<option selected disabled>Chọn ngôn ngữ</option>
-						<option value="vietnamese">Tiếng Việt</option>
-						<option value="english">Tiếng Anh</option>
-					</select>
-				</div> --%>
-				<div class="dropdown language">
-					<button type="button" class="btn btn-primary dropdown-toggle"
-						data-toggle="dropdown"><s:message code="aside.language" /></button>
-					<div class="dropdown-menu">
-						<a href="?lg=en" class="dropdown-item"><s:message code="aside.english" /></a>
-						<a href="?lg=vi" class="dropdown-item"><s:message code="aside.vietnam" /></a>
-					</div>
+	<!-- <dialog id="favDialog_setting">
+	<div id="close_setting">
+		<i class="fa-solid fa-xmark"></i>
+	</div>
+	<div class="setting">
+		<p class="suggestion-text">Cài đặt</p>
+		<div class="select">
+			<select name="format" id="format">
+				<option selected disabled>Chọn ngôn ngữ</option>
+				<option value="vietnamese">Tiếng Việt</option>
+				<option value="english">Tiếng Anh</option>
+			</select>
+		</div>
+		<div class="darkmode">
+			<div class="toggleWrapper">
+				<input type="checkbox" class="dn" id="dn" /> <label
+					onclick="first()" id="darkmode-span" for="dn" class="toggle">
+					<span class="toggle__handler"> <span
+						class="crater crater--1"></span> <span class="crater crater--2"></span>
+						<span class="crater crater--3"></span>
+				</span> <span class="star star--1"></span> <span class="star star--2"></span>
+					<span class="star star--3"></span> <span class="star star--4"></span>
+					<span class="star star--5"></span> <span class="star star--6"></span>
+				</label>
+			</div>
+		</div>
+		<div class="button-container">
+			<div class='button -dark center'>Vô hiệu hóa tài khoản</div>
+		</div>
+	</div>
+	</dialog> -->
+
+
+
+	<!-- Follow -->
+	<div class="modal fade" id="myModalSetting" role="dialog">
+		<div class="modal-dialog" id="modal-dialog">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div id="close_follow" data-dismiss="modal">
+					<i class="fa-solid fa-xmark"></i>
 				</div>
-				 
-				<div class="darkmode">
-					<div class="toggleWrapper">
-						<input type="checkbox" class="dn" id="dn" /> <label
-							onclick="first()" id="darkmode-span" for="dn" class="toggle">
-							<span class="toggle__handler"> <span
-								class="crater crater--1"></span> <span class="crater crater--2"></span>
-								<span class="crater crater--3"></span>
-						</span> <span class="star star--1"></span> <span class="star star--2"></span>
-							<span class="star star--3"></span> <span class="star star--4"></span>
-							<span class="star star--5"></span> <span class="star star--6"></span>
-						</label>
-					</div>
-				</div>
-				<div class="button-container">
-					<div class='button -dark center'>
-						<s:message code="aside.disable" />
+				<div class="modal-body" style="padding: 0">
+					<div class="setting">
+						<p class="suggestion-text">Cài đặt</p>
+						<div class="select">
+							<select name="format" id="format">
+								<option selected disabled>Chọn ngôn ngữ</option>
+								<option value="vietnamese">Tiếng Việt</option>
+								<option value="english">Tiếng Anh</option>
+							</select>
+						</div>
+						<div class="darkmode">
+							<div class="toggleWrapper">
+								<input type="checkbox" class="dn" id="dn" /> <label
+									onclick="first()" id="darkmode-span" for="dn" class="toggle">
+									<span class="toggle__handler"> <span
+										class="crater crater--1"></span> <span
+										class="crater crater--2"></span> <span
+										class="crater crater--3"></span>
+								</span> <span class="star star--1"></span> <span class="star star--2"></span>
+									<span class="star star--3"></span> <span class="star star--4"></span>
+									<span class="star star--5"></span> <span class="star star--6"></span>
+								</label>
+							</div>
+						</div>
+						<div class="button-container">
+							<div class='button -dark center'>Vô hiệu hóa tài khoản</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<!-- End setting -->
 
 	<!-- Follow -->
@@ -154,14 +179,12 @@
 		<div class="modal-dialog" id="modal-dialog">
 			<!-- Modal content-->
 			<div class="modal-content">
-				<div id="close_follow" onclick="closeDialog_setting()">
+				<div id="close_follow" data-dismiss="modal">
 					<i class="fa-solid fa-xmark"></i>
 				</div>
 				<div class="modal-body" style="padding: 0">
 					<div class="follow">
-						<p class="suggestion-text">
-							<s:message code="aside.listfollow" />
-						</p>
+						<p class="suggestion-text">Danh sách theo dõi</p>
 						<div class="list-following">
 							<c:forEach items="${follower}" var="fls">
 								<div class="profile-card-follow">
@@ -173,8 +196,7 @@
 										<p class="sub-text">${ fls.username }</p>
 									</div>
 									<!-- <button class="action-btn">Hủy</button> -->
-									<a href="/deleteFollow/${fls.ID}" class="action-btn"><s:message
-											code="aside.cancel" /></a>
+									<a href="/deleteFollow/${fls.ID}" class="action-btn">Hủy</a>
 								</div>
 							</c:forEach>
 						</div>

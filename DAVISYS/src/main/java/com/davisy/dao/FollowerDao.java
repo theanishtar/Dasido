@@ -16,17 +16,4 @@ public interface FollowerDao extends JpaRepository<Follower, Integer> {
 	public Follower findUserUnlf(int id1, int id2);
 
 //	delete from FOLLOWER where followerID = 1 and userID = 1
-	
-	@Query(value = "SELECT COUNT(FOLLOWERID) AS FOLLOWERCOUNT FROM FOLLOWER\r\n"
-			+ "INNER JOIN USERS ON FOLLOWER.USERID=USERS.ID\r\n"
-			+ "WHERE USERS.ID = :id", nativeQuery = true)
-	public int countFollower(int id);
-	
-	
-	@Query(value = "SELECT COUNT(FOLLOWERID) AS FOLLOWERCOUNT FROM FOLLOWER\r\n"
-			+ "	 INNER JOIN USERS ON FOLLOWER.followerID=USERS.ID\r\n"
-			+ "	 WHERE USERS.ID= :id", nativeQuery = true)
-	public int countFollowing(int id);
-	 
-	
 }

@@ -3,40 +3,14 @@
 	console.log(456)
 	setMode();
 });*/
-function autoCheck(){
-	let mode = localStorage.getItem("modeByThean");
-	if(mode == "dark"){
-		document.getElementById("dn").checked = true;
-	} else{
-		document.getElementById("dn").checked = false;
-	}
-	first();
-}
-
 function first() {
 	var element = document.body;
 	var e = document.getElementById("dn").checked;
 	console.log("element span darkmode: " + e);
-	if (e == true) {
-		element.classList.add("dark-mode");
-		element.classList.remove("light-mode");
-	} else {
-		element.classList.add("light-mode");
-		element.classList.remove("dark-mode");
-	}
-	setMode();
-}
-
-function change(){
-	alert(567)
-	var e = document.getElementById("dn").checked;
-	var element = document.body;
 	if (e == false) {
 		element.classList.add("dark-mode");
-		element.classList.remove("light-mode");
 	} else {
-		element.classList.add("light-mode");
-		element.classList.remove("dark-mode");
+		element.classList.toggle("dark-mode");
 	}
 	setMode();
 }
@@ -82,13 +56,9 @@ function getMode() {
 
 window.onload = function() {
 	let mode = localStorage.getItem("modeByThean");
-	if(mode == ""){
-		localStorage.setItem("modeByThean", "dark")
-	}
-	/*
 	if (mode == "dark") {
 		let darkMode = document.getElementsByClassName("dark-mode");
-		
+
 		// 
 		if (darkMode.length == 0) {
 			// alert("dark mode -> light mode")
@@ -103,8 +73,6 @@ window.onload = function() {
 			changeMode();
 		}
 	}
-	*/
-	autoCheck();
 }
 
 
